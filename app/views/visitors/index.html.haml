@@ -1,35 +1,41 @@
-%h3 Welcome to San Pablo United!
+%h3 Welcome to San Pablo United 30+ Team!
 / <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
 
 .large-6.medium-6.small-12.columns
-  %h4 Fun Details
   %ul
     %li
-      We'd be playing
-      = link_to 'Divison C', 'http://ebssl.com/', target: :external
+      We'd be playing Divison C of the
+      = link_to 'EBSSL', 'http://ebssl.com/', target: :external
+      (top 2 get promoted)
+    %li You have to be 30 on Dec-31, but two of us can be 28 on Dec-31
     %li
-      I'm trying to figure out a way for you to register easier than
-      = link_to 'this form', 'http://ebssl.com/ebssl-player-pass-application.pdf'
+      Here is a
+      = link_to 'typical schedule', 'http://ebssl.com/Schd_twn.htm'
+    %li Potential fields below (green likeliest, red unlikeliest)
+  %iframe{:height => "375", :src => "https://www.google.com/maps/d/u/1/embed?mid=1R1UqleBVBpC8YEVx75P4IQIqBzA", :width => "500"}
+
 .large-6.medium-6.small-12.columns
   %h4 Schedule
 
   %ul
     %li Season Starts Sep-11
-    %li 15-22 games total
+    %li
+      15-22 games total
+      %ul
+        %li 14: guaranteed in division
+        %li 0-2: top 4 in division playoffs
+        %li 1-6: FA-style cup, all divisions, blind draw
+
 
 .large-6.medium-6.small-12.columns
-  %h4 Fields
+  %h4 Registration and Team Dues
 
   %ul
-    %li Greens likeliest, reds unlikeliest
-
-  %iframe{:height => "480", :src => "https://www.google.com/maps/d/u/1/embed?mid=1R1UqleBVBpC8YEVx75P4IQIqBzA", :width => "640"}
-
-.large-6.medium-6.small-12.columns
-  %h4 Team Dues
-
-  %ul
-    %li $90 to start with
-    %li We'll adjust up or down at the end of the season
+    %li
+      You can register by filling out
+      = link_to 'this PDF', 'http://ebssl.com/ebssl-player-pass-application.pdf'
+      %ul
+        %li or [coming soon, hopefully] an online form here
+    %li $90 to start with, adjust up or down at the end of the season
     %li See below for details
     = image_tag('spu30.png')
