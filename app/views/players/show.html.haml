@@ -1,5 +1,23 @@
-%p#notice= notice
+%h4
+  = @player.first
+  = @player.last
 
+Thanks for joining the roster!
+
+Next steps to complete your registration:
+
+%p
+  1. Pay your team dues if you haven't
+  %ul
+    %li paypal $90 to san.pablo.united.soccer@gmail.com
+    %li give Mihai cash or check
+
+%p
+  2.
+  =link_to 'Order a jersey', 'http://madcore.com/classic-teamwear/design/back-print-style?my-design=bkYJkBpTb'
+  if you don't already have one
+
+%p 3. Register with EBSSL if you haven't played in it yet.  You can wait on this for a week or two, because they're hopefully upgrading to an online form instead of a PDF.
 %p
   %b First:
   = @player.first
