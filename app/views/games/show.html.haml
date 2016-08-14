@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Home:
+  = @game.home_id
+%p
+  %b Away:
+  = @game.away_id
+%p
+  %b Kickoff:
+  = @game.kickoff
+%p
+  %b Referees report:
+  = @game.referees_report
+%p
+  %b Context:
+  = @game.context
+%p
+  %b Referee:
+  = @game.referee_id
+%p
+  %b Field:
+  = @game.field_id
+%p
+  %b Status:
+  = @game.status
+
+= link_to 'Edit', edit_game_path(@game)
+\|
+= link_to 'Back', games_path

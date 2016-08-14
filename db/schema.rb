@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813233553) do
+ActiveRecord::Schema.define(version: 20160814153827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "divisions", force: :cascade do |t|
+    t.string   "letter"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer  "home_id"
+    t.integer  "away_id"
+    t.datetime "kickoff"
+    t.text     "referees_report"
+    t.integer  "context"
+    t.integer  "referee_id"
+    t.integer  "field_id"
+    t.integer  "status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "division_id"
+    t.integer  "week"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string   "first"
@@ -33,6 +55,21 @@ ActiveRecord::Schema.define(version: 20160813233553) do
     t.boolean  "ebssl_card"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "team_id"
+  end
+
+  create_table "seasons", force: :cascade do |t|
+    t.datetime "start"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "manager_id"
+    t.integer  "division_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

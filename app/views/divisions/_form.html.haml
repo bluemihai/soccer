@@ -1,0 +1,9 @@
+= simple_form_for(@division) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :letter
+    = f.input :age
+
+  .form-actions
+    = f.button :submit

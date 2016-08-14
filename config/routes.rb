@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :divisions do
+    resources :teams
+    resources :games
+  end
+  resources :teams do
+    resources :games
+    resources :players
+  end
+  resources :games
   resources :players
   resources :users
   root to: 'visitors#index'

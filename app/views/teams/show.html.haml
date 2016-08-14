@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @team.name
+%p
+  %b Manager:
+  = @team.manager_id
+%p
+  %b Division:
+  = @team.division_id
+
+= link_to 'Edit', edit_team_path(@team)
+\|
+= link_to 'Back', teams_path

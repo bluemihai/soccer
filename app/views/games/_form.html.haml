@@ -1,0 +1,15 @@
+= simple_form_for(@game) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :home_id
+    = f.input :away_id
+    = f.input :kickoff
+    = f.input :referees_report
+    = f.input :context
+    = f.input :referee_id
+    = f.input :field_id
+    = f.input :status
+
+  .form-actions
+    = f.button :submit

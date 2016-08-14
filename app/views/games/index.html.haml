@@ -1,0 +1,38 @@
+%h1 Example Schedule
+
+%table
+  %thead
+    %tr
+      %th Week
+      %th Date
+      %th Div
+      %th Home
+      %th Away
+      / %th Kickoff
+      / %th Context
+      / %th Referee
+      / %th Field
+      / %th Status
+      / %th
+      / %th
+      / %th
+
+  %tbody
+    - @games.each do |game|
+      %tr
+        %td= game.week
+        %td= game.when.strftime('%b-%d') || 'FOO'
+        %td= game.division.name
+        %td= link_to game.home_team.try(:name), game.home_team
+        %td= link_to game.away_team.try(:name), game.away_team
+        / %td= game.kickoff
+        / %td= game.context
+        / %td= game.referee_id
+        / %td= game.field_id
+        / %td= game.status
+        / %td= link_to 'Show', game
+        / %td= link_to 'Edit', edit_game_path(game)
+        / %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%p Each team is guaranteed one more Cup game on Dec-18.
+%p After that, there can be 5 more Cup games and 2 more playoff games.
