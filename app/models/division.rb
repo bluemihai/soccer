@@ -4,4 +4,8 @@ class Division < ApplicationRecord
   def name
     letter.upcase
   end
+
+  def full_name
+    "Division #{name} (#{age}+)"
+  end
 end

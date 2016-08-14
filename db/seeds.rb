@@ -14,7 +14,7 @@ divisions = {
     'Oakland Defiant',
     'Rovers',
     'Sporting Club',
-    'Walnut Creek Unite'
+    'Walnut Creek United'
   ],
   b: [
     'AFC Juventus',
@@ -54,7 +54,7 @@ divisions = {
     'Clayton Wanderers ',
     'MFC Redwoods',
     'Rusty Plough',
-    'Wizards FC '    
+    'Wizards FC'    
   ]
 }
 
@@ -69,7 +69,8 @@ rr8_schedule = {
 }
 
 divisions.each do |div, team_names|
-  d = Division.create!(letter: div)
+  age = [:d, :e].include?(div) ? 40 : 30
+  d = Division.create!(letter: div, age: age)
 
   team_names.each do |name|
     Team.create!(name: name, division: d)

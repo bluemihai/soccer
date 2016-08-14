@@ -24,7 +24,8 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to registration_path, notice: 'Player was successfully created.' }
+        msg = "Player successfully created. Please complete your registration here."
+        format.html { redirect_to registration_path, notice: '.' }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new }
