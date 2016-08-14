@@ -1,0 +1,31 @@
+%h1 Roster
+
+%table
+  %thead
+    %tr
+      %th #
+      %th First
+      %th Last
+      %th Positions
+      %th Keeper?
+      %th Why I Play
+      / %th
+      / %th
+      / %th
+
+  %tbody
+    - @players.each do |player|
+      %tr
+        %td= player.jersey
+        %td= player.first
+        %td= player.last
+        %td= player.positions
+        %td= player.keeper ? 'Yes' : 'No'
+        %td= player.why
+        / %td= link_to 'Show', player
+        / %td= link_to 'Edit', edit_player_path(player)
+        / %td= link_to 'Destroy', player, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Player', new_player_path

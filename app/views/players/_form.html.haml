@@ -1,0 +1,24 @@
+= simple_form_for(@player) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .large-2.medium-4.small-6.columns= f.input :first, label: 'First Name'
+    .large-2.medium-4.small-6.columns= f.input :last, label: 'Last Name'
+    .large-1.medium-2.small-3.columns= f.input :city
+    .large-1.medium-2.small-3.columns= f.input :age, collection: Player.ages.keys
+    .large-1.medium-2.small-3.columns= f.input :jersey, label: 'SPU Jersey', collection: (0..99)
+    .large-3.medium-6.small-6.columns= f.input :status, collection: Player.statuses.keys, selected: Player.statuses.keys.first, label: 'Status for 30+ team?'
+    .large-2.medium-4.small-6.columns= f.input :ebssl_card, as: :select, collection: [['No EBSSL card', false], ['Have an EBSSL card', true]], selected: false, include_blank: false, label: 'EBSSL history'
+    .large-3.medium-3.small-6.columns
+      = f.input :positions, label: 'What positions are you able/willing to play?  Which do you prefer?'
+      = f.input :ideal_minutes, label: 'How many minutes would you want to play, min to max?'
+    .large-3.medium-3.small-6.columns
+      = f.input :keeper, as: :select, label: 'Could you play keeper if needed?  In an emergency, or if we had to rotate.'
+      = f.input :attendance_estimate, label: 'How many Sundays/games do you think you might miss over the next 5 months?'
+    .large-6.medium-6.small-12.columns= f.input :why, label: 'Why do you choose to play soccer?  We are all different, might be nice to know if we are aligned.  Examples: to get/stay in shape, to have fun, to compete, to socialize, to win...', input_html: {rows: 6}
+  %hr
+    / = f.input :paid
+
+  .form-actions
+    = f.button :submit, 'Save'
+
