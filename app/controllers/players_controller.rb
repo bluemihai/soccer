@@ -2,7 +2,11 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
   def index
-    @players = Player.all
+    if params.has_key?(:include_inactive)
+      @players = Player.all
+    else
+      @players = Player.all - Player.inactive
+    end
   end
 
   def show

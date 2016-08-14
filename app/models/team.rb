@@ -6,4 +6,5 @@ class Team < ApplicationRecord
   def available_jerseys
     (0..99).to_a - players.map(&:jersey).map(&:to_i)
   end
+
 end

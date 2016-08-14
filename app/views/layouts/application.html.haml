@@ -15,3 +15,6 @@
     %main{:role => "main"}
       = render 'layouts/messages'
       = yield
+    - if Rails.env.development?
+      %hr
+      = params.inspect
