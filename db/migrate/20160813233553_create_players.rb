@@ -16,6 +16,7 @@ class CreatePlayers < ActiveRecord::Migration[5.0]
       t.text :why
       t.string :paid
       t.boolean :ebssl_card
+      t.boolean :active
 
       t.timestamps
     end
