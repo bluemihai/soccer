@@ -99,7 +99,6 @@ divisions.each do |div, team_names|
 end
 
 Player.create(
-  id: 2,
   team_id: 23,
   first: "isaac",
   last: "wilcox",
@@ -120,7 +119,6 @@ Player.create(
   updated_at: "2016-08-14 01:36:33"
 )
 Player.create(
-  id: 1,
   team_id: 23,
   first: "Mihai",
   last: "Banulescu",
@@ -139,4 +137,16 @@ Player.create(
   ebssl_card: false,
   created_at: "2016-08-14 00:41:30",
   updated_at: "2016-08-14 15:00:01"
+)
+Player.create(
+  team_id: 23,
+  first: 'Dan',
+  jersey: 0,
+  status: 'Inactive'
+)
+Player.create(
+  team_id: 23,
+  first: 'Josh',
+  jersey: 1,
+  status: 'Inactive'
 )
