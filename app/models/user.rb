@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  def full_name
+    name
+  end
+
   def set_default_role
     if User.count == 0
       self.role ||= :admin
@@ -15,7 +19,8 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.uid = auth['uid']
       if auth['info']
-         user.name = auth['info']['name'] || ""
+        user.name = auth['info']['name'] || ""
+        user.email = auth['info']['email'] || ""
       end
     end
   end

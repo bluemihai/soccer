@@ -22,7 +22,7 @@ gem 'foundation-rails', '~> 5.5'
 gem 'haml-rails'
 gem 'high_voltage', :github=>"thoughtbot/high_voltage"
 gem 'omniauth'
-# gem 'omniauth-facebook'
+gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'simple_form'

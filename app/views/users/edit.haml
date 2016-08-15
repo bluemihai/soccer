@@ -4,7 +4,12 @@
   = f.error_notification
 
   .form-inputs
-    .large-3.medium-6.small-6.columns= f.input :email
+    .large-2.medium-3.small-6.columns= f.input :first_name
+    .large-2.medium-3.small-6.columns= f.input :middle_name
+    .large-2.medium-3.small-6.columns= f.input :last_name
+    .large-2.medium-3.small-6.columns= f.input :email
+    .large-2.medium-3.small-6.columns= f.input :role, collection: User.roles.keys
 
+  %hr
   .form-actions
     = f.button :submit, 'Save'
