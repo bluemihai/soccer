@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :admin_only, :except => [:show, :edit, :update]
 
+  # TODO: validate, per http://stackoverflow.com/questions/21897725/papercliperrorsmissingrequiredvalidatorerror-with-rails-4
+  do_not_validate_attachment_file_type :image
+
   def index
     @users = User.all
   end
