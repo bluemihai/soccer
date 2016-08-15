@@ -33,3 +33,15 @@
 .yellow {
   background-color: yellow;
 }
+
+.datetime {
+    width: auto;
+    select {
+      padding-right: 15px;
+      spacing: 0px;
+    }
+}
+.date {
+    width: auto;
+}
+
