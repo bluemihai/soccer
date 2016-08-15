@@ -106,7 +106,7 @@ Player.create(
   city: "berkeley",
   email: nil,
   phone: nil,
-  positions: "prefer right midfield. able to play anywhere on de...",
+  positions: "prefer right midfield. able to play anywhere on defense, and goalkeeper if absolutely necessary",
   keeper: "true",
   attendance_estimate: "5",
   ideal_minutes: "30 on 15 off",

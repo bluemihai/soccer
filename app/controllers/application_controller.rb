@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def safe_back
+      request.env["HTTP_REFERER"] || root_url
+    end
+
     def user_signed_in?
       return true if current_user
     end

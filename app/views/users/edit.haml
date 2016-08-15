@@ -1,0 +1,10 @@
+%h1 Edit
+
+= simple_form_for(@user) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .large-3.medium-6.small-6.columns= f.input :email
+
+  .form-actions
+    = f.button :submit, 'Save'

@@ -22,7 +22,8 @@ gem 'foundation-rails', '~> 5.5'
 gem 'haml-rails'
 gem 'high_voltage', :github=>"thoughtbot/high_voltage"
 gem 'omniauth'
-gem 'omniauth-facebook'
+# gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'simple_form'
 gem 'thin'
@@ -42,6 +43,7 @@ group :development do
   gem 'spring-commands-rspec'
 end
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'

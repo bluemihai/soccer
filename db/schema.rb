@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814153827) do
+ActiveRecord::Schema.define(version: 20160815173459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,9 +76,23 @@ ActiveRecord::Schema.define(version: 20160814153827) do
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "role"
+    t.date     "dob"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "day_phone"
+    t.string   "evening_phone"
+    t.string   "email"
+    t.string   "dl_license_no"
+    t.string   "dl_issuing_state"
+    t.string   "passport_no"
+    t.string   "passport_country"
+    t.text     "league_history"
+    t.boolean  "liability_waiver_agreed"
+    t.integer  "pass_id"
   end
 
 end
