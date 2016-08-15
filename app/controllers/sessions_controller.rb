@@ -10,8 +10,10 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-    user = User.where(:provider => auth['provider'],
-                      :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
+    # TODO: Create separate authorizations table and reintroduce the uid, for (I think) better security
+    # user = User.where(:provider => auth['provider'],
+    #                   :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
+    user = User.where(email: auth['info']['email']).first || User.create_with_omniauth(auth)
     reset_session
     session[:user_id] = user.id
     redirect_to root_url, :notice => 'Signed in!'
