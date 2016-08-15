@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815173459) do
+ActiveRecord::Schema.define(version: 20160815230311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20160815173459) do
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "role"
     t.date     "dob"
     t.string   "first_name"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(version: 20160815173459) do
     t.text     "league_history"
     t.boolean  "liability_waiver_agreed"
     t.integer  "pass_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "license_photo_file_name"
+    t.string   "license_photo_content_type"
+    t.integer  "license_photo_file_size"
+    t.datetime "license_photo_updated_at"
   end
 
 end

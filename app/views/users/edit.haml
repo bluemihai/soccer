@@ -1,6 +1,6 @@
 %h1 EBSSL Registration Form
 
-= simple_form_for(@user) do |f|
+= simple_form_for(@user, multipart: true) do |f|
   = f.error_notification
 
   .form-inputs
@@ -15,7 +15,8 @@
     .large-2.medium-3.small-6.columns= f.input :passport_no, label: 'Passport #'
     .large-2.medium-3.small-6.columns= f.input :passport_country, as: :string, label: 'Passport Country'
     .large-6.medium-6.small-12.columns= f.input :league_history, label: 'Have you played in this league before?  If yes, when and for which teams?', input_html: { rows: 2 }
-    .large-6.medium-6.small-4.columns= f.input :dob, label: 'Date of Birth'
+    .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth'
+    .large-3.medium-3.small-6.columns= f.file_field :photo, label: 'Photo'
     .clear-both
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records
@@ -26,7 +27,7 @@
       %p I authorize the State of California Department of Motor Vehicles or any other applicable agency to disclose my date of birth to any EBSSL League officer carrying this form, for the sole purpose of determining my eligibility to play in the EBSSL League.
       .large-4.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
       .large-4.columns= f.input :name
-      .large-4.columns= f.input :created_at
+      / .large-4.columns= f.input :created_at, disabled: true
 
   - if current_user.admin?
     %hr

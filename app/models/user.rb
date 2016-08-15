@@ -2,6 +2,14 @@ class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  has_attached_file :photo, styles: {
+    thumb: '100x100'
+  }
+
+  has_attached_file :license_photo, styles: {
+    full: '300x300'
+  }
+
   def full_name
     name
   end

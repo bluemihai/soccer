@@ -41,11 +41,20 @@ class UsersController < ApplicationController
 
   def secure_params
     if @user == current_user
-      params.require(:user).permit(:dob, :first_name, :middle_name, :last_name, :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state, :passport_no, :passport_country, :league_history, :liability_waiver_agreed, :pass_id)
+      params.require(:user).permit(:dob, :first_name, :middle_name, :last_name,
+        :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state,
+        :passport_no, :passport_country, :league_history,
+        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name)
     elsif current_user.admin?
-      params.require(:user).permit(:role, :dob, :first_name, :middle_name, :last_name, :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state, :passport_no, :passport_country, :league_history, :liability_waiver_agreed, :pass_id)
+      params.require(:user).permit(:role, :dob, :first_name, :middle_name,
+        :last_name, :day_phone, :evening_phone, :email, :dl_license_no,
+        :dl_issuing_state, :passport_no, :passport_country, :league_history,
+        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name)
     else
-      params.require(:user).permit(:dob, :first_name, :middle_name, :last_name, :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state, :passport_no, :passport_country, :league_history, :liability_waiver_agreed, :pass_id)
+      params.require(:user).permit(:dob, :first_name, :middle_name, :last_name,
+        :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state,
+        :passport_no, :passport_country, :league_history,
+        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name)
     end
   end
 
