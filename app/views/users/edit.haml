@@ -27,7 +27,7 @@
       %p I authorize the State of California Department of Motor Vehicles or any other applicable agency to disclose my date of birth to any EBSSL League officer carrying this form, for the sole purpose of determining my eligibility to play in the EBSSL League.
       .large-4.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
       .large-4.columns= f.input :name
-      / .large-4.columns= f.input :created_at, disabled: true
+      .large-4.columns= f.input :created_at, disabled: true
 
   - if current_user.admin?
     %hr
