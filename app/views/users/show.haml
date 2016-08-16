@@ -1,13 +1,10 @@
 %h3 User
+= image_tag @user.gravatar(40)
 
 - if @user.name
   %p
     Name:
-    @user.name 
-
-%li= @user.photo.url
-%li= @user.photo.url(:thumb)
-
+    = @user.name 
 
 = image_tag @user.photo.url
-= image_tag @user.gravatar(40)
+= image_tag @user.license_photo.url

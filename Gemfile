@@ -26,7 +26,7 @@ gem 'omniauth-google-oauth2'
 gem 'pg'
 gem 'simple_form'
 gem 'thin'
-gem 'paperclip'
+gem 'paperclip', '~> 5.0'
 gem 'aws-sdk', '~> 2.3'
 group :development do
   gem 'better_errors'

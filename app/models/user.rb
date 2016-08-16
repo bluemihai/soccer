@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     thumb: '100x100'
   }
 
-  has_attached_file :license_photo, styles: {
+  has_attached_file :license_photo, s3_protocol: 'https', styles: {
     full: '300x300'
   }
 
