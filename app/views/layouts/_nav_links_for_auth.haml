@@ -1,5 +1,6 @@
 - if user_signed_in?
   %li= link_to "Sign out #{current_user.full_name}", signout_path
+  %li= image_tag current_user.gravatar(44)
 - else
   %li
     %a{"data-dropdown" => "hover2", "data-options" => "is_hover:true; hover_timeout:200", href: "#"} Sign in...

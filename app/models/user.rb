@@ -10,6 +10,13 @@ class User < ActiveRecord::Base
     full: '300x300'
   }
 
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+
+  def gravatar(size = 24)
+    gravatar_id = Digest::MD5.hexdigest(email.downcase) unless email.blank?
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=monsterid"
+  end
+
   def full_name
     name
   end

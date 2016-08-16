@@ -16,7 +16,8 @@
     .large-2.medium-3.small-6.columns= f.input :passport_country, as: :string, label: 'Passport Country'
     .large-6.medium-6.small-12.columns= f.input :league_history, label: 'Have you played in this league before?  If yes, when and for which teams?', input_html: { rows: 2 }
     .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth'
-    .large-3.medium-3.small-6.columns= f.file_field :photo, label: 'Photo'
+    .large-3.medium-3.small-6.columns= f.input :photo, label: 'Upload a recent photo of yourself', as: :file
+    .large-3.medium-3.small-6.columns= f.input :license_photo, label: 'Upload a picture of your drivers license', as: :file
     .clear-both
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records

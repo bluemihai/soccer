@@ -5,4 +5,9 @@
     Name:
     @user.name 
 
-= image_tag @user.photo.url(:thumb)
+%li= @user.photo.url
+%li= @user.photo.url(:thumb)
+
+
+= image_tag @user.photo.url
+= image_tag @user.gravatar(40)
