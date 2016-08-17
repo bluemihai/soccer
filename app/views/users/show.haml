@@ -1,10 +1,7 @@
-%h3 User
-= image_tag @user.gravatar(40)
+%h3
+  = image_tag @user.gravatar(40)
+  = @user.name
 
-- if @user.name
-  %p
-    Name:
-    = @user.name 
 
 = image_tag @user.photo.url, width: 150, height: 150
 

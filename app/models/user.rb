@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
+  has_many :players
 
   has_attached_file :photo, styles: {
     thumb: '100x100'
@@ -11,6 +12,14 @@ class User < ActiveRecord::Base
   }
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+
+  def team
+    player.team
+  end
+
+  def player
+    players.active.first
+  end
 
   def gravatar(size = 24)
     gravatar_id = Digest::MD5.hexdigest(email.downcase) unless email.blank?
