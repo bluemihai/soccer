@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
   resources :games
   resources :players
-  resources :users
+  resources :users do
+    resources :players
+  end
   root to: 'visitors#index'
   get '/registration' => 'visitors#registration'
   get '/privacy' => 'visitors#privacy'

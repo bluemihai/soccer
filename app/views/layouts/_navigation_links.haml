@@ -1,1 +1,8 @@
-%li= link_to 'Schedule', games_path
+%li
+  %a{"data-dropdown" => "league", "data-options" => "is_hover:true; hover_timeout:200", href: "#"}
+    League Info
+  %ul#league.f-dropdown.tiny{"data-dropdown-content" => ""}
+    %li= link_to '2016-2015 Schedule', games_path
+    %li= link_to 'Registration', registration_path
+    %li= link_to 'ByLaws (PDF)', asset_path('bylaws.pdf')
+    %li= link_to 'ebssl.com', 'http://ebssl.com/'

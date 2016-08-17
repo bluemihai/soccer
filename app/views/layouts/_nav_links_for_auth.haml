@@ -1,12 +1,24 @@
 - if user_signed_in?
-  %li= link_to 'Roster', players_path
-  - if current_user.team
-    %li= link_to current_user.team.name, current_user.team
+  - if team = current_user.team
+    %li
+    %li
+      %a{"data-dropdown" => "hover", "data-options" => "is_hover:true; hover_timeout:200", href: "#"}
+        = team.name
+      %ul#hover.f-dropdown.tiny{"data-dropdown-content" => ""}
+        %li= link_to 'Team Page', team
+        %li= link_to 'Team Roster', team_players_path(team)
+        %li= link_to 'Team Schedule', team_games_path(team)
   - else
-    %li= link_to 'Join', new_player_path
-  %li= link_to 'Registration', registration_path
-  %li= link_to "Sign out #{current_user.full_name}", signout_path
-  %li= image_tag current_user.gravatar(44)
+    %li= link_to 'Request to join a team', new_user_player_path(current_user)
+  %li
+    %a{"data-dropdown" => "account", "data-options" => "is_hover: true; hover_timeout: 200", href: '#'}
+      = image_tag current_user.gravatar(36)
+      = current_user.first
+    %ul#account.f-dropdown.tiny{"data-dropdown-content" => ""}
+      %li= link_to "Sign out", signout_path
+      %li= link_to "Update League Info", edit_user_path(current_user)
+      - if current_user.player
+        %li= link_to "Update Team Profile", edit_player_path(current_user.player)
 - else
   %li
     %a{"data-dropdown" => "hover2", "data-options" => "is_hover:true; hover_timeout:200", href: "#"} Sign in...
@@ -20,4 +32,7 @@
 
 - if user_signed_in?
   - if current_user.try(:admin?)
-    %li= link_to 'Users', users_path
+    %li
+      %a{"data-dropdown" => "admin", "data-options" => "is_hover: true; hover_timeout: 200", href: '#'} ADMIN ONLY
+      %ul#admin.f-dropdown.tiny{"data-dropdown-content" => ""}
+        %li= link_to 'List Registrations', users_path

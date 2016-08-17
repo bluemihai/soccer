@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
-  has_many :players
+  has_many :players, dependent: :destroy
 
   has_attached_file :photo, styles: {
     thumb: '100x100'
@@ -13,7 +13,12 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
+  def first
+    first_name || name.split(' ').first
+  end
+
   def team
+    return nil unless player
     player.team
   end
 

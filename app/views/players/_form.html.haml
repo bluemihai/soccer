@@ -3,18 +3,19 @@
 
   .form-inputs
     .large-3.medium-6.small-6.columns= f.association :team, selected: 23
+    .large-3.medium-6.small-6.columns= f.association :user, collection: [current_user], selected: current_user.id
     .clear-both
-    .large-3.medium-6.small-6.columns= f.input :first, label: 'First Name'
-    .large-3.medium-6.small-6.columns= f.input :last, label: 'Last Name'
-    .large-2.medium-4.small-4.columns= f.input :city
-    .large-2.medium-4.small-4.columns= f.input :age, collection: Player.ages.keys, selected: Player.ages.keys.first
-    .large-2.medium-4.small-4.columns= f.input :jersey, label: 'Jersey (*)', collection: Team.find(23).available_jerseys
-    .large-3.medium-6.small-6.columns= f.input :status, collection: Player.statuses.keys, selected: Player.statuses.keys.first, label: 'Status for 30+ team?'
-    .large-3.medium-6.small-6.columns= f.input :ebssl_card, as: :select, collection: [['No EBSSL card', false], ['Have an EBSSL card', true]], selected: false, include_blank: false, label: 'EBSSL history'
-    .large-3.medium-6.small-6.columns= f.input :positions, label: 'What positions are you able/willing to play?  Which do you prefer?', placeholder: '"Def or Mid, preferrably on the right"'
-    .large-3.medium-6.small-6.columns= f.input :ideal_minutes, label: 'How many minutes would you want to play?  Please give a range, min to max.', placeholder: '"30-60", "75-90"'
-    .large-3.medium-6.small-6.columns= f.input :keeper, as: :select, label: 'Would you play keeper if needed in an emergency, or if we had to rotate?', selected: true
-    .large-3.medium-6.small-6.columns= f.input :attendance_estimate, label: 'How many Sundays/games do you think you will miss over the next 5 months?'
+    / .large-2.medium-4.small-4.columns= f.input :age, collection: Player.ages.keys, selected: Player.ages.keys.first
+    .large-3.medium-6.small-12.columns= f.input :status, collection: Player.statuses.keys, selected: Player.statuses.keys.first, label: 'How interested/committed are you?'
+    .large-3.medium-6.small-12.columns= f.input :positions, label: 'What positions are you able/willing to play?  Which do you prefer?', placeholder: '"Def or Mid, preferrably on the right"'
+    .large-3.medium-6.small-12.columns= f.input :ideal_minutes, label: 'How many minutes would you want to play?  Give your ideal range.', placeholder: '"30-60", "75-90"'
+    .large-3.medium-6.small-12.columns= f.input :attendance_estimate, label: 'How many games do you think you\'ll miss over the next 5 months?', placeholder: '"About 5. First game, 2-3 in October for a trip and probably a couple of others"'
+    .clear-both
+    .large-3.medium-6.small-12.columns= f.input :jersey, label: 'Jersey (*)', collection: Team.find(23).available_jerseys, label: 'What team jersey # do you have or wish to claim? (*)'
+    .large-3.medium-6.small-12.columns= f.input :keeper, as: :select, label: 'Would you play goalkeeper if needed in an emergency?', selected: true
+    .large-3.medium-6.small-12.columns= f.input :city, label: 'Where do you live?  Any interest in carpooling to games?'
+    .large-3.medium-6.small-12.columns= f.input :ebssl_card, as: :select, collection: [['No EBSSL card', false], ['Have an EBSSL card', true]], selected: false, include_blank: false, label: 'EBSSL history'
+    .clear-both
     .large-6.medium-12.small-12.columns= f.input :why, label: 'Why do you choose to play soccer?  We are all different, might be nice to know if we are aligned.  Examples: to get/stay in shape, to have fun, to compete, to socialize, to win...', input_html: {rows: 6}
   %hr
     / = f.input :paid

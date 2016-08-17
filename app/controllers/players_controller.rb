@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         msg = "Player successfully created. Please complete your registration here."
-        format.html { redirect_to registration_path, notice: '.' }
+        format.html { redirect_to registration_path, notice: "Your request to join #{@player.team.name} has been received.  The team manager will double-check your league registration, collect your team dues and approve your request." }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new }
@@ -62,6 +62,6 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(:first, :last, :email, :phone, :positions, 
         :keeper, :attendance_estimate, :ideal_minutes, :why, :paid, :ebssl_card,
-        :jersey, :status, :city, :team_id, :active)
+        :jersey, :status, :city, :team_id, :active, :user_id)
     end
 end
