@@ -2,7 +2,7 @@ class Player < ApplicationRecord
   belongs_to :team
   belongs_to :user
 
-  enum status: ['Ready to Register and Pay!', 'Very Likely to Join', 'On the Fence', 'Inactive This Season']
+  enum status: ['Ready to Register and Pay!', 'Very Likely to Join', 'On the Fence', 'Inactive This (EBSSL 30+) Season']
   enum age: ['30+', '28-29']
 
   scope :inactive, -> { where(status: 3) }
