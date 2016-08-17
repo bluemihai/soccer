@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   root to: 'visitors#index'
   get '/registration' => 'visitors#registration'
+  get '/fields' => 'visitors#fields'
   get '/privacy' => 'visitors#privacy'
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin

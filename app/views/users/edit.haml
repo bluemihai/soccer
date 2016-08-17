@@ -11,7 +11,7 @@
     .large-3.medium-3.small-6.columns= f.input :email
     .large-3.medium-3.small-6.columns= f.input :day_phone, label: 'Daytime Phone #'
     .large-3.medium-3.small-6.columns= f.input :evening_phone, label: 'Evening Phone #'
-    .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70
+    .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70, include_blank: true
     .large-3.medium-3.small-6.columns= f.input :league_history, label: 'Have you played in EBSSL before?  If yes, when and for which teams?', input_html: { rows: 2 }
     %hr
     .large-2.medium-3.small-12.columns= f.input :photo, label: 'Upload photo of yourself', as: :file
