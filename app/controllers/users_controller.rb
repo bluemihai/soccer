@@ -1,3 +1,4 @@
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
@@ -11,6 +12,16 @@ class UsersController < ApplicationController
     unless current_user.admin?
       unless @user == current_user
         redirect_to safe_back, :alert => "Access denied."
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = RegistrationPdf.new(@user, view_context)
+        send_data pdf.render, {
+          filename: "registration_#{@user.id}.pdf", 
+          type: "application/pdf"
+        }
       end
     end
   end

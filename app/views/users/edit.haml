@@ -14,13 +14,15 @@
     .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70
     .large-3.medium-3.small-6.columns= f.input :league_history, label: 'Have you played in EBSSL before?  If yes, when and for which teams?', input_html: { rows: 2 }
     %hr
-    .large-2.medium-3.small-6.columns= f.input :dl_license_no, label: 'Drivers License #'
-    .large-2.medium-3.small-6.columns= f.input :dl_issuing_state, label: 'DL Issuing State'
-    .large-2.medium-3.small-6.columns= f.input :passport_no, label: 'Passport #'
-    .large-2.medium-3.small-6.columns= f.input :passport_country, as: :string, label: 'Passport Country'
-    .large-2.medium-3.small-6.columns= f.input :photo, label: 'Upload photo of yourself', as: :file
-    .large-2.medium-9.small-6.columns= f.input :license_photo, label: 'Upload picture of your drivers license, passport or resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.', as: :file
-    .clear-both
+    .large-2.medium-3.small-12.columns= f.input :photo, label: 'Upload photo of yourself', as: :file
+    .large-2.medium-3.small-6.columns
+      = f.input :dl_license_no, label: 'Drivers License #'
+      = f.input :dl_issuing_state, label: 'DL Issuing State'
+    .large-2.medium-3.small-6.columns
+      = f.input :passport_no, label: 'Passport #'
+      = f.input :passport_country, as: :string, label: 'Passport Country'
+    .large-6.medium-3.small-12.columns= f.input :license_photo, label: 'Upload photo of your drivers license, passport or resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.', as: :file
+    %hr
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records
       %p
@@ -28,9 +30,9 @@
         as a player in the East Bay Senior Soccer League, understand that I play in this League at my own risk, and that the League does not provide insurance coverage in the event that I become injured as a result of my direct or indirect participation in the League.  I hold the League and its officials harmless in the event of such occurrence.
       %p I certify that all of the above information is true and correct, that the attached photocopy of my driver license (and/or passport) is a true copy of the original document without alterations and that the enclosed photographs signed by me are true photographs of myself.
       %p I authorize the State of California Department of Motor Vehicles or any other applicable agency to disclose my date of birth to any EBSSL League officer carrying this form, for the sole purpose of determining my eligibility to play in the EBSSL League.
-      .large-4.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
-      .large-4.columns= f.input :name, label: 'Name / Electronic Signature'
-      .large-4.columns= f.input :created_at, disabled: true
+      .large-4.medium-4.small-12.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
+      .large-4.medium-4.small-12.columns= f.input :name, label: 'E-Signature'
+      .large-4.medium-4.small-12.columns= f.input :created_at, disabled: true, as: :date, label: 'Date'
 
   - if current_user.admin?
     %hr

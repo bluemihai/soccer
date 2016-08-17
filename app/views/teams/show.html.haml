@@ -1,15 +1,19 @@
-%p#notice= notice
+%h3= "Welcome to #{@team.name} 30+ Team!"
+/ <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
 
-%p
-  %b Name:
-  = @team.name
 %p
   %b Manager:
-  = @team.manager_id
-%p
-  %b Division:
-  = @team.division_id
+  = @team.manager.try(:name)
+  / %b Assistant Manager:
+  / = @team.manager.try(:name)
 
-= link_to 'Edit', edit_team_path(@team)
-\|
-= link_to 'Back', teams_path
+.large-8.medium-12.small-12.columns
+  = "We will play 15-22 games in Divison #{@team.division.name} of the"
+  = link_to 'EBSSL', 'http://ebssl.com/', target: :external
+  (top 2 get promoted)
+  %br
+  You have to be 30 on Dec-31, but two of us can be 28 on Dec-31
+  %br
+  Potential fields below (green likeliest, red unlikeliest)
+  %iframe{:height => "480", :src => "https://www.google.com/maps/d/u/1/embed?mid=1R1UqleBVBpC8YEVx75P4IQIqBzA", :width => "640"}
+    %li Call Mihai at 415.734.0129 with any questions

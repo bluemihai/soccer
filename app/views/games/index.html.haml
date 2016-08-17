@@ -1,5 +1,7 @@
 %h1 Example Schedule
 
+= render @games
+
 %table
   %thead
     %tr
@@ -21,7 +23,7 @@
     - @games.each do |game|
       %tr
         %td= game.week
-        %td= game.when.strftime('%b-%d') || 'FOO'
+        %td= game.kickoff_date.strftime('%b-%d') || 'FOO'
         %td= game.division.name
         %td= link_to game.home_team.try(:name), game.home_team
         %td= link_to game.away_team.try(:name), game.away_team

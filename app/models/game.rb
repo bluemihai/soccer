@@ -13,8 +13,15 @@ class Game < ApplicationRecord
     @games = (home + away).sort_by{ |g| [g.division_id, g.week] }
   end
 
-  def when
+  def kickoff_date
     SEASON_START + ((week - 1) * 7).days
+  end
+
+  def preview
+  end
+
+  def result
+    
   end
 
 end

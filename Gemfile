@@ -28,6 +28,7 @@ gem 'simple_form'
 gem 'thin'
 gem 'paperclip', '~> 5.0'
 gem 'aws-sdk', '~> 2.3'
+gem 'prawn'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
