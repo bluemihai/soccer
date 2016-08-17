@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # resources :goals
+  resources :cards
   resources :divisions do
     resources :teams
     resources :games
@@ -7,7 +9,10 @@ Rails.application.routes.draw do
     resources :games
     resources :players
   end
-  resources :games
+  resources :games do
+    resources :goals
+    resources :cards
+  end
   resources :players
   resources :users do
     resources :players

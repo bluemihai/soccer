@@ -1,30 +1,35 @@
 %p#notice= notice
 
-%p
+%p.larger-font
+  %b= @game.division.full_name
+  %br
+  %b Context:
+  = @game.context.titleize
+  %br
+
+%p.larger-font
   %b Home:
-  = @game.home_id
-%p
+  = @game.home_team.name
+  %br
   %b Away:
-  = @game.away_id
-%p
+  = @game.away_team.name
+  %br
   %b Kickoff:
   = @game.kickoff
-%p
-  %b Referees report:
-  = @game.referees_report
-%p
-  %b Context:
-  = @game.context
-%p
-  %b Referee:
-  = @game.referee_id
-%p
+  %br
   %b Field:
   = @game.field_id
-%p
-  %b Status:
-  = @game.status
 
-= link_to 'Edit', edit_game_path(@game)
-\|
-= link_to 'Back', games_path
+%hr
+
+%p.larger-font
+  %b Score:
+  = "#{@game.home_goals.count} - #{@game.away_goals.count}"
+  %br
+  %b Goal Scorers:
+  = @game.goals.map(&:scorer_name).join(', ')
+  %br
+  %b Goal Assisters:
+  = @game.goals.map(&:assister_name).join(', ')
+  
+  

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Game:
+  = @goal.game_id
+%p
+  %b Scorer:
+  = @goal.scorer_id
+%p
+  %b Assister:
+  = @goal.assister_id
+%p
+  %b Struck with:
+  = @goal.struck_with
+%p
+  %b Minute:
+  = @goal.minute
+%p
+  %b Details:
+  = @goal.details
+
+= link_to 'Edit', edit_goal_path(@goal)
+\|
+= link_to 'Back', goals_path

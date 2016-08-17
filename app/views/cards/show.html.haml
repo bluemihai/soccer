@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Game:
+  = @card.game_id
+%p
+  %b Player:
+  = @card.player_id
+%p
+  %b Red:
+  = @card.red
+%p
+  %b Yellow:
+  = @card.yellow
+%p
+  %b Minute:
+  = @card.minute
+%p
+  %b Details:
+  = @card.details
+
+= link_to 'Edit', edit_card_path(@card)
+\|
+= link_to 'Back', cards_path

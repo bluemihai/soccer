@@ -1,0 +1,13 @@
+= simple_form_for(@card) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :game, label_method: :name
+    = f.input :player_id
+    = f.input :red
+    = f.input :yellow
+    = f.input :minute
+    = f.input :details
+
+  .form-actions
+    = f.button :submit

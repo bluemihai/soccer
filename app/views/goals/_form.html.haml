@@ -1,0 +1,21 @@
+- @game = Game.find_by_id(params[:game_id])
+= simple_form_for([@game, @goal]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .large-6.medium-6.small-6.columns
+      = f.association :game, label_method: :name, selected: @game.id
+    .large-6.medium-6.small-6.columns
+      = f.association :team, collection: @game.teams
+    .large-6.medium-6.small-6.columns
+      = f.association :scorer, collection: Player.potential_scorers(@game)
+    .large-6.medium-6.small-6.columns
+      = f.association :assister, collection: Player.potential_scorers(@game)
+    .large-6.medium-6.small-6.columns
+      = f.input :struck_with, collection: Goal.struck_withs.keys
+    .large-6.medium-6.small-6.columns= f.input :minute
+    .large-12.medium-12.small-12.columns= f.input :details
+
+  %hr
+  .form-actions
+    = f.button :submit, 'Record'

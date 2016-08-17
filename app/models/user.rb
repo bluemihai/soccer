@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   }
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
+
+  def age
+    
+  end
 
   def first
     first_name || name.split(' ').first

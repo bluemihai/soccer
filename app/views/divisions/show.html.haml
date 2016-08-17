@@ -1,12 +1,26 @@
-%p#notice= notice
+%h2= @division.full_name
 
-%p
-  %b Letter:
-  = @division.letter
-%p
-  %b Age:
-  = @division.age
 
-= link_to 'Edit', edit_division_path(@division)
-\|
-= link_to 'Back', divisions_path
+%h4 Current Standings
+
+%table
+  %thead
+    %th #
+    %th Team Name
+    %th.text-center Games
+    %th.text-center Wins
+    %th.text-center Ties
+    %th.text-center Losses
+    %th.text-center Points
+    %th.text-center Goal Diff
+  %tbody
+    - @division.teams.each_with_index do |team, idx|
+      %tr
+        %td= idx + 1
+        %td= link_to team.name, team
+        %td.text-center 0
+        %td.text-center 0
+        %td.text-center 0
+        %td.text-center 0
+        %td.text-center 0
+        %td.text-center 0-0

@@ -11,4 +11,9 @@ class Player < ApplicationRecord
   def name
     "#{first} #{last}"
   end
+
+  def self.potential_scorers(given_game)
+    given_game.home_team.players.active + given_game.away_team.players.active
+  end
+
 end

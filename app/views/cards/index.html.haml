@@ -1,0 +1,31 @@
+%h1 Listing cards
+
+%table
+  %thead
+    %tr
+      %th Game
+      %th Player
+      %th Red
+      %th Yellow
+      %th Minute
+      %th Details
+      %th
+      %th
+      %th
+
+  %tbody
+    - @cards.each do |card|
+      %tr
+        %td= card.game_id
+        %td= card.player_id
+        %td= card.red
+        %td= card.yellow
+        %td= card.minute
+        %td= card.details
+        %td= link_to 'Show', card
+        %td= link_to 'Edit', edit_card_path(card)
+        %td= link_to 'Destroy', card, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Card', new_card_path
