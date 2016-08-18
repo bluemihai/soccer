@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Goal, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:goal) { FactoryGirl.create(:goal) }
+
+  it 'FactoryGirl creation works' do
+    expect(goal.details).to eq 'MyText'
+  end
+
 end

@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :game do
-    home_id 1
-    away_id 1
+    association :division, factory: :division
+    association :home_team, factory: :team
+    association :away_team, factory: :team
     kickoff "2016-08-14 07:51:48"
     referees_report "MyText"
     context 1

@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-  belongs_to :team
+  belongs_to :team, required: false
   belongs_to :user, required: false
 
   enum status: ['Ready to Register and Pay!', 'Very Likely to Join', 'On the Fence', 'Inactive This (EBSSL 30+) Season']

@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :goal do
-    game_id 1
-    scorer_id 1
-    assister_id 1
+    association :game, factory: :game
+    association :team, factory: :team
+    association :scorer, factory: :player
+    association :assister, factory: :player
     struck_with 1
     minute 1
     details "MyText"

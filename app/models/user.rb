@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
     if User.count == 0
       self.role ||= :admin
     else
-      self.role ||= :user
+      self.role ||= :player
     end
   end
 
