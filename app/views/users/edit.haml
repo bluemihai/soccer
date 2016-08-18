@@ -1,7 +1,11 @@
 %h1 EBSSL Registration Form
 
 %p
-  Please remember to PayPal the $10 Player Pass fee to ghanbari@msn.com
+  %b= "Welcome, #{@user.name}!"
+  %br
+  %br
+  Please remember to PayPal the $10 Player Pass fee to
+  %b ghanbari@msn.com
   %br
   Your card and league registration will be on hold until you do so.
 
@@ -10,9 +14,9 @@
 
   .form-inputs
     %hr
-    .large-3.medium-3.small-6.columns= f.input :first_name, autofocus: true
-    .large-3.medium-3.small-6.columns= f.input :middle_name
-    .large-3.medium-3.small-6.columns= f.input :last_name
+    .large-3.medium-3.small-6.columns= f.input :first_name, autofocus: true, input_html: { value: @user.first }
+    .large-3.medium-3.small-6.columns= f.input :middle_name, input_html: { value: @user.middle }
+    .large-3.medium-3.small-6.columns= f.input :last_name, input_html: { value: @user.last }
     .large-3.medium-3.small-6.columns= f.input :email
     .large-3.medium-3.small-6.columns= f.input :day_phone, label: 'Daytime Phone #'
     .large-3.medium-3.small-6.columns= f.input :evening_phone, label: 'Evening Phone #'
@@ -24,9 +28,9 @@
       = f.input :dl_license_no, label: 'Drivers License #'
       = f.input :dl_issuing_state, label: 'DL Issuing State'
     .large-2.medium-3.small-6.columns
-      = f.input :passport_no, label: 'Passport #'
-      = f.input :passport_country, as: :string, label: 'Passport Country'
-    .large-6.medium-3.small-12.columns= f.input :license_photo, label: 'Upload photo of your drivers license, passport or resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.', as: :file
+      = f.input :passport_no, label: 'OR Passport #'
+      = f.input :passport_country, as: :string, label: 'OR Passport Country'
+    .large-6.medium-3.small-12.columns= f.input :license_photo, label: 'Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.', as: :file
     %hr
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records
@@ -35,8 +39,8 @@
         as a player in the East Bay Senior Soccer League, understand that I play in this League at my own risk, and that the League does not provide insurance coverage in the event that I become injured as a result of my direct or indirect participation in the League.  I hold the League and its officials harmless in the event of such occurrence.
       %p I certify that all of the above information is true and correct, that the attached photocopy of my driver license (and/or passport) is a true copy of the original document without alterations and that the enclosed photographs signed by me are true photographs of myself.
       %p I authorize the State of California Department of Motor Vehicles or any other applicable agency to disclose my date of birth to any EBSSL League officer carrying this form, for the sole purpose of determining my eligibility to play in the EBSSL League.
-      .large-4.medium-4.small-12.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
-      .large-4.medium-4.small-12.columns= f.input :name, label: 'E-Signature'
+      .large-2.medium-4.small-12.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
+      .large-6.medium-4.small-12.columns= f.input :name, label: 'E-Signature (from FB/Google, update if not your legal name)'
       .large-4.medium-4.small-12.columns= f.input :created_at, disabled: true, as: :date, label: 'Date'
 
   - if current_user.admin?

@@ -22,6 +22,15 @@ class User < ActiveRecord::Base
     first_name || name.split(' ').first
   end
 
+  def middle
+    parts = name.split(' ')
+    middle_name || parts.size == 3 ? parts[1] : ''
+  end
+
+  def last
+    last_name || name.split(' ').last
+  end
+
   def team
     return nil unless player
     player.team
