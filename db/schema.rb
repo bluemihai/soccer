@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818174032) do
+ActiveRecord::Schema.define(version: 20160818213313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160818174032) do
     t.string   "keeper"
     t.string   "attendance_estimate"
     t.string   "ideal_minutes"
-    t.string   "jersey"
     t.integer  "status"
     t.integer  "age"
     t.text     "why"
@@ -81,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160818174032) do
     t.integer  "team_id"
     t.integer  "user_id"
     t.boolean  "approved",            default: false
+    t.integer  "jersey"
   end
 
   create_table "seasons", force: :cascade do |t|
