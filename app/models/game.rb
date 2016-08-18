@@ -31,7 +31,6 @@ class Game < ApplicationRecord
   end
 
   def result
-    
   end
 
   def home_goals
