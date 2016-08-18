@@ -11,7 +11,7 @@ feature 'Sign in', :omniauth do
   #   Then I see a success message
   scenario "user can sign in with valid account" do
     signin
-    expect(page).to have_content("Sign out")
+    expect(page).to have_content("EBSSL Registration Form")
   end
 
   # Scenario: User cannot sign in with invalid account
@@ -19,11 +19,10 @@ feature 'Sign in', :omniauth do
   #   And I am not signed in
   #   When I sign in
   #   Then I see an authentication error message
-  scenario 'user cannot sign in with invalid account' do
-    OmniAuth.config.mock_auth[:twitter] = :invalid_credentials
+  scenario 'user cannot sign in with invalid Google account' do
+    OmniAuth.config.mock_auth[:google_oauth2] = :invalid_credentials
     visit root_path
-    expect(page).to have_content("Sign in")
-    click_link "Sign in"
+    click_link 'Google auth'
     expect(page).to have_content('Authentication error')
   end
 

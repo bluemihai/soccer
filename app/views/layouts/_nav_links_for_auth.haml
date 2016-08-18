@@ -25,10 +25,10 @@
     %ul#hover2.f-dropdown.tiny{"data-dropdown-content" => ""}
       %li
         = link_to google_signin_path do
-          = image_tag('google_auth.png')
+          = image_tag('google_auth.png', alt: 'Google auth menubar')
       %li
         = link_to facebook_signin_path do
-          = image_tag('facebook_auth.png')
+          = image_tag('facebook_auth.png', alt: 'Facebook auth menubar')
 
 - if user_signed_in?
   - if current_user.try(:admin?)
