@@ -2,13 +2,15 @@
 
 - if @team
   %h4 Active
-  = render @active
+  = render @active.order(:jersey)
 
   %h4 Pending
   = render @pending.order(:jersey)
 
   %h4 Inactive (numbers)
   = render @inactive.order(:jersey)
+
+  %hr
 
 %table
   %thead
