@@ -1,5 +1,15 @@
 %h1 Roster
 
+- if @team
+  %h4 Active
+  = render @active
+
+  %h4 Pending
+  = render @pending.order(:jersey)
+
+  %h4 Inactive (numbers)
+  = render @inactive.order(:jersey)
+
 %table
   %thead
     %tr
@@ -12,9 +22,10 @@
       %th Keeper?
       - if params[:team_id]
         %th Why I Play
-      / %th
-      / %th
-      / %th
+      - if current_user.admin?
+        %th
+        %th
+        %th
 
   %tbody
     - @players.each do |player|
@@ -28,9 +39,10 @@
         %td= player.keeper ? 'Yes' : 'No'
         - if params[:team_id]
           %td= player.why
-        / %td= link_to 'Show', player
-        / %td= link_to 'Edit', edit_player_path(player)
-        / %td= link_to 'Destroy', player, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - if current_user.admin?
+          %td.admin-only= link_to 'Show', player
+          %td.admin-only= link_to 'Edit', edit_player_path(player)
+          %td.admin-only= link_to 'Destroy', player, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

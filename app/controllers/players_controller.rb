@@ -2,6 +2,12 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
   def index
+    if @team = Team.find_by_id(params[:team_id])
+      @active = @team.players.active
+      @pending = @team.players.pending
+      @inactive = @team.players.inactive
+    end
+
     if params.has_key?(:include_inactive)
       @players = Player.all
     else
@@ -62,6 +68,6 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(:first, :last, :email, :phone, :positions, 
         :keeper, :attendance_estimate, :ideal_minutes, :why, :paid, :ebssl_card,
-        :jersey, :status, :city, :team_id, :active, :user_id)
+        :jersey, :status, :city, :team_id, :active, :user_id, :approved)
     end
 end
