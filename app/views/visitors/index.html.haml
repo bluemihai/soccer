@@ -9,7 +9,13 @@
 
 %h4 How Registration Works
 %ol.larger-font
-  %li You sign in with your choice of Google or Facebook
+  %li
+    You sign in with your choice of Google or Facebook
+    %br
+    = link_to google_signin_path do
+      = image_tag('google_auth.png', height: 50, width: 300)
+    = link_to facebook_signin_path do
+      = image_tag('facebook_auth.png', height: 50, width: 300)
   %li After authorizing, you fill out the league registration form
   %li ... You will need to upload photos of yourself and your drivers license
   %li ... You pay your $10 player pass fee (PayPal to ghanbari@msn.com)
