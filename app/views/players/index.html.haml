@@ -24,7 +24,7 @@
       %th Keeper?
       - if params[:team_id]
         %th Why I Play
-      - if current_user.admin?
+      - if current_user && current_user.admin?
         %th
         %th
         %th
@@ -41,7 +41,7 @@
         %td= player.keeper ? 'Yes' : 'No'
         - if params[:team_id]
           %td= player.why
-        - if current_user.admin?
+        - if current_user && current_user.admin?
           %td.admin-only= link_to 'Show', player
           %td.admin-only= link_to 'Edit', edit_player_path(player)
           %td.admin-only= link_to 'Destroy', player, :method => :delete, :data => { :confirm => 'Are you sure?' }
