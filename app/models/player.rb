@@ -10,6 +10,16 @@ class Player < ApplicationRecord
   scope :active, -> { where('status <> 3').where(approved: true) }
   scope :pending, -> { where('status <> 3').where(approved: false) }
 
+  def invited_or_active
+    if status == 'Ready to Register and Pay!' && approved
+      'active'
+    elsif invited
+      'invited'
+    else
+      'inactive'
+    end
+  end
+
   def safe_name
     return user.name if user
     return name if name && name != ''
