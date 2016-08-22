@@ -1,17 +1,12 @@
 %tr
   %td= player.safe_jersey
   %td= link_to player.safe_name, player
-  %td
-    - if current_user && current_user.admin?
-      .admin-only.text-center= link_to player.safe_position, edit_player_path(player)
-    - else
-      = player.safe_position
+  %td= player.safe_position
   %td= player.invited_or_active
-  %td
-    - if current_user && current_user.admin?
-      .admin-only= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?'}
-    - else
-      = ''
+  - if current_user && current_user.admin?
+    %td.admin-only= player.paid
+    %td.admin-only= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?'}
+
 
 / .large-1.medium-1.small-2.columns= player.safe_jersey
 / - if current_user && current_user.admin?
