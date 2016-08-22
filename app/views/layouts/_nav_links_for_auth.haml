@@ -5,11 +5,16 @@
       %a{"data-dropdown" => "hover", "data-options" => "is_hover:true; hover_timeout:200", href: "#"}
         = team.name
       %ul#hover.f-dropdown.tiny{"data-dropdown-content" => ""}
+        %li= link_to 'See Your Profile', current_user.player
+        %li= link_to 'Update Your Profile', edit_player_path(current_user.player)
         %li= link_to 'Team Page', team
         %li= link_to 'Team Roster', team_players_path(team)
         %li= link_to 'Team Schedule', team_games_path(team)
   - else
-    %li= link_to 'Request to join a team', new_user_player_path(current_user)
+    - if current_user.player
+      %li= link_to 'Update Your Team Profile', edit_player_path(current_user.player)
+    - else
+      %li= link_to 'Request to join a team', new_user_player_path(current_user)
   %li
     %a{"data-dropdown" => "account", "data-options" => "is_hover: true; hover_timeout: 200", href: '#'}
       = image_tag current_user.gravatar(36)

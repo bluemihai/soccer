@@ -1,0 +1,17 @@
+= simple_form_for(@formation) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :image_url
+    = f.input :comments
+    = f.simple_fields_for :positions do |position|
+      = position.input :one, input_html: { value: @formation.positions[:one] }
+      = position.input :two, input_html: { value: @formation.positions[:two] }
+      = position.input :three, input_html: { value: @formation.positions[:three] }
+      = position.input :four, input_html: { value: @formation.positions[:four] }
+      = position.input :five, input_html: { value: @formation.positions[:five] }
+      = position.input :six, input_html: { value: @formation.positions[:six] }
+
+  .form-actions
+    = f.button :submit

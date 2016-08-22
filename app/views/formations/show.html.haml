@@ -1,0 +1,8 @@
+%h4= "#{@formation.name} Formation"
+
+= image_tag(@formation.image_url)
+
+%hr
+- @formation.positions.each do |k, v|
+  = "##{k} — #{v}"
+  %br

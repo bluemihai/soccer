@@ -10,6 +10,9 @@
     %th Name
     %th.text-center Status
     - if current_user && (current_user.admin? || current_user.manager?)
+      %th.text-center User
+      %th.text-center E-mail
+      %th.text-center Phone
       %th.text-center Position
       %th.text-center Paid
       %th.text-center Actions

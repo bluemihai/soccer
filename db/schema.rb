@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822150736) do
+ActiveRecord::Schema.define(version: 20160822233519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "cards", force: :cascade do |t|
     t.integer  "game_id"
@@ -29,6 +30,15 @@ ActiveRecord::Schema.define(version: 20160822150736) do
   create_table "divisions", force: :cascade do |t|
     t.string   "letter"
     t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "formations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.hstore   "positions"
+    t.text     "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160822150736) do
     t.integer  "position"
     t.boolean  "invited"
     t.string   "name"
+    t.boolean  "has_jersey"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -96,8 +107,9 @@ ActiveRecord::Schema.define(version: 20160822150736) do
     t.string   "name"
     t.integer  "manager_id"
     t.integer  "division_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "formation_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -10,7 +10,9 @@ $(document).ready(function(){
     //   null
     // ]
       columnDefs: [
-        { type: 'num' }
+        { type: 'num' },
+        { type: 'string' },
+        {type: 'html'}
       ],
       order: [1, 'asc'],
       // pageLength: -1,

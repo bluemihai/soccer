@@ -1,4 +1,76 @@
-%h4= @player.name
+%h2= @player.name
+
+Status:
+%b= link_to @player.status, edit_player_path(@player)
+for
+%b= @player.team.name
+
+%hr
+#team.checklist
+  %h4 Team Registration Checklist
+  %table
+    %tbody
+      %tr
+        %td Decision Confirmed
+        %td 
+          - if @player.status == 'Ready to Register and Pay!'
+            = image_tag('warning.png')
+          - else
+            = image_tag('checkmark.png')
+      %tr
+        %td Team Dues Paid
+        %td 
+          - if @player.paid == true
+            = image_tag('checkmark.png')
+          - else
+            = image_tag('warning.png')
+      %tr
+        %td Jersey # Reserved
+        %td
+          - if @player.jersey.nil?
+            = image_tag('warning.png')
+          - else
+            = image_tag('checkmark.png')
+            = @player.jersey
+      %tr
+        %td Ordered/Has Jersey
+        %td
+          - if @player.has_jersey
+            = image_tag('checkmark.png')
+          - else
+            = image_tag('warning.png')
+
+#league.checklist
+  %h4 League/Player Pass Checklist
+  %table
+    %tbody
+      %tr
+        %td Signed In
+        %td 
+          - if @player.user
+            = image_tag('checkmark.png')
+          - else
+            = image_tag('warning.png')
+      %tr
+        %td Player Pass Photo Uploaded
+        %td 
+          - if @player.user.try(:photo).try(:url)
+            = image_tag('checkmark.png')
+            = image_tag(@player.user.photo.url, height: 100)
+          - else
+            = image_tag('warning.png')
+      %tr
+        %td License Photo Uploaded
+        %td 
+          - if @player.user.try(:license_photo).try(:url)
+            = image_tag('checkmark.png')
+            = image_tag(@player.user.license_photo.url, height: 100)
+          - else
+            = image_tag('warning.png')
+  
+
+%hr
+= link_to 'Edit Profile', edit_player_path(@player), class: 'button-xs'
 
 - if current_user && (current_user.admin? or current_user.manager?)
   %p
@@ -28,9 +100,6 @@
   %p
     %b Why:
     = @player.why
-  %p
-    %b Paid:
-    = @player.paid
   %p
     %b Ebssl card:
     = @player.ebssl_card

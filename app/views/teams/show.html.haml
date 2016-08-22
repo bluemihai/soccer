@@ -2,10 +2,11 @@
 / <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
 
 %p
-  %b Manager:
-  = @team.manager.try(:name)
-  / %b Assistant Manager:
-  / = @team.manager.try(:name)
+  %b Managers:
+  = @team.manager_names
+  %br
+  %b Formation:
+  = link_to @team.formation.name, @team.formation
 
 .large-8.medium-12.small-12.columns
   = "We will play 15-22 games in Divison #{@team.division.name} of the"

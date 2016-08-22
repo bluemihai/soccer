@@ -68,6 +68,6 @@ class PlayersController < ApplicationController
       params.require(:player).permit(:first, :last, :email, :phone, 
         :keeper, :attendance_estimate, :ideal_minutes, :why, :paid, :ebssl_card,
         :jersey, :status, :city, :team_id, :active, :user_id, :approved,
-        :position, :invited, :name, :position_request)
+        :position, :invited, :name, :position_request, :has_jersey)
     end
 end

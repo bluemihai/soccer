@@ -1,0 +1,27 @@
+%h1 Listing formations
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Image url
+      %th Positions
+      %th Comments
+      %th
+      %th
+      %th
+
+  %tbody
+    - @formations.each do |formation|
+      %tr
+        %td= formation.name
+        %td= formation.image_url
+        %td= formation.positions
+        %td= formation.comments
+        %td= link_to 'Show', formation
+        %td= link_to 'Edit', edit_formation_path(formation)
+        %td= link_to 'Destroy', formation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Formation', new_formation_path

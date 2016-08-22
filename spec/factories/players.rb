@@ -1,12 +1,12 @@
 FactoryGirl.define do
   factory :player do
-    association :user, factory: :user
+    # association :user, factory: :user
     status 'Ready to Register and Pay!'
     first "MyString"
     last "MyString"
     email "MyString"
     phone "MyString"
-    positions "MyString"
+    position Player.positions.keys.first
     keeper false
     attendance_estimate 1
     ideal_minutes 1

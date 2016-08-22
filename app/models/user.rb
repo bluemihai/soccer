@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   enum role: [:player, :manager, :admin]
   after_initialize :set_default_role, :if => :new_record?
-  has_many :players, dependent: :destroy
+
+  has_many :players, dependent: :nullify
 
   has_attached_file :photo, styles: {
     thumb: '100x100'
@@ -13,6 +14,10 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
+
+  def phone
+    day_phone || evening_phone || 'N/A'
+  end
 
   def age
     
@@ -37,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def player
-    players.active.first
+    players.first
   end
 
   def gravatar(size = 24)

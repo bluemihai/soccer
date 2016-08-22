@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :formations
   # resources :goals
   resources :cards
   resources :divisions do

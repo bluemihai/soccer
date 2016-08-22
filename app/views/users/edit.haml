@@ -25,7 +25,7 @@
     %hr
     .large-2.medium-3.small-12.columns
       = image_tag @user.license_photo.url, height: 100
-      = f.input :photo, label: 'Upload photo of yourself', as: :file
+      = f.input :photo, label: 'Upload passport-sized photo of yourself', as: :file
     .large-2.medium-3.small-6.columns
       = f.input :dl_license_no, label: 'Drivers License #'
       = f.input :dl_issuing_state, label: 'DL Issuing State'
