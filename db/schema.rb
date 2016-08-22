@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160822150736) do
     t.string   "city"
     t.string   "email"
     t.string   "phone"
-    t.string   "positions"
+    t.string   "position_request"
     t.string   "keeper"
     t.string   "attendance_estimate"
     t.string   "ideal_minutes"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20160822150736) do
     t.integer  "user_id"
     t.boolean  "approved",            default: false
     t.integer  "jersey"
-    t.string   "position"
+    t.integer  "position"
     t.boolean  "invited"
     t.string   "name"
   end
