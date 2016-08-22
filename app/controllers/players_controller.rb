@@ -3,8 +3,7 @@ class PlayersController < ApplicationController
 
   def index
     if @team = Team.find_by_id(params[:team_id])
-      @active = @team.players.active
-      @pending = @team.players.pending
+      @active_or_pending = @team.players.active_or_pending
       @inactive = @team.players.inactive
     end
 
