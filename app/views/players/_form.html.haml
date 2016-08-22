@@ -2,12 +2,12 @@
   = f.error_notification
 
   .form-inputs
-    .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: 23
+    .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: 23, include_blank: true
     - if current_user && current_user.admin?
       - users = User.order(:name)
     - else
       - users = [current_user]
-    .large-3.medium-6.small-6.columns= f.association :user, collection: users, selected: current_user.id, include_blank: true
+    .large-3.medium-6.small-6.columns= f.association :user, collection: users, include_blank: true
     .large-3.medium-6.small-6.columns= f.input :email
     .large-3.medium-6.small-6.columns= f.input :name
     %hr
