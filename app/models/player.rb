@@ -15,11 +15,13 @@ class Player < ApplicationRecord
 
   def invited_or_active
     if status == 'Ready to Register and Pay!' && approved
-      'active'
+      'Active'
     elsif status == 'Inactive This (EBSSL 30+) Season'
-      'inactive'
+      'Inactive'
+    elsif invited
+      'Invited'
     else
-      'pending'
+      'Pending'
     end
   end
 
