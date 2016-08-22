@@ -1,20 +1,17 @@
-%h3= "Welcome to #{@team.name} 30+ Team!"
-/ <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+%h3= "Welcome to #{@team.name} #{@team.division.age}+ Team!"
 
 %p
   %b Managers:
   = @team.manager_names
   %br
-  %b Formation:
-  = link_to @team.formation.name, @team.formation
+  / %b Formation:
+  / = link_to @team.formation.name, @team.formation
 
-.large-8.medium-12.small-12.columns
-  = "We will play 15-22 games in Divison #{@team.division.name} of the"
-  = link_to 'EBSSL', 'http://ebssl.com/', target: :external
-  (top 2 get promoted)
+  %h4 Roster
+  = link_to "#{@team.players.active.count} Active Players", team_players_path(@team)
   %br
-  You have to be 30 on Dec-31, but two of us can be 28 on Dec-31
+  = link_to "#{@team.players.pending.count} Pending Players", team_players_path(@team)
   %br
-  Potential fields below (green likeliest, red unlikeliest)
-  %iframe{:height => "480", :src => "https://www.google.com/maps/d/u/1/embed?mid=1R1UqleBVBpC8YEVx75P4IQIqBzA", :width => "640"}
-    %li Call Mihai at 415.734.0129 with any questions
+
+  %h4 Contact
+  Call Mihai at 415.734.0129 with any questions
