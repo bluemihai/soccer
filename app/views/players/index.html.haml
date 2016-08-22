@@ -1,10 +1,23 @@
 
 - if @team
   %h1= "#{@team.name} Roster"
-  = render @active_or_pending.order(:jersey)
-  - if current_user && (current_user.admin? || current_user.manager?)
-    %hr
-    .admin-only= render @inactive.order(:jersey)
+- else
+  %h1 League Players
+  / = render @active_or_pending.order(:jersey)
+  / - if current_user && (current_user.admin? || current_user.manager?)
+  /   %hr
+  /   .admin-only= render @inactive.order(:jersey)
+  /
+
+%table#players-table.compact
+  %thead
+    %th #
+    %th Name
+    %th Position
+    %th Status
+    %th 
+  %tbody
+    = render @active_or_pending
 
 / %table
 /   %thead
