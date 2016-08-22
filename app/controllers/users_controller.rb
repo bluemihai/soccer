@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(secure_params)
-      redirect_to root_path, :notice => "Your league registration form was saved.  You can edit "
+      redirect_to root_path, :notice => "Your league registration form was saved.  You can now request to join a team."
     else
       redirect_to root_path, :alert => "Unable to update user."
     end

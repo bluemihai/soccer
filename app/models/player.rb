@@ -9,10 +9,6 @@ class Player < ApplicationRecord
   scope :active, -> { where('status <> 3').where(approved: true) }
   scope :pending, -> { where('status <> 3').where(approved: false) }
 
-  def name
-    "#{first} #{last}"
-  end
-
   def self.potential_scorers(given_game)
     given_game.home_team.players.active + given_game.away_team.players.active
   end

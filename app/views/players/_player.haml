@@ -1,4 +1,6 @@
-= player.jersey
-= player.name
-= player.positions
-%br
+.large-1.medium-1.small-1.columns= player.jersey
+.large-2.medium-2.small-2.columns= link_to player.email, edit_player_path(player)
+.large-2.medium-2.small-2.columns= link_to player.name, player
+.large-1.medium-1.small-1.columns= player.position
+.large-1.medium-1.small-1.columns= link_to 'Edit', edit_player_path(player)
+.clear-both

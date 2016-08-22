@@ -3,7 +3,14 @@
 
   .form-inputs
     .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: 23
-    .large-3.medium-6.small-6.columns= f.association :user, collection: [current_user], selected: current_user.id
+    - if current_user && current_user.admin?
+      - users = User.order(:name)
+    - else
+      - users = [current_user]
+    .large-3.medium-6.small-6.columns= f.association :user, collection: users, selected: current_user.id, include_blank: true
+    .large-3.medium-6.small-6.columns= f.input :email
+    .large-3.medium-6.small-6.columns= f.input :name
+    %hr
     .clear-both
     / .large-2.medium-4.small-4.columns= f.input :age, collection: Player.ages.keys, selected: Player.ages.keys.first
     .large-3.medium-6.small-12.columns= f.input :status, collection: Player.statuses.keys, selected: Player.statuses.keys.first, label: 'How interested/committed are you?'
@@ -19,13 +26,15 @@
     .large-6.medium-12.small-12.columns= f.input :why, label: 'Why do you choose to play soccer?  We are all different, might be nice to know if we are aligned.  Examples: to get/stay in shape, to have fun, to compete, to socialize, to win...', input_html: {rows: 6}
   %hr
     / = f.input :paid
-  (*) SPU Jersey #s already claimed: 0 - Dan, 1 - Josh, 2 - Jamie, 5 - Johnny, 6 - Jamie, 7 - Mihai, 12 - Isaac, 14 - Adam, 19 - Fred, 22 - Daniel, 23 - Joe, 42 - Ali, 96 - Elliot
+  (*) SPU Jersey #s already claimed: 0 - Dan, 1 - Josh, 2 - Jamie, 5 - Johnny, 6 - Ernesto, 7 - Mihai, 12 - Isaac, 14 - Adam, 19 - Fred, 22 - Daniel, 23 - Joe, 42 - Ali, 96 - Elliot
   %hr
 
   .form-actions
     .large-2.medium-3.small-6.columns= f.button :submit, 'Save'
-    - if current_user.admin?
+    - if current_user && current_user.admin?
       .large-2.medium-3.small-6.columns.admin-only= f.input :approved, as: :select
-      .large-8.medium-6.small-12.columns
+      .large-2.medium-3.small-6.columns.admin-only= f.input :invited, as: :select
+      .large-2.medium-3.small-6.columns.admin-only= f.input :position, collection: ['GK', 'WB', 'CB', 'DM', 'LAM', 'CAM', 'RAM', 'S']
+      .large-4.medium-3.small-6.columns
     - else
       .large-10.medium-9.small-6.columns

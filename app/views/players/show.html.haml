@@ -1,16 +1,14 @@
-%h4
-  = @player.first
-  = @player.last
+%h4= @player.name
 
 %p
   %b Email:
   = @player.email
 %p
-  %b Phone:
-  = @player.phone
-%p
   %b Positions:
   = @player.positions
+%p
+  %b Position:
+  = @player.position
 %p
   %b Keeper:
   = @player.keeper

@@ -23,14 +23,19 @@
     .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70, include_blank: true
     .large-3.medium-3.small-6.columns= f.input :league_history, label: 'Have you played in EBSSL before?  If yes, when and for which teams?', input_html: { rows: 2 }
     %hr
-    .large-2.medium-3.small-12.columns= f.input :photo, label: 'Upload photo of yourself', as: :file
+    .large-2.medium-3.small-12.columns
+      = image_tag @user.license_photo.url, height: 100
+      = f.input :photo, label: 'Upload photo of yourself', as: :file
     .large-2.medium-3.small-6.columns
       = f.input :dl_license_no, label: 'Drivers License #'
       = f.input :dl_issuing_state, label: 'DL Issuing State'
     .large-2.medium-3.small-6.columns
       = f.input :passport_no, label: 'OR Passport #'
       = f.input :passport_country, as: :string, label: 'OR Passport Country'
-    .large-6.medium-3.small-12.columns= f.input :license_photo, label: 'Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.', as: :file
+    .large-6.medium-3.small-12.columns
+      = image_tag @user.license_photo.url, height: 100
+      - txt = 'Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.'
+      = f.input :license_photo, label: txt, as: :file
     %hr
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records

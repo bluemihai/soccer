@@ -3,13 +3,14 @@
 - if @team
   %h4 Active
   = render @active.order(:jersey)
+  %hr
 
   %h4 Pending
   = render @pending.order(:jersey)
+  %hr
 
   %h4 Inactive (numbers)
   = render @inactive.order(:jersey)
-
   %hr
 
 %table
@@ -18,8 +19,9 @@
       %th #
       - unless params[:team_id]
         %th Team
-      %th First
-      %th Last
+      / %th First
+      / %th Last
+      %th User Name
       %th Positions
       %th Keeper?
       - if params[:team_id]
@@ -35,8 +37,9 @@
         %td= player.jersey
         - unless params[:team_id]
           %td= player.team.try(:name) || 'Free Agent'
-        %td= player.first
-        %td= player.last
+        / %td= player.first
+        / %td= player.last
+        %td= player.user.name rescue 'N/A'
         %td= player.positions
         %td= player.keeper ? 'Yes' : 'No'
         - if params[:team_id]
