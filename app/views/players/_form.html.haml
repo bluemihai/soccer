@@ -35,6 +35,7 @@
     - if current_user && current_user.admin?
       .large-2.medium-3.small-6.columns.admin-only= f.input :approved, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :invited, as: :select
+      .large-2.medium-3.small-6.columns.admin-only= f.input :paid, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :position, collection: Player.positions.keys
       .large-4.medium-3.small-6.columns
     - else

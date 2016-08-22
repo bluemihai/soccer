@@ -1,12 +1,17 @@
 %tr
   %td= player.safe_jersey
   %td= link_to player.safe_name, player
-  %td= player.safe_position
-  %td= player.invited_or_active
+  %td.text-center= player.invited_or_active == 'Active' ? image_tag('checkmark.png') : player.invited_or_active
   - if current_user && current_user.admin?
-    %td.admin-only= player.paid
-    %td.admin-only= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?'}
-
+    %td.admin-only.text-center= player.safe_position
+    %td.admin-only.text-center= player.paid ? image_tag('checkmark.png') : ''
+    %td.admin-only.text-center
+      = link_to 'Edit', edit_player_path(player)
+      = link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?'}
+  - else
+    %td= player.position_request
+    %td= player.ideal_minutes
+    %td= player.city
 
 / .large-1.medium-1.small-2.columns= player.safe_jersey
 / - if current_user && current_user.admin?

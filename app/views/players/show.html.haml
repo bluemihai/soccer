@@ -1,39 +1,40 @@
 %h4= @player.name
 
-%p
-  %b Email:
-  = @player.email
-%p
-  %b User:
-  = @player.user || 'None'
-%p
-  %b Status:
-  = @player.status
-%p
-  %b Team:
-  = @player.team || 'None'
-%p
-  %b Position:
-  = @player.position
-%p
-  %b Keeper:
-  = @player.keeper
-%p
-  %b Attendance estimate:
-  = @player.attendance_estimate
-%p
-  %b Ideal minutes:
-  = @player.ideal_minutes
-%p
-  %b Why:
-  = @player.why
-%p
-  %b Paid:
-  = @player.paid
-%p
-  %b Ebssl card:
-  = @player.ebssl_card
+- if current_user && (current_user.admin? or current_user.manager?)
+  %p
+    %b Email:
+    = @player.email
+  %p
+    %b User:
+    = @player.user || 'None'
+  %p
+    %b Status:
+    = @player.status
+  %p
+    %b Team:
+    = @player.team || 'None'
+  %p
+    %b Position:
+    = @player.position
+  %p
+    %b Keeper:
+    = @player.keeper
+  %p
+    %b Attendance estimate:
+    = @player.attendance_estimate
+  %p
+    %b Ideal minutes:
+    = @player.ideal_minutes
+  %p
+    %b Why:
+    = @player.why
+  %p
+    %b Paid:
+    = @player.paid
+  %p
+    %b Ebssl card:
+    = @player.ebssl_card
 
-= link_to 'Edit', edit_player_path(@player)
-\|
-= link_to 'Back', players_path
+  = link_to 'Edit', edit_player_path(@player)
+  \|
+  = link_to 'Back', players_path
