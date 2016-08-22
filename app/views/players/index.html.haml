@@ -1,15 +1,10 @@
 %h1 Roster
 
 - if @team
-  %h4 Active
   = render @active.order(:jersey)
   %hr
-
-  %h4 Pending
   = render @pending.order(:jersey)
   %hr
-
-  %h4 Inactive (numbers)
   = render @inactive.order(:jersey)
   %hr
 

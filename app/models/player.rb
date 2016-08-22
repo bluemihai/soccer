@@ -4,7 +4,7 @@ class Player < ApplicationRecord
 
   enum status: ['Ready to Register and Pay!', 'Very Likely to Join', 'On the Fence', 'Inactive This (EBSSL 30+) Season']
   enum age: ['30+', '28-29']
-  enum position: ['Out', 'GK', 'RWB', 'LWB', 'LCB', 'RCB', 'DM', 'RAM', 'DPM', 'S', 'CAM', 'LAM']
+  enum position: ['Out', '1-GK', '2-RWB', '3-LWB', '4-CB', '5-CB', '6-DM', '7-RAM', '8-DM', '9-S', '10-CAM', '11-LAM']
 
   scope :inactive, -> { where(status: 3) }
   scope :active, -> { where('status <> 3').where(approved: true) }
@@ -13,10 +13,10 @@ class Player < ApplicationRecord
   def invited_or_active
     if status == 'Ready to Register and Pay!' && approved
       'active'
-    elsif invited
-      'invited'
-    else
+    elsif status == 'Inactive This (EBSSL 30+) Season'
       'inactive'
+    else
+      'pending'
     end
   end
 
