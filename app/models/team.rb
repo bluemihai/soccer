@@ -7,4 +7,8 @@ class Team < ApplicationRecord
     (0..99).to_a - players.map(&:jersey).map(&:to_i)
   end
 
+  def short_name
+    name.split(' ').map(&:first).join('')
+  end
+
 end

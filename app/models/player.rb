@@ -11,6 +11,7 @@ class Player < ApplicationRecord
   scope :pending, -> { where('status <> 3').where(approved: false) }
 
   def safe_name
+    return user.name if user
     return name if name && name != ''
     'No Name'
   end
@@ -18,6 +19,11 @@ class Player < ApplicationRecord
   def safe_position
     return position if position && position != ''
     '??'
+  end
+
+  def safe_jersey
+    return jersey if jersey && jersey != ''
+    'TBA'
   end
 
   def self.potential_scorers(given_game)

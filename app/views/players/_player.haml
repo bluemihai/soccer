@@ -1,5 +1,13 @@
-.large-1.medium-1.small-1.columns= player.jersey
-.large-2.medium-2.small-2.columns= link_to player.safe_name, player
-.large-1.medium-1.small-1.columns= link_to player.safe_position, edit_player_path(player)
-.large-1.medium-1.small-1.columns= player.invited ? 'Invited' : 'Not'
+.large-1.medium-1.small-2.columns= player.safe_jersey
+- if current_user && current_user.admin?
+  .large-1.medium-1.small-2.columns.admin-only
+    = link_to player.safe_position, edit_player_path(player)
+- else
+  .large-1.medium-1.small-2.columns= player.safe_position
+.large-2.medium-4.small-4.columns= link_to player.safe_name, player
+
+.large-1.medium-2.small-2.columns= player.invited ? 'Invited' : 'Not'
+- if current_user && current_user.admin?
+  .large-1.medium-1.small-2.columns.admin-only
+    = link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?'}
 .clear-both

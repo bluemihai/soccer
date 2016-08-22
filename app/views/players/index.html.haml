@@ -36,7 +36,7 @@
       %tr
         %td= player.jersey
         - unless params[:team_id]
-          %td= player.team.try(:name) || 'Free Agent'
+          %td= link_to player.team.short_name, player.team
         / %td= player.first
         / %td= player.last
         %td= player.user.name rescue 'N/A'
