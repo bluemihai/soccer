@@ -2,8 +2,15 @@ $(document).ready(function(){
   $('#players-table').DataTable({
       searching: false,
       paging: false,
+    // columns: [
+    //   { "type": "numeric" },
+    //   null,
+    //   null,
+    //   null,
+    //   null
+    // ]
       columnDefs: [
-          { targets: 'nosort', orderable: false}
+        { type: 'num' }
       ],
       order: [0, 'asc'],
       // pageLength: -1,

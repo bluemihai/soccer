@@ -37,8 +37,7 @@ class Player < ApplicationRecord
   end
 
   def safe_jersey
-    return jersey if jersey && jersey != ''
-    'TBA'
+    jersey
   end
 
   def self.potential_scorers(given_game)

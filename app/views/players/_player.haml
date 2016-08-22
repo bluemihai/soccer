@@ -3,7 +3,7 @@
   %td= link_to player.safe_name, player
   %td
     - if current_user && current_user.admin?
-      .admin-only= link_to player.safe_position, edit_player_path(player)
+      .admin-only.text-center= link_to player.safe_position, edit_player_path(player)
     - else
       = player.safe_position
   %td= player.invited_or_active
