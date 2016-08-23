@@ -19,13 +19,36 @@ RSpec.describe Player, type: :model do
     }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
+  it 'validates for jersey presence and uniqueness' do
+    expect{
+      FactoryGirl.create(:player, jersey: nil)
+    }.to raise_error(ActiveRecord::RecordInvalid)
+
+    FactoryGirl.create(:player, jersey: 30)
+    expect{
+      FactoryGirl.create(:player, jersey: 30)
+    }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
   it 'validates email presence and uniqueness' do
     expect{
       FactoryGirl.create(:player, email: nil)
     }.to raise_error(ActiveRecord::RecordInvalid)    
 
+    FactoryGirl.create(:player, email: 'foo@foo.com')
     expect{
-      FactoryGirl.create(:player, email: 'MyString')
+      FactoryGirl.create(:player, email: 'foo@foo.com')
+    }.to raise_error(ActiveRecord::RecordInvalid)    
+  end
+
+  it 'validates name presence and uniqueness' do
+    expect{
+      FactoryGirl.create(:player, name: nil)
+    }.to raise_error(ActiveRecord::RecordInvalid)    
+
+    FactoryGirl.create(:player, name: 'Foo Bar')
+    expect{
+      FactoryGirl.create(:player, name: 'Foo Bar')
     }.to raise_error(ActiveRecord::RecordInvalid)    
   end
 end

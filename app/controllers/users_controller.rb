@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         redirect_to root_path, :notice => "Your league registration form was saved.  You may now request to join a team."
       end
     else
-      redirect_to root_path, :alert => "Unable to update user."
+      render :edit
     end
   end
 

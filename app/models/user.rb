@@ -7,13 +7,14 @@ class User < ActiveRecord::Base
   has_attached_file :photo, styles: {
     thumb: '100x100'
   }
-
   has_attached_file :license_photo, s3_protocol: 'https', styles: {
     full: '300x300'
   }
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
+  validates :dob, presence: true
+  validate :age_at_least_28
 
   def phone
     day_phone || evening_phone || 'N/A'
@@ -72,5 +73,13 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  private
+
+    def age_at_least_28
+      if dob && dob > 28.years.ago.at_end_of_year
+        self.errors.add(:dob, 'should be at least 28 this Dec-31')
+      end
+    end
 
 end

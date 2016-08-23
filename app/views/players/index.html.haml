@@ -30,7 +30,7 @@
   = link_to 'New Player', new_team_player_path(@team)
 
 - else
-  - @players.each do |player|
+  - @players.order(:jersey).each do |player|
     = link_to player.team.name, player.team
     = player.jersey
     = link_to player.safe_name, player
