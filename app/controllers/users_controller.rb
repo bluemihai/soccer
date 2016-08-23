@@ -70,7 +70,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:dob, :first_name, :middle_name, :last_name,
         :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state,
         :passport_no, :passport_country, :league_history,
-        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name)
+        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name,
+        :manager_confirmation, :manager_signature, :manager_signature_date)
     end
   end
 

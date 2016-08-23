@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823161212) do
+ActiveRecord::Schema.define(version: 20160823191603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,9 @@ ActiveRecord::Schema.define(version: 20160823161212) do
     t.string   "license_photo_content_type"
     t.integer  "license_photo_file_size"
     t.datetime "license_photo_updated_at"
+    t.boolean  "manager_confirmation"
+    t.string   "manager_signature"
+    t.date     "manager_signature_date"
   end
 
 end

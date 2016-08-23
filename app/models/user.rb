@@ -18,7 +18,17 @@ class User < ActiveRecord::Base
   validates :league_history, presence: true
   validates :liability_waiver_agreed, presence: true, acceptance: true
   validates :name, presence: true
-  validate :age_at_least_28
+  validate :age_at_least_28, :listed_license_or_passport
+
+  def license_or_passport
+    if !dl_license_no.blank? && !dl_issuing_state.blank?
+      "Drivers License: #{dl_issuing_state} — #{dl_license_no}" 
+    elsif !passport_no.blank? && !passport_country.blank?
+      "Passport: #{passport_country} — #{passport_no}"
+    else
+      ''
+    end
+  end
 
   def phone
     day_phone || evening_phone || 'N/A'
@@ -83,6 +93,12 @@ class User < ActiveRecord::Base
     def age_at_least_28
       if dob && dob > 28.years.ago.at_end_of_year
         self.errors.add(:dob, 'should be at least 28 this Dec-31')
+      end
+    end
+
+    def listed_license_or_passport
+      if license_or_passport == ''
+        self.errors.add(:dl_license_no, 'license or passport no must be filled')
       end
     end
 

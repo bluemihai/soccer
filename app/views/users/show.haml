@@ -2,7 +2,65 @@
   = image_tag @user.gravatar(40)
   = @user.name
 
-
-= image_tag @user.photo.url, width: 150, height: 150
-
-= link_to 'Download Registration Form PDF', user_path + '.pdf', class: 'button'
+- if current_user == @user || current_user.admin? || current_user.manager?
+  = link_to 'Download Registration Form PDF', user_path + '.pdf', class: 'button'
+  = link_to 'Edit', edit_user_path(@user), class: 'button'
+  %hr
+  #names
+    = image_tag @user.photo.url(:thumb)
+    First
+    .name-box= @user.first_name
+    Middle
+    .name-box= @user.middle_name
+    Last
+    .name-box= @user.last_name
+  %br
+  #email-dob
+    Email
+    .name-box= @user.email
+    Date of Birth
+    .name-box= @user.dob
+  %br
+  #phone-numbers
+    Day Phone
+    .name-box= number_to_phone(@user.day_phone, delimiter: '.')
+    Evening Phone
+    .name-box= number_to_phone(@user.evening_phone, delimiter: '.')
+  %br
+  %hr
+  #license-or-passport
+    .name-box= @user.license_or_passport
+    %br
+    #image
+      = image_tag @user.license_photo.url(:full)
+  %hr
+  #league-history
+    Have you played in this league before?
+    .name-box= @user.league_history
+  %br
+  #liability-waiver
+    Liability waiver agreed to
+    .name-box= @user.liability_waiver_agreed ? 'Yes' : 'No'
+    .name-box= @user.name
+    .name-box= @user.created_at.strftime('%B %d, %Y')
+  %br
+  - if team = @user.player.team
+    #team
+      Team Name
+      .name-box= team.name
+      Manager Name
+      .name-box= team.manager.try(:name)
+    %br
+    #manager-confirmation
+      Manager Confirmation — I have seen the original ID in player's possession
+      .name-box= @user.manager_confirmation
+    %br
+    #manager-signature
+      Signed by
+      .name-box= @user.manager_signature
+      Date
+      .name-box= @user.manager_signature_date
+  %hr
+- if Rails.env.development?
+  = @user.inspect
+  %hr

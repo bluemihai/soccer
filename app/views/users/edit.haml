@@ -14,9 +14,9 @@
 
   .form-inputs
     %hr
-    .large-3.medium-3.small-6.columns= f.input :first_name, autofocus: true, input_html: { value: @user.first }
-    .large-3.medium-3.small-6.columns= f.input :middle_name, input_html: { value: @user.middle }
-    .large-3.medium-3.small-6.columns= f.input :last_name, input_html: { value: @user.last }
+    .large-3.medium-3.small-6.columns= f.input :first_name, autofocus: true
+    .large-3.medium-3.small-6.columns= f.input :middle_name
+    .large-3.medium-3.small-6.columns= f.input :last_name
     .large-3.medium-3.small-6.columns= f.input :email
     .large-3.medium-3.small-6.columns= f.input :day_phone, label: 'Daytime Phone #'
     .large-3.medium-3.small-6.columns= f.input :evening_phone, label: 'Evening Phone #'
