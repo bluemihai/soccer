@@ -1,6 +1,6 @@
 describe User do
 
-  before(:each) { @user = FactoryGirl.create(:user) }
+  before(:each) { @user = FactoryGirl.create(:user, name: 'Test User') }
 
   subject { @user }
 
@@ -41,6 +41,33 @@ describe User do
       too_young = old_enough + 1.day
       expect{
         FactoryGirl.create(:user, dob: too_young)
+      }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'validates email presence and uniqueness' do
+      expect{
+        FactoryGirl.create(:user, email: nil)
+      }.to raise_error(ActiveRecord::RecordInvalid)    
+
+      FactoryGirl.create(:user, email: 'foo@foo.com')
+      expect{
+        FactoryGirl.create(:user, email: 'foo@foo.com')
+      }.to raise_error(ActiveRecord::RecordInvalid)    
+    end
+
+    it 'validates league_history presence' do
+      expect{
+        FactoryGirl.create(:user, league_history: nil)
+      }.to raise_error(ActiveRecord::RecordInvalid)      
+    end
+
+    it 'validates liability_waiver_agreed presence and truthiness' do
+      expect{
+        FactoryGirl.create(:user, liability_waiver_agreed: nil)
+      }.to raise_error(ActiveRecord::RecordInvalid)
+
+      expect{
+        FactoryGirl.create(:user, liability_waiver_agreed: false)
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end

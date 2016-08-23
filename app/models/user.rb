@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
   validates :dob, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :league_history, presence: true
+  validates :liability_waiver_agreed, presence: true, acceptance: true
+  validates :name, presence: true
   validate :age_at_least_28
 
   def phone

@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @teams = Team.order(:name)
@@ -56,6 +57,7 @@ class TeamsController < ApplicationController
 
     def team_params
       params.require(:team).permit(:name, :division_id, :formation_id,
-        :manager_id)
+        :manager_id, :uniform_colors, :alternate_colors, :field_preference,
+        :kick_time_preference, :mailing_address, :short)
     end
 end

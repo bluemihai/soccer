@@ -4,6 +4,9 @@ class Team < ApplicationRecord
   belongs_to :manager, class_name: 'Player', required: false
   belongs_to :formation
 
+  validates :name, presence: true
+  validates :uniform_colors, presence: true
+
   def available_jerseys
     (0..99).to_a - players.map(&:jersey).map(&:to_i)
   end
