@@ -2,7 +2,7 @@
 
 = image_tag(@formation.image_url)
 
-- unless @formation.positions.empty?
+- if @formation.positions && @formation.positions.keys.size > 0
   %hr
   - @formation.positions.each do |k, v|
     = "##{k} — #{v}"
