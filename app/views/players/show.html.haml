@@ -56,7 +56,8 @@ for
         %td 
           - if @player.user.try(:photo).try(:url)
             = image_tag('checkmark.png')
-            = image_tag(@player.user.photo.url(:thumb))
+            - if @player.user == current_user || current_user.admin? || current_user.manager?
+              = image_tag(@player.user.photo.url(:thumb))
           - else
             = image_tag('warning.png')
       %tr
@@ -64,7 +65,8 @@ for
         %td 
           - if @player.user.try(:license_photo).try(:url)
             = image_tag('checkmark.png')
-            = image_tag(@player.user.license_photo.url(:full))
+            - if @player.user == current_user || current_user.admin? || current_user.manager?
+              = image_tag(@player.user.license_photo.url(:full))
           - else
             = image_tag('warning.png')
   
@@ -107,3 +109,4 @@ for
   = link_to 'Edit', edit_player_path(@player)
   \|
   = link_to 'Back', players_path
+  

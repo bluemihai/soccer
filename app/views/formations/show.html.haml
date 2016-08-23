@@ -2,7 +2,8 @@
 
 = image_tag(@formation.image_url)
 
-%hr
-- @formation.positions.each do |k, v|
-  = "##{k} — #{v}"
-  %br
+- unless @formation.positions.empty?
+  %hr
+  - @formation.positions.each do |k, v|
+    = "##{k} — #{v}"
+    %br
