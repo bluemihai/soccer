@@ -14,9 +14,9 @@ for
         %td Decision Confirmed
         %td 
           - if @player.status == 'Ready to Register and Pay!'
-            = image_tag('warning.png')
-          - else
             = image_tag('checkmark.png')
+          - else
+            = image_tag('warning.png')
       %tr
         %td Team Dues Paid
         %td 
@@ -56,7 +56,7 @@ for
         %td 
           - if @player.user.try(:photo).try(:url)
             = image_tag('checkmark.png')
-            = image_tag(@player.user.photo.url, height: 100)
+            = image_tag(@player.user.photo.url(:thumb))
           - else
             = image_tag('warning.png')
       %tr
@@ -64,7 +64,7 @@ for
         %td 
           - if @player.user.try(:license_photo).try(:url)
             = image_tag('checkmark.png')
-            = image_tag(@player.user.license_photo.url, height: 100)
+            = image_tag(@player.user.license_photo.url(:full))
           - else
             = image_tag('warning.png')
   
