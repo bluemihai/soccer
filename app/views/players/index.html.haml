@@ -4,25 +4,34 @@
 - else
   %h1 League Players
 
-%table#players-table.compact
-  %thead
-    %th Jersey
-    %th Name
-    %th.text-center Status
-    - if current_user && (current_user.admin? || current_user.manager?)
-      %th.text-center User
-      %th.text-center E-mail
-      %th.text-center Phone
-      %th.text-center Position
-      %th.text-center Paid
-      %th.text-center Actions
-    - else
-      %th Positions
-      %th Minutes
-      %th City/Carpool
-  %tbody
-    = render @active_or_pending
+- if @team
+  %table#players-table.compact
+    %thead
+      %th Jersey
+      %th Name
+      %th.text-center Status
+      - if current_user && (current_user.admin? || current_user.manager?)
+        %th.text-center User
+        %th.text-center E-mail
+        %th.text-center Phone
+        %th.text-center Position
+        %th.text-center Paid
+        %th.text-center Actions
+      - else
+        %th Positions
+        %th Minutes
+        %th City/Carpool
+    %tbody
+      = render @active_or_pending
+  %hr
+  Inactive #s, from players who are out this season:
+  %b= @inactive.map(&:jersey).join(', ')
+  %hr
+  = link_to 'New Player', new_team_player_path(@team)
 
-%hr
-
-= link_to 'New Player', new_player_path
+- else
+  - @players.each do |player|
+    = link_to player.team.name, player.team
+    = player.jersey
+    = link_to player.safe_name, player
+    %br

@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :player do
     # association :user, factory: :user
     status 'Ready to Register and Pay!'
+    approved true
     first "MyString"
     last "MyString"
     email "MyString"

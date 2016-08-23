@@ -1,5 +1,5 @@
 %tr
-  %td= player.safe_jersey
+  %th.text-right= player.safe_jersey
   %td= link_to player.safe_name, player
   %td.text-center= player.invited_or_active == 'Active' ? image_tag('checkmark.png') : player.invited_or_active
   - if current_user && current_user.admin?
