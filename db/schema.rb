@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822233519) do
+ActiveRecord::Schema.define(version: 20160823000716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20160822233519) do
     t.integer  "status"
     t.integer  "age"
     t.text     "why"
-    t.string   "paid"
     t.boolean  "ebssl_card"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -95,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160822233519) do
     t.boolean  "invited"
     t.string   "name"
     t.boolean  "has_jersey"
+    t.boolean  "paid"
   end
 
   create_table "seasons", force: :cascade do |t|
