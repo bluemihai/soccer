@@ -13,12 +13,12 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
-  validates :dob, presence: true
+  # validates :dob, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :league_history, presence: true
-  validates :liability_waiver_agreed, presence: true, acceptance: true
+  # validates :liability_waiver_agreed, presence: true, acceptance: true
   validates :name, presence: true
-  validate :age_at_least_28, :listed_license_or_passport
+  # validate :age_at_least_28
+  # validate :listed_license_or_passport
 
   def license_or_passport
     if !dl_license_no.blank? && !dl_issuing_state.blank?
