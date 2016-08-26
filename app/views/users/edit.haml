@@ -14,28 +14,36 @@
 
   .form-inputs
     %hr
-    .large-3.medium-3.small-6.columns= f.input :first_name, autofocus: true
-    .large-3.medium-3.small-6.columns= f.input :middle_name
-    .large-3.medium-3.small-6.columns= f.input :last_name
-    .large-3.medium-3.small-6.columns= f.input :email
-    .large-3.medium-3.small-6.columns= f.input :day_phone, label: 'Daytime Phone #'
-    .large-3.medium-3.small-6.columns= f.input :evening_phone, label: 'Evening Phone #'
-    .large-3.medium-3.small-6.columns= f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70, include_blank: true
-    .large-3.medium-3.small-6.columns= f.input :league_history, label: 'Have you played in EBSSL before?  If yes, when and for which teams?', input_html: { rows: 2 }
+    .large-4.medium-4.small-12.columns
+      = f.input :first_name, autofocus: true
+      = f.input :middle_name
+      = f.input :last_name
+      = f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70, include_blank: true
+    .large-4.medium-3.small-12.columns
+      = f.input :email
+      = f.input :day_phone, label: 'Daytime Phone #'
+      = f.input :evening_phone, label: 'Evening Phone #'
+    .large-4.medium-4.small-12.columns
+      = f.input :league_played_before, as: :select, label: 'Have you played in EBSSL before?'
+      = f.input :league_past_when, label: 'If yes, when was your last season?', collection: Season.past_for_select
+      = f.input :league_past_team_name, label: 'For what team?'
+      = f.input :league_past_your_name, label: 'Under what name?'
     %hr
-    .large-2.medium-3.small-12.columns
-      = image_tag @user.license_photo.url, height: 100
-      = f.input :photo, label: 'Upload photo of yourself (passport-sized, for player pass)', as: :file
+    .large-4.medium-3.small-12.columns
+      Please upload a player pass photo.
+      %br
+      Face only, no sunglesses, passport-sized (1.5in/1.5in)
+      = f.input :photo, as: :file, label: false
+      = image_tag @user.photo.url(:thumb)
     .large-2.medium-3.small-6.columns
       = f.input :dl_license_no, label: 'Drivers License #'
       = f.input :dl_issuing_state, label: 'DL Issuing State'
-    .large-2.medium-3.small-6.columns
       = f.input :passport_no, label: 'OR Passport #'
-      = f.input :passport_country, as: :string, label: 'OR Passport Country'
+      = f.input :passport_country, as: :string, label: '...and Country'
     .large-6.medium-3.small-12.columns
-      = image_tag @user.license_photo.url, height: 100
-      - txt = 'Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.'
-      = f.input :license_photo, label: txt, as: :file
+      Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.
+      = f.input :license_photo, label: false, as: :file
+      = image_tag @user.license_photo.url(:full)
     %hr
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records
@@ -48,14 +56,21 @@
       .large-6.medium-4.small-12.columns= f.input :name, label: 'E-Signature (from FB/Google, update if not your legal name)'
       .large-4.medium-4.small-12.columns= f.input :created_at, disabled: true, as: :date, label: 'Date'
 
-  - if current_user.admin?
+  - if current_user.admin? || current_user.manager?
     %hr
     .large-2.medium-3.small-6.columns= f.button :submit, 'Save'
     .yellow.large-2.medium-3.small-6.columns= f.input :role, collection: User.roles.keys
     .yellow.large-2.medium-3.small-6.columns= f.input :pass_id, label: 'EBSSL Pass Id'
     .large-6.medium-3.small-6 &nbsp;
+    .clear-both
+    .yellow.large-4.medium-4.small-12.columns
+      = f.input :manager_confirmation, as: :select
+    .yellow.large-4.medium-4.small-12.columns
+      - h = { value: @user.manager_signature || @user.player.team.manager.name }
+      = f.input :manager_signature, input_html: h
+    .yellow.large-4.medium-4.small-12.columns
+      = f.input :manager_signature_date
   - else
     %hr
     .form-actions
       = f.button :submit, 'Save'
-

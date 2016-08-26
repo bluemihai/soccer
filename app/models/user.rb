@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
 
   def license_or_passport
     if !dl_license_no.blank? && !dl_issuing_state.blank?
-      "Drivers License: #{dl_issuing_state} — #{dl_license_no}" 
+      "Drivers License: #{dl_issuing_state.upcase} — #{dl_license_no}" 
     elsif !passport_no.blank? && !passport_country.blank?
-      "Passport: #{passport_country} — #{passport_no}"
+      "Passport: #{passport_country.upcase} — #{passport_no}"
     else
       ''
     end

@@ -3,7 +3,7 @@
   = @user.name
 
 - if current_user == @user || current_user.admin? || current_user.manager?
-  = link_to 'Download Registration Form PDF', user_path + '.pdf', class: 'button'
+  = link_to 'Download Registration Form PDF', user_path(@user) + '.pdf', class: 'button'
   = link_to 'Edit', edit_user_path(@user), class: 'button'
   %hr
   #names

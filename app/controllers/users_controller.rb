@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(secure_params)
+    if @user.update_attributes(user_params)
       if invite = Player.find_by(email: @user.email)
         invite.update(user_id: @user.id)
         redirect_to invite, :notice => "Your league registration form was saved, and your invitation to join #{invite.team.name} used.  You are now on the roster."
@@ -55,23 +55,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def secure_params
-    if @user == current_user
-      params.require(:user).permit(:dob, :first_name, :middle_name, :last_name,
-        :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state,
-        :passport_no, :passport_country, :league_history,
-        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name)
-    elsif current_user.admin?
-      params.require(:user).permit(:role, :dob, :first_name, :middle_name,
-        :last_name, :day_phone, :evening_phone, :email, :dl_license_no,
-        :dl_issuing_state, :passport_no, :passport_country, :league_history,
-        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name)
+  def user_params
+    if current_user && current_user.admin?
+      params.require(:user).permit(:dob, :name, :role,
+        :first_name, :middle_name, :last_name, :day_phone, :evening_phone,
+        :email, :photo, :license_photo, :dl_license_no, :dl_issuing_state,
+        :passport_no, :passport_country, :liability_waiver_agreed, :pass_id,
+        :manager_confirmation, :manager_signature, :manager_signature_date,
+        :league_past_when, :league_played_before, :league_past_team_name,
+        :league_past_your_name)
     else
-      params.require(:user).permit(:dob, :first_name, :middle_name, :last_name,
-        :day_phone, :evening_phone, :email, :dl_license_no, :dl_issuing_state,
-        :passport_no, :passport_country, :league_history,
-        :liability_waiver_agreed, :pass_id, :photo, :license_photo, :name,
-        :manager_confirmation, :manager_signature, :manager_signature_date)
+      params.require(:user).permit(:dob, :name,
+        :first_name, :middle_name, :last_name, :day_phone, :evening_phone,
+        :email, :photo, :license_photo, :dl_license_no, :dl_issuing_state,
+        :passport_no, :passport_country, :liability_waiver_agreed, :pass_id,
+        :manager_confirmation, :manager_signature, :manager_signature_date,
+        :league_past_when, :league_played_before, :league_past_team_name,
+        :league_past_your_name)
     end
   end
 

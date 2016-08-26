@@ -7,6 +7,5 @@ FactoryGirl.define do
     trait :admin do
       role 'admin'
     end
-    league_history 'No'
   end
 end
