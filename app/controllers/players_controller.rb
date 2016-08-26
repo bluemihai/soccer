@@ -8,9 +8,9 @@ class PlayersController < ApplicationController
     end
 
     if params.has_key?(:include_inactive)
-      @players = Player.all
+      @players = Player.order
     else
-      @players = Player.all - Player.inactive
+      @players = Player.active_or_pending
     end
   end
 
