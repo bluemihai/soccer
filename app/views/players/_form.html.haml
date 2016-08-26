@@ -1,6 +1,7 @@
 = simple_form_for(@player) do |f|
   = f.error_notification
 
+
   .form-inputs
     .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: 23, include_blank: true
     - if current_user && current_user.admin?
