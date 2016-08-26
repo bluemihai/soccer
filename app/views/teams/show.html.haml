@@ -1,9 +1,14 @@
 %h3= "Welcome to #{@team.name} #{@team.division.age}+ Team!"
 
 %p
-  %b Managers:
-  = @team.manager_names
+  %b Manager:
+  = @team.manager.try(:name)
+  \—
+  = number_to_phone(@team.manager.try(:day_phone), delimiter: '.')
   %br
+  %b Uniform Colors:
+  = "#{@team.uniform_colors} (Alternate: #{@team.alternate_colors})"
+  
   / %b Formation:
   / = link_to @team.formation.name, @team.formation
 
@@ -12,6 +17,3 @@
   %br
   = link_to "#{@team.players.pending.count} Pending Players", team_players_path(@team)
   %br
-
-  %h4 Contact
-  Call Mihai at 415.734.0129 with any questions

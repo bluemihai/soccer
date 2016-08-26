@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   has_many :players
   belongs_to :division
-  belongs_to :manager, class_name: 'Player', required: false
+  belongs_to :manager, class_name: 'User', required: false 
   belongs_to :formation
 
   validates :name, presence: true

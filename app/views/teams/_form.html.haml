@@ -2,7 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    .large-2.medium-4.small-12.columns= f.association :manager, include_blank: true, collection: [current_user]
+    .large-2.medium-4.small-12.columns
+      - if current_user.admin?
+        = f.association :manager, include_blank: true, collection: User.order(:name)
+      - else
+        = f.association :manager, include_blank: true, collection: [current_user]
     .large-2.medium-4.small-12.columns= f.input :short
     %hr
     .large-2.medium-4.small-12.columns= f.input :name
