@@ -13,12 +13,17 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
-  # validates :dob, presence: true
+  validates :first_name, presence: true, on: :update
+  validates :last_name, presence: true, on: :update
+  validates :dob, presence: true, on: :update
+  validates :day_phone, presence: true, on: :update
+  validates :evening_phone, presence: true, on: :update
+  validates_inclusion_of :league_played_before, in: [true, false], on: :update, message: 'Please choose Yes or No'
   validates :email, presence: true, uniqueness: true
-  # validates :liability_waiver_agreed, presence: true, acceptance: true
+  validates :liability_waiver_agreed, presence: true, acceptance: true, on: :update
   validates :name, presence: true
-  # validate :age_at_least_28
-  # validate :listed_license_or_passport
+  validate :age_at_least_28, on: :update
+  validate :listed_license_or_passport, on: :update
 
   def license_or_passport
     if !dl_license_no.blank? && !dl_issuing_state.blank?
@@ -98,7 +103,7 @@ class User < ActiveRecord::Base
 
     def listed_license_or_passport
       if license_or_passport == ''
-        self.errors.add(:dl_license_no, 'license or passport no must be filled')
+        self.errors.add(:dl_license_no, 'license/state or passport/country must be filled')
       end
     end
 

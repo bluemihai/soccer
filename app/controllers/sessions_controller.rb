@@ -13,8 +13,7 @@ class SessionsController < ApplicationController
     # TODO: Create separate authorizations table and reintroduce the uid, for (I think) better security
     # user = User.where(:provider => auth['provider'],
     #                   :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
-    user = User.where(email: auth['info']['email']).first
-    if user
+    if user = User.find_by(email: auth['info']['email'])
       reset_session
       session[:user_id] = user.id
       redirect_to user, :notice => 'Signed in!  Welcome back...'
@@ -22,7 +21,12 @@ class SessionsController < ApplicationController
       user = User.create_with_omniauth(auth)
       reset_session
       session[:user_id] = user.id
-      redirect_to edit_user_path(user), :notice => 'Signed in!  Now please complete your league registration here.'
+      if player = Player.find_by(email: auth['info']['email'])
+        player.update(user_id: user.id)
+        redirect_to edit_user_path(user), :notice => 'Signed in, and team invitation found!  Please complete your league registration here.'
+      else
+        redirect_to edit_user_path(user), :notice => 'Signed in!  Please complete your league registration here, then request to join a team.'
+      end
     end
   end
 

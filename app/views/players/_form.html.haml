@@ -28,7 +28,7 @@
     .clear-both
     .large-2.medium-4.small-12.columns= f.input :has_jersey, as: :select, label: 'Do you have your dark blue (SPU) Jersey?'
     .large-2.medium-4.small-12.columns= f.input :jersey, label: 'Jersey (*)', collection: [@player.jersey.to_i] + Team.find(23).available_jerseys, label: 'What jersey # do you have or wish to claim?'
-    .large-2.medium-4.small-12.columns= f.input :keeper, as: :select, label: 'Would you play goalkeeper in an emergency?', selected: true, include_blank: true
+    .large-2.medium-4.small-12.columns= f.input :keeper, as: :select, label: 'Would you play goalkeeper in an emergency?', include_blank: true
     .large-3.medium-6.small-12.columns= f.input :city, label: 'Where do you live?  Any interest in carpooling to games?'
     .large-3.medium-6.small-12.columns= f.input :ebssl_card, as: :select, collection: [['No EBSSL card', false], ['Have an EBSSL card', true]], selected: false, include_blank: false, label: 'EBSSL history'
     .clear-both

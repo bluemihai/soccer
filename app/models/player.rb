@@ -3,9 +3,9 @@ class Player < ApplicationRecord
   belongs_to :user, required: false
 
   validates :email, presence: true, uniqueness: true
-  validates :jersey, presence: true, uniqueness: true
+  validates :jersey, presence: true, uniqueness: true, on: :update
   validates :name, presence: true, uniqueness: true
-  validates :status, presence: true
+  validates :status, presence: true, on: :update
 
   enum status: ['Ready to Register and Pay!', 'Very Likely to Join', 'On the Fence', 'Inactive This (EBSSL 30+) Season']
   enum age: ['30+', '28-29']

@@ -31,9 +31,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      if invite = Player.find_by(email: @user.email)
-        invite.update(user_id: @user.id)
-        redirect_to invite, :notice => "Your league registration form was saved, and your invitation to join #{invite.team.name} used.  You are now on the roster."
+      if @user.player
+        redirect_to edit_player_path(@user.player), :notice => "Your league registration form was saved.  Please update your team profile for #{@user.player.team.name}."
       else
         redirect_to root_path, :notice => "Your league registration form was saved.  You may now request to join a team."
       end
