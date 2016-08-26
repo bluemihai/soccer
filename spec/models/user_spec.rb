@@ -29,19 +29,16 @@ describe User do
     end
 
     it 'validates age presence and above 28 on Dec 31' do
-      puts "user: #{user.inspect}"
       u = User.create!(email: 'foo@foo.com', name: 'Foo Bar', dob: nil)
-      expect(u).to be_persisted
-      u.
-      expect{u.save}.to raise_error(ActiveRecord::RecordInvalid)
+      expect(u).not_to be_valid
 
       old_enough = 28.years.ago.at_end_of_year
-      expect(FactoryGirl.create(:user, dob: old_enough)).to be_valid
+      user.dob = old_enough
+      expect(user).not_to be_valid
 
       too_young = old_enough + 1.day
-      expect{
-        FactoryGirl.create(:user, dob: too_young)
-      }.to raise_error(ActiveRecord::RecordInvalid)
+      user.dob = too_young
+      expect(user).not_to be_valid
     end
 
     # it 'validates email presence and uniqueness' do

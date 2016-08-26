@@ -14,17 +14,17 @@ RSpec.describe Player, type: :model do
   end
 
   it 'validates for status presence' do
-    expect{
-      FactoryGirl.create(:player, status: nil)
-    }.to raise_error(ActiveRecord::RecordInvalid)
+    expect(player).to be_valid
+    player.status = nil
+    expect(player).not_to be_valid
   end
 
   it 'validates for jersey presence and uniqueness' do
-    expect{
-      FactoryGirl.create(:player, jersey: nil)
-    }.to raise_error(ActiveRecord::RecordInvalid)
+    expect(player).to be_valid
+    player.jersey = nil
+    expect(player).not_to be_valid
 
-    FactoryGirl.create(:player, jersey: 30)
+    player.update(jersey: 30)
     expect{
       FactoryGirl.create(:player, jersey: 30)
     }.to raise_error(ActiveRecord::RecordInvalid)

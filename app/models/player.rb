@@ -3,7 +3,8 @@ class Player < ApplicationRecord
   belongs_to :user, required: false
 
   validates :email, presence: true, uniqueness: true
-  validates :jersey, presence: true, uniqueness: true, on: :update
+  validates :jersey, presence: true, on: :update
+  validates :jersey, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :status, presence: true, on: :update
 
