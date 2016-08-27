@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      UserMailer.welcome_email(@user).deliver_now
+      UserMailer.welcome_email(@user).deliver_later
       if @user.player
         redirect_to edit_player_path(@user.player), :notice => "Your league registration form was saved.  Please update your team profile for #{@user.player.team.name}."
       else
