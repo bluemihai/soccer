@@ -52,9 +52,16 @@ for
           - else
             = image_tag('warning.png')
       %tr
+        %td Manager Confirmed Registration Complete
+        %td
+          - if @player.user.manager_confirmation
+            = image_tag('checkmark.png')
+          - else
+            = image_tag('warning.png')
+      %tr
         %td Player Pass Photo Uploaded
         %td 
-          - if @player.user.try(:photo).try(:url)
+          - if @player.has_photo
             = image_tag('checkmark.png')
             - if @player.user == current_user || current_user.admin? || current_user.manager?
               = image_tag(@player.user.photo.url(:thumb))
@@ -63,7 +70,7 @@ for
       %tr
         %td License Photo Uploaded
         %td 
-          - if @player.user.try(:license_photo).try(:url)
+          - if @player.user.has_license_photo
             = image_tag('checkmark.png')
             - if @player.user == current_user || current_user.admin? || current_user.manager?
               = image_tag(@player.user.license_photo.url(:full))

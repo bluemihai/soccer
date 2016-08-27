@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826054332) do
+ActiveRecord::Schema.define(version: 20160826175148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 20160826054332) do
     t.string   "league_past_when"
     t.string   "league_past_team_name"
     t.string   "league_past_your_name"
+    t.string   "manager_message"
   end
 
 end

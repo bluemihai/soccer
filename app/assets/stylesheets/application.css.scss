@@ -60,3 +60,11 @@
 .admin-only {
   background-color: yellow;
 }
+
+.action {
+  display: inline;
+  color: green;
+  a, a:visited {
+    color: green;
+  }
+}

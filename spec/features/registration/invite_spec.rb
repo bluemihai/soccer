@@ -12,8 +12,6 @@ feature 'Sign in', :omniauth do
   scenario "invited player can accept" do
     t = FactoryGirl.create(:team, name: 'Barcelona')
     invitee = FactoryGirl.create(:player, team: t, invited: true, email: 'mockuser@example.com')
-    puts "Player.find_by(email: 'mockuser@example.com').inspect: #{Player.find_by(email: 'mockuser@example.com').inspect}"
-    puts "User.count: #{User.count}"
     signin
     expect(page).to have_content("Update Team Profile")
   end

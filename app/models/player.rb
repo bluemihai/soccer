@@ -17,6 +17,14 @@ class Player < ApplicationRecord
   scope :pending, -> { where('status <> 3').where(approved: false) }
   scope :active_or_pending, -> { where('status <> 3') }
 
+  def has_photo
+    user.try(:photo).try(:url)
+  end
+
+  def has_license_photo
+    user.try(:license_photo).try(:url)
+  end
+
   def invited_or_active
     if status == 'Ready to Register and Pay!' && approved
       'Active'

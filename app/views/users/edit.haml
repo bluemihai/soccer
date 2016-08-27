@@ -43,7 +43,10 @@
     .large-6.medium-3.small-12.columns
       Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.
       = f.input :license_photo, label: false, as: :file
-      = image_tag @user.license_photo.url(:full)
+      - if @user.license_photo.try(:url)
+        = image_tag @user.license_photo.url(:full)
+      - else
+        = image_tag('tim.cook.dl.png')
     %hr
     .large-9.medium-12.small-12.columns
       %h4 Liability Waiver, Certification, and Authorization to Verify Records
@@ -63,12 +66,13 @@
     .yellow.large-2.medium-3.small-6.columns= f.input :pass_id, label: 'EBSSL Pass Id'
     .large-6.medium-3.small-6 &nbsp;
     .clear-both
-    .yellow.large-4.medium-4.small-12.columns
+    .yellow.large-2.medium-4.small-12.columns
       = f.input :manager_confirmation, as: :select
-    .yellow.large-4.medium-4.small-12.columns
-      - h = { value: @user.manager_signature || @user.player.team.manager.name }
-      = f.input :manager_signature, input_html: h
-    .yellow.large-4.medium-4.small-12.columns
+    .yellow.large-4.medium-8.small-12.columns
+      = f.input :manager_signature, label: 'If not confirming, what else is needed?'
+    .yellow.large-3.medium-6.small-12.columns
+      = f.input :manager_signature
+    .yellow.large-3.medium-6.small-12.columns
       = f.input :manager_signature_date
   - else
     %hr

@@ -1,4 +1,12 @@
 .container
   .row
     %h3 Users
-    = render @users
+    %table#users-table.compact
+      %thead
+        %th Team
+        %th Name
+        %th Registration Status
+        %th Team Status
+        %th Admin Actions
+      %tbody
+        = render @users

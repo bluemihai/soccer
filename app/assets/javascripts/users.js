@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#users-table').DataTable({
+  $('#players-table').DataTable({
       searching: false,
       paging: false,
     // columns: [

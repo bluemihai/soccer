@@ -61,6 +61,11 @@ class User < ActiveRecord::Base
     player.team
   end
 
+  def team_name
+    return nil unless team
+    team.name
+  end
+
   def player
     players.first
   end
