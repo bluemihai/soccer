@@ -17,6 +17,8 @@ class Player < ApplicationRecord
   scope :pending, -> { where('status <> 3').where(approved: false) }
   scope :active_or_pending, -> { where('status <> 3') }
 
+  delegate :manager, to: :team
+
   def has_photo
     user.try(:photo).try(:url)
   end

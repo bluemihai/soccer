@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
     full: '300x300'
   }
 
+  delegate :manager, to: :player, allow_nil: true
+
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_attachment_content_type :license_photo, content_type: /\Aimage\/.*\Z/
   validates :first_name, presence: true, on: :update

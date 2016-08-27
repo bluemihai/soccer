@@ -1,3 +1,19 @@
-%h3 Welcome to the new EBSSL Website!
+%h3= "Welcome to #{LEAGUE_NAME_SHORT}, #{@user.first}!"
 
-%p More info coming soon...
+%p= "Dear #{@user.name},"
+
+%p
+  Thank you for creating or updating
+  = link_to 'a user profile', user_url(@user)
+  on our site.
+
+- if @invited
+  %p
+    = "Your team manager, #{@user.manager.name}, has been notified."
+    %br
+    If needed, he will confirm your registration is complete and send it on to the league.
+
+%p
+  Sincerely,
+  %br
+  = LEAGUE_NAME_SHORT

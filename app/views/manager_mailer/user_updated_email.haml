@@ -1,0 +1,14 @@
+%h3 User Updated
+
+%p= "Dear #{@user.manager.name},"
+
+%p
+  = "Your #{@user.manager.team.name} user, #{@user.name}, has updated"
+  = link_to 'his profile.', user_url(@user)
+
+%p Perhaps it is now ready to submit to the league?
+
+%p
+  Sincerely,
+  %br
+  EBSSL
