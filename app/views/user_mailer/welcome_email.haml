@@ -9,7 +9,9 @@
 
 - if @invited
   %p
-    = "Your team manager, #{@user.manager.name}, has been notified."
+    Your team manager
+    = @user.manager.name if @user.manager
+    has been notified.
     %br
     If needed, he will confirm your registration is complete and send it on to the league.
 

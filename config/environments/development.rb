@@ -53,9 +53,11 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  Rails.application.routes.default_url_options[:host]
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
+    host: 'ebssl.herokuapp.com',
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: Rails.application.secrets.email_provider_username,
