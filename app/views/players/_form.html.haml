@@ -10,15 +10,15 @@
       - users = [current_user]
     .large-3.medium-6.small-6.columns= f.association :user, collection: users, include_blank: true
     - if (!@player.email || @player.email == '') && @player.user
-      - e = @player.user.email
+      .large-3.medium-6.small-6.columns
+        = f.input :email, input_html: { value: @player.user.email }
     - else
-      - e = nil
-    .large-3.medium-6.small-6.columns= f.input :email, input_html: { value: e }
+      .large-3.medium-6.small-6.columns= f.input :email
     - if (!@player.name || @player.name == '') && @player.user
-      - n = @player.user.name
+      .large-3.medium-6.small-6.columns
+        = f.input :name, input_html: { value: @player.user.name }
     - else
-      - n = nil
-    .large-3.medium-6.small-6.columns= f.input :name, input_html: { value: n }
+      .large-3.medium-6.small-6.columns= f.input :name
     %hr
     .clear-both
     .large-3.medium-6.small-12.columns
