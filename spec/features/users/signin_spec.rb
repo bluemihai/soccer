@@ -25,5 +25,4 @@ feature 'Sign in', :omniauth do
     click_link 'Google auth'
     expect(page).to have_content('Authentication error')
   end
-
 end

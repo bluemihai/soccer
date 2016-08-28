@@ -22,5 +22,4 @@ class Team < ApplicationRecord
   def manager_names
     managers.map{ |m| m.safe_name }.join(', ')
   end
-
 end
