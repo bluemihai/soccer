@@ -44,7 +44,7 @@
     .name-box= @user.name
     .name-box= @user.created_at.strftime('%B %d, %Y')
   %br
-  - if team = @user.player.team
+  - if team = @user.team
     #team
       Team Name
       .name-box= team.name
