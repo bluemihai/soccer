@@ -17,8 +17,12 @@ Rails.application.routes.draw do
   resources :players
   resources :users do
     resources :players
+    collection { get :passes }
+    member { post :toggle_selected }
   end
   root to: 'visitors#index'
+
+  get '/admin/passes' => ''
   get '/registration' => 'visitors#registration'
   get '/fields' => 'visitors#fields'
   get '/privacy' => 'visitors#privacy'

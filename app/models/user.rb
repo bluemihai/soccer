@@ -27,6 +27,16 @@ class User < ActiveRecord::Base
   validate :age_at_least_28, on: :update
   validate :listed_license_or_passport, on: :update
 
+  scope :selected, -> { where(selected: true) }
+
+  def pass_id
+    @pass_id || 4611
+  end
+
+  def name_for_pass
+    "#{first_name} #{middle_name.split(' ').map(&:first).join('')} #{last_name}"
+  end
+
   def day_phone_formatted
     helpers.number_to_phone(day_phone)
   end

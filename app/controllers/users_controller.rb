@@ -1,11 +1,15 @@
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:toggle_selected, :show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :admin_only, :except => [:show, :edit, :update]
 
   def index
     @users = User.all
+  end
+
+  def passes
+    @users = User.selected
   end
 
   def show
@@ -27,6 +31,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def toggle_selected
+    @user.update(selected: !@user.selected)
+    msg = @user.selected ? 'User selected' : 'User deselected'
+    redirect_back(fallback_location: users_path, notice: msg)
   end
 
   def update
@@ -65,7 +75,7 @@ class UsersController < ApplicationController
         :passport_no, :passport_country, :liability_waiver_agreed, :pass_id,
         :manager_confirmation, :manager_signature, :manager_signature_date,
         :league_past_when, :league_played_before, :league_past_team_name,
-        :league_past_your_name, :manager_message)
+        :league_past_your_name, :manager_message, :selected)
     else
       params.require(:user).permit(:dob, :name,
         :first_name, :middle_name, :last_name, :day_phone, :evening_phone,
@@ -73,7 +83,7 @@ class UsersController < ApplicationController
         :passport_no, :passport_country, :liability_waiver_agreed, :pass_id,
         :manager_confirmation, :manager_signature, :manager_signature_date,
         :league_past_when, :league_played_before, :league_past_team_name,
-        :league_past_your_name, :manager_message)
+        :league_past_your_name, :manager_message, :selected)
     end
   end
 
