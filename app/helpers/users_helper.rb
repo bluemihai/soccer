@@ -12,8 +12,8 @@ class RegistrationPdf < Prawn::Document
       text 'East Bay Senior Soccer League — Player Pass Application'      
       font 'Helvetica', size: 12, styles: [:normal]
     end
-    bounding_box([300, 750], width: 300, height: 200) do
-      image open(user.license_photo.url), height: 200, width: 300
+    bounding_box([300, 750], width: 216, height: 144) do
+      image open(user.license_photo.url), height: 144, width: 216
     end
     bounding_box([20, 750], width: 100, height: 250) do
       text "First Name"
@@ -51,7 +51,7 @@ class RegistrationPdf < Prawn::Document
         text 'None'
       end
     end
-    bounding_box([450, 500], width: 150, height: 200) do
+    bounding_box([450, 500], width: 108, height: 108) do
       image open(user.photo.url), width: 108, height: 108
     end
     bounding_box([20, 500], width: 430, height: 450) do
@@ -72,6 +72,8 @@ class RegistrationPdf < Prawn::Document
         { text: '     '},
         { text: user.created_at.strftime('%b %d, %Y') }
       ]
+      text ' '
+      text ' '
       text ' '
       text ' '
       font 'Helvetica', style: :bold

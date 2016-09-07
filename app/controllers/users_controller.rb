@@ -32,11 +32,11 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(user_params)
       if @user.player
-        ManagerMailer.user_updated_email(@user).deliver_later if @user.manager
-        UserMailer.welcome_email({user: @user, invited: true}).deliver_later
+        # ManagerMailer.user_updated_email(@user).deliver_later if @user.manager
+        # UserMailer.welcome_email({user: @user, invited: true}).deliver_later
         redirect_to @user, :notice => "Your league registration form was saved.  Please update your team profile for #{@user.player.team.name}."
       else
-        UserMailer.welcome_email({user: @user, invited: false}).deliver_later
+        # UserMailer.welcome_email({user: @user, invited: false}).deliver_later
         redirect_to @user, :notice => "Your league registration form was saved.  You may now request to join a team."
       end
     else

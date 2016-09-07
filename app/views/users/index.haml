@@ -10,4 +10,4 @@
         %th Team Status
         %th Admin Actions
       %tbody
-        = render @users
+        = render @users.order(:id)
