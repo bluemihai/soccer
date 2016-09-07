@@ -23,12 +23,13 @@
   %br
   #phone-numbers
     Day Phone
-    .name-box= number_to_phone(@user.day_phone, delimiter: '.')
+    .name-box= @user.day_phone_formatted
     Evening Phone
-    .name-box= number_to_phone(@user.evening_phone, delimiter: '.')
+    .name-box= @user.evening_phone_formatted
   %br
   %hr
   #license-or-passport
+    .name-box= @user.license_or_passport_number_only
     .name-box= @user.license_or_passport
     %br
     #image

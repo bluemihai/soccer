@@ -27,11 +27,39 @@ class User < ActiveRecord::Base
   validate :age_at_least_28, on: :update
   validate :listed_license_or_passport, on: :update
 
+  def day_phone_formatted
+    helpers.number_to_phone(day_phone)
+  end
+
+  def evening_phone_formatted
+    helpers.number_to_phone(evening_phone)
+  end
+
   def license_or_passport
     if !dl_license_no.blank? && !dl_issuing_state.blank?
       "Drivers License: #{dl_issuing_state.upcase} — #{dl_license_no}" 
     elsif !passport_no.blank? && !passport_country.blank?
       "Passport: #{passport_country.upcase} — #{passport_no}"
+    else
+      ''
+    end
+  end
+
+  def state_abbrev
+    if dl_issuing_state && dl_issuing_state.length == 2
+      return dl_issuing_state.upcase 
+    end
+    if STATE_ABBREVS.keys().include? dl_issuing_state
+      return STATE_ABBREVS[dl_issuing_state]
+    end
+    return dl_issuing_state
+  end
+
+  def license_or_passport_number_only
+    if !dl_license_no.blank? && !dl_issuing_state.blank?
+      "#{state_abbrev} — #{dl_license_no}"
+    elsif !passport_no.blank? && !passport_country.blank?
+      "#{passport_country.upcase} — #{passport_no}"
     else
       ''
     end
@@ -112,6 +140,10 @@ class User < ActiveRecord::Base
       if license_or_passport == ''
         self.errors.add(:dl_license_no, 'license/state or passport/country must be filled')
       end
+    end
+
+    def helpers
+      ActionController::Base.helpers
     end
 
 end

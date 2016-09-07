@@ -24,7 +24,7 @@
       = f.input :day_phone, label: 'Daytime Phone #'
       = f.input :evening_phone, label: 'Evening Phone #'
     .large-4.medium-4.small-12.columns
-      = f.input :league_played_before, as: :select, label: 'Have you played in EBSSL before?'
+      = f.input :league_played_before, as: :select, label: 'Have you played in EBSSL before?', selected: @user.league_played_before || false
       = f.input :league_past_when, label: 'If yes, when was your last season?', collection: Season.past_for_select
       = f.input :league_past_team_name, label: 'For what team?'
       = f.input :league_past_your_name, label: 'Under what name?'
