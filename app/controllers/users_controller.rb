@@ -65,7 +65,7 @@ class UsersController < ApplicationController
         :passport_no, :passport_country, :liability_waiver_agreed, :pass_id,
         :manager_confirmation, :manager_signature, :manager_signature_date,
         :league_past_when, :league_played_before, :league_past_team_name,
-        :league_past_your_name)
+        :league_past_your_name, :manager_message)
     else
       params.require(:user).permit(:dob, :name,
         :first_name, :middle_name, :last_name, :day_phone, :evening_phone,
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         :passport_no, :passport_country, :liability_waiver_agreed, :pass_id,
         :manager_confirmation, :manager_signature, :manager_signature_date,
         :league_past_when, :league_played_before, :league_past_team_name,
-        :league_past_your_name)
+        :league_past_your_name, :manager_message)
     end
   end
 

@@ -1,8 +1,14 @@
 %tr
+  %td= user.id
   %td
     = link_to user.team_name, user.team if user.team
   %td= link_to user.name, user
-  %td= image_tag(user.manager_confirmation ? 'checkmark.png' : 'warning.png')
+  - if user.manager_confirmation
+    %td= image_tag('checkmark.png')
+  - else
+    %td
+      = image_tag('warning.png')
+      = user.manager_message
   %td
   %td
     .action= link_to 'PDF', user_path(user) + '.pdf'
