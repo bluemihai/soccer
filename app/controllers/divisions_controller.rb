@@ -6,7 +6,6 @@ class DivisionsController < ApplicationController
   end
 
   def show
-    @teams = @division.standings
   end
 
   def new

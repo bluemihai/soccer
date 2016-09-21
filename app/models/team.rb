@@ -2,6 +2,8 @@ class Team < ApplicationRecord
   has_many :players
   has_many :home_games, class_name: 'Game', foreign_key: 'home_id' 
   has_many :away_games, class_name: 'Game', foreign_key: 'away_id'
+  has_many :goals
+
 
   belongs_to :division, required: false
   belongs_to :manager, class_name: 'User', required: false 
@@ -42,8 +44,16 @@ class Team < ApplicationRecord
     (home_games.played.map(&:away_score) + away_games.played.map(&:home_score)).sum
   end
 
+  def goal_diff
+    goals_for - goals_against
+  end
+
+  def goal_diff_with_plus
+    goal_diff <= 0 ? goal_diff : "+#{goal_diff}"
+  end
+
   def goal_differential
-    "#{goals_for - goals_against} (#{goals_for}-#{goals_against})"
+    "#{goal_diff_with_plus} (#{goals_for}-#{goals_against})"
   end
 
   def available_jerseys

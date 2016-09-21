@@ -17,8 +17,8 @@
     - @goals.each do |goal|
       %tr
         %td= goal.game_id
-        %td= goal.scorer_id
-        %td= goal.assister_id
+        %td= goal.scorer.first_initial_last
+        %td= goal.assister.first_initial_last
         %td= goal.struck_with
         %td= goal.minute
         %td= goal.details

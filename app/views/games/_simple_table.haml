@@ -1,0 +1,13 @@
+%table
+  %thead
+    %th.text-center Week
+    %th.text-right Home
+    %th.text-center Score
+    %th Home
+  %tbody
+    - games.each do |game|
+      %tr
+        %td.text-center= game.week
+        %td.text-right= link_to game.home_team.short, game.home_team, title: game.home_team.name
+        %td.text-center= game.score
+        %td= link_to game.away_team.short, game.away_team, title: game.away_team.name

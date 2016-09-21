@@ -1,26 +1,64 @@
 %h2= @division.full_name
 
 
-%h4 Current Standings
+.large-6.medium-12.small-12.columns
+  %h4 Current Standings
+  %table
+    %thead
+      %th #
+      %th.text-right Team
+      %th Name
+      %th.text-center Games
+      %th.text-center Wins
+      %th.text-center Ties
+      %th.text-center Losses
+      %th.text-center Points
+      %th.text-center Goal Diff
+    %tbody
+      - @division.standings.each_with_index do |team, idx|
+        %tr
+          %td= idx + 1
+          %td.text-right= link_to team.short, team
+          %td= link_to team.name, team
+          %td.text-center= team.games
+          %td.text-center= team.wins
+          %td.text-center= team.ties
+          %td.text-center= team.losses
+          %td.text-center= team.points
+          %td.text-center= team.goal_differential
 
-%table
-  %thead
-    %th #
-    %th Team Name
-    %th.text-center Games
-    %th.text-center Wins
-    %th.text-center Ties
-    %th.text-center Losses
-    %th.text-center Points
-    %th.text-center Goal Diff
-  %tbody
-    - @teams.each_with_index do |team, idx|
-      %tr
-        %td= idx + 1
-        %td= link_to team.name, team
-        %td.text-center= team.games
-        %td.text-center= team.wins
-        %td.text-center= team.ties
-        %td.text-center= team.losses
-        %td.text-center= team.points
-        %td.text-center= team.goal_differential
+.large-3.medium-6.small-12.columns
+  %h4 Leading Goal Scorers
+
+  %table
+    %thead
+      %th.text-center Goals
+      %th Player
+      %th Team
+    %tbody
+      - @division.goal_scorers.each do |player|
+        %td.text-center= player.goals_scored.size
+        %td= player.first_initial_last
+        %td= player.team.short
+
+.large-3.medium-6.small-12.columns
+  %h4 Leading Assisters
+
+  %table
+    %thead
+      %th.text-center Assists
+      %th Player
+      %th Team
+    %tbody
+      - @division.goal_assisters.each do |player|
+        %td.text-center= player.goals_assisted.size
+        %td= player.first_initial_last
+        %td= player.team.short
+
+.large-6.medium-6.small-12.columns
+  %h4 Games Played
+  = render 'games/simple_table', games: @division.games.played.order(:week).reverse
+
+.large-6.medium-6.small-12.columns
+  %h4 Scheduled Games
+  = render 'games/simple_table', games: @division.games.scheduled.order(:week)

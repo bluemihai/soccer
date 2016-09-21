@@ -1,6 +1,8 @@
 class Player < ApplicationRecord
   belongs_to :team, required: false
   belongs_to :user, required: false
+  has_many :goals_scored, class_name: 'Goal', foreign_key: 'scorer_id'
+  has_many :goals_assisted, class_name: 'Goal', foreign_key: 'assister_id'
 
   validates :email, presence: true, uniqueness: true
   # validates :jersey, presence: true, on: :update
@@ -18,6 +20,10 @@ class Player < ApplicationRecord
   scope :active_or_pending, -> { where('status <> 3') }
 
   delegate :manager, to: :team
+
+  def first_initial_last
+    "#{user.first_name[0]}. #{user.last_name}"
+  end
 
   def has_photo
     user.try(:photo).try(:url)

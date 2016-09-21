@@ -15,6 +15,7 @@ class Game < ApplicationRecord
   enum status: [:scheduled, :postponed, :played]
 
   scope :played, -> { where(status: 2)}
+  scope :scheduled, -> { where(status: 0)}
 
   def winning_team_id
     if home_score == away_score
