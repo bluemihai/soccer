@@ -16,6 +16,16 @@ class Game < ApplicationRecord
 
   scope :played, -> { where(status: 2)}
 
+  def winning_team_id
+    if home_score == away_score
+      nil 
+    elsif home_score > away_score
+      home_id
+    else
+      away_id
+    end
+  end
+
   def summary
     "Week #{week}: #{home_team}-#{away_team} #{score}"
   end
@@ -29,7 +39,7 @@ class Game < ApplicationRecord
   end
 
   def past?
-    kickoff < Time.zone.now
+    week < 3
   end
 
   def div
