@@ -29,8 +29,8 @@ class User < ActiveRecord::Base
 
   scope :selected, -> { where(selected: true) }
 
-  def pass_id
-    @pass_id || 4611
+  def pass_license
+    '*' * 4 + license_or_passport_number_only[-4..-1]
   end
 
   def name_for_pass

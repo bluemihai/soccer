@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
     end
 
     if params.has_key?(:include_inactive)
-      @players = Player.order
+      @players = Player.order(:jersey)
     else
       @players = Player.active_or_pending
     end

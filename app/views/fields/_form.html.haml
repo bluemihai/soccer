@@ -1,0 +1,14 @@
+= simple_form_for(@field) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :street_address
+    = f.input :city
+    = f.input :state
+    = f.input :zip
+    = f.input :turf
+    = f.input :cost
+
+  .form-actions
+    = f.button :submit

@@ -2,7 +2,7 @@
   = image_tag @user.gravatar(40)
   = @user.name
 
-- if current_user == @user || current_user.admin? || current_user.manager?
+- if current_user == @user || admin_or_manager?
   = link_to 'Download Registration Form PDF', user_path(@user) + '.pdf', class: 'button'
   = link_to 'Edit', edit_user_path(@user), class: 'button'
   %hr

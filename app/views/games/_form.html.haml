@@ -2,14 +2,19 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :home_id
-    = f.input :away_id
-    = f.input :kickoff
-    = f.input :referees_report
-    = f.input :context
-    = f.input :referee_id
-    = f.input :field_id
-    = f.input :status
+    .large-3.medium-6.small-6.columns= f.association :home_team, label_method: :name_with_details, collection: @teams, autofocus: true
+    .large-3.medium-6.small-6.columns= f.association :away_team, label_method: :name_with_details, collection: @teams
+    .large-3.medium-3.small-6.columns= f.input :home_score, collection: (0..9)
+    .large-3.medium-3.small-6.columns= f.input :away_score, collection: (0..9)
+    .large-2.medium-3.small-6.columns= f.association :field
+    .large-2.medium-3.small-6.columns= f.input :kickoff_time, minute_step: 15, include_blank: true
+    .large-2.medium-3.small-6.columns= f.association :division, selected: @game.division || params[:division_id]
+    .large-2.medium-3.small-6.columns= f.input :week, collection: (1..22)
+    .large-2.medium-3.small-6.columns= f.input :context, collection: Game.contexts.keys, selected: 'division'
+    .large-2.medium-3.small-6.columns= f.input :status, collection: Game.statuses.keys, selected: 'scheduled'
+    / = f.input :referee_id
+    / = f.input :referees_report
 
+  %hr
   .form-actions
     = f.button :submit

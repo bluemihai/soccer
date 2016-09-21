@@ -1,11 +1,12 @@
-%h1 Listing teams
+%h1 EBSSL Teams
 
-%table
+%table#teams.compact
   %thead
     %tr
+      %th
       %th Name
       %th Manager
-      %th Division
+      %th Div
       %th
       %th
       %th
@@ -13,8 +14,9 @@
   %tbody
     - @teams.each do |team|
       %tr
+        %td= team.short
         %td= team.name
-        %td= team.manager_id
+        %td= team.manager.try(:name)
         %td= team.division_id
         %td= link_to 'Show', team
         %td= link_to 'Edit', edit_team_path(team)

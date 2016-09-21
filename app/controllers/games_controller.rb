@@ -16,9 +16,11 @@ class GamesController < ApplicationController
 
   def new
     @game = Game.new
+    set_teams
   end
 
   def edit
+    set_teams
   end
 
   def create
@@ -26,9 +28,10 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to new_division_game_path(@game.division), notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
+        set_teams
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -41,6 +44,7 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
+        set_teams
         format.html { render :edit }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -62,6 +66,15 @@ class GamesController < ApplicationController
 
     def game_params
       params.require(:game).permit(:home_id, :away_id, :kickoff, :field_id, 
-        :referees_report, :context, :referee_id, :status, :week)
+        :referees_report, :context, :referee_id, :status, :week, :kickoff_time,
+        :division_id, :home_score, :away_score)
+    end
+
+    def set_teams
+      if division = Division.find_by_id(params[:division_id])
+        @teams = division.teams.order(:name)
+      else
+        @teams = Team.order(:name)
+      end
     end
 end

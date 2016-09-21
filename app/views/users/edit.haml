@@ -63,7 +63,7 @@
     %hr
     .large-2.medium-3.small-6.columns= f.button :submit, 'Save'
     .yellow.large-2.medium-3.small-6.columns= f.input :role, collection: User.roles.keys
-    .yellow.large-2.medium-3.small-6.columns= f.input :pass_id, label: 'EBSSL Pass Id'
+    .yellow.large-2.medium-3.small-6.columns= f.input :pass_id, label: 'EBSSL, Pass Id', include_blank: true
     .large-6.medium-3.small-6 &nbsp;
     .clear-both
     .yellow.large-2.medium-4.small-12.columns

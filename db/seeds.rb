@@ -151,3 +151,17 @@ Player.create(
   jersey: 1,
   status: 'Inactive'
 )
+
+fields = [
+  ['TBA', 'TBA'],
+  ['Lincoln Middle School', 'Alameda'],
+  ['Sycamore Valley Park #1', 'Danville'],
+  ['Mills College', 'Oakland'],
+  ['Gabe East', 'Berkeley'],
+  ['Gabe West', 'Berkeley'],
+  ['Lafayette Community Park', 'Lafayette'],
+  ['Gilman East (Grass)', 'Berkeley'],
+  ['Gilman North', 'Berkeley'],
+  ['Gilman South', 'Berkeley'],
+  ['Wilder 1', 'Orinda']
+]

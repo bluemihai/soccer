@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @field.name
+%p
+  %b Street address:
+  = @field.street_address
+%p
+  %b City:
+  = @field.city
+%p
+  %b State:
+  = @field.state
+%p
+  %b Zip:
+  = @field.zip
+%p
+  %b Turf:
+  = @field.turf
+%p
+  %b Cost:
+  = @field.cost
+
+= link_to 'Edit', edit_field_path(@field)
+\|
+= link_to 'Back', fields_path

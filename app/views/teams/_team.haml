@@ -1,2 +1,5 @@
+%strong= team.short
 = link_to team.name, team
+- if admin_or_manager?
+  %sup= link_to image_tag('settings.png', size: 8), edit_team_path(team)
 %br

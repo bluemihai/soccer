@@ -1,6 +1,7 @@
 %tr
   %td= link_to show_bool(user.selected, 30), toggle_selected_user_path(user), method: :post
   %td= user.id
+  %td= user.pass_id
   %td
     = link_to user.team_name, user.team if user.team
   %td= link_to "#{user.first_name} #{user.middle_name} #{user.last_name}", user

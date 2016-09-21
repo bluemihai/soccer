@@ -1,2 +1,5 @@
-- @users.each do |user|
-  = render 'pass', user: user
+- @users.in_groups_of(10).each do |group|
+  .passes-grid
+    - group.each do |user|
+      = render 'pass', user: user
+    .clear-both

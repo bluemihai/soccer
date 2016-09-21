@@ -1,0 +1,30 @@
+%h1 EBSSL Fields, 2016-2017 Season
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Street address
+      %th City
+      %th State
+      %th Zip
+      %th Turf
+      %th Cost
+
+  %tbody
+    - @fields.each do |field|
+      %tr
+        %td= field.name
+        %td= field.street_address
+        %td= field.city
+        %td= field.state
+        %td= field.zip
+        %td= field.turf
+        %td= field.cost
+        %td
+          = link_to 'Edit', edit_field_path(field)
+          = link_to 'Destroy', field, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Field', new_field_path

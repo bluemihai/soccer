@@ -1,15 +1,14 @@
-.pass
-  %b EAST BAY SENIOR SOCCER LEAGUE
-  .pass-left
-    %b Player ID
-    %b= user.pass_id
-    %br
-    %br
-    %b Lic.
-    %b= user.license_or_passport_number_only
-    %br
-    %br
-    %br= user.name_for_pass
-  .pass-right
-    / = image_tag(user.photo.url, width: 108, height: 108)
-    = image_tag user.photo.url(:thumb)
+- if user
+  .pass
+    .pass-title
+      %b EAST BAY SENIOR SOCCER LEAGUE
+    .pass-left
+      = "Player ID #{user.pass_id}"
+      %br
+      %br
+      = "License #{user.pass_license}"
+      %br
+      %br
+      %b= user.name_for_pass
+    .pass-right
+      = image_tag user.photo.url(:thumb)

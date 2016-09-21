@@ -40,15 +40,12 @@
   background-color: yellow;
 }
 
-.datetime {
+.datetime, .date, .time {
     width: auto;
     select {
       padding-right: 15px;
       spacing: 0px;
     }
-}
-.date {
-    width: auto;
 }
 
 .f-dropdown {
