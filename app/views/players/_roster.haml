@@ -1,0 +1,18 @@
+%table#roster
+  %thead
+    %th.text-center EBSSL#
+    %th.text-center #
+    %th.text-right First
+    %th Last
+    - if admin_or_manager?
+      %th.admin-only
+  %tbody
+    - players.active.each do |player|
+      %tr
+        %td.text-center= player.user.pass_id
+        %td.text-center= player.jersey
+        %td.text-right= player.first
+        %td= player.last
+        - if admin_or_manager?
+          %td.admin-only
+            = link_to image_tag('settings.png', size: 10), edit_player_path(player)

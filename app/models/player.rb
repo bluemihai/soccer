@@ -20,6 +20,7 @@ class Player < ApplicationRecord
   scope :active_or_pending, -> { where('status <> 3') }
 
   delegate :manager, to: :team
+  delegate :full_name, :first, :last, to: :user
 
   def first_initial_last
     "#{user.first_name[0]}. #{user.last_name}"
