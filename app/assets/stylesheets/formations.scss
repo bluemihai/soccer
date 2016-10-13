@@ -4,9 +4,11 @@
 
 #field {
   background-color: green;
+  background: image-url('/assets/field.svg');
+  background-size: 100%;
   border: 1px solid black;
-  width: 1000px;
-  height: 600px;
+  width: 1150px;
+  height: 720px;
 
   .pbox {
     position: absolute;
