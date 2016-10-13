@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920181626) do
+ActiveRecord::Schema.define(version: 20161013043128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 20160920181626) do
     t.text     "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "p01"
+    t.string   "p02"
+    t.string   "p03"
+    t.string   "p04"
+    t.string   "p05"
+    t.string   "p06"
+    t.string   "p07"
+    t.string   "p08"
+    t.string   "p09"
+    t.string   "p10"
+    t.string   "p11"
   end
 
   create_table "games", force: :cascade do |t|
