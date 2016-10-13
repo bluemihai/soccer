@@ -13,28 +13,28 @@
     border: 1px solid black;
   }
 
-  #field {
-    display: table-cell;
-    background-color: green;
-    background: image-url('/assets/field.svg');
-    background-size: 100%;
-    border: 1px solid black;
-    width: 1150px;
-    height: 720px;
+}
 
-    .pbox {
-      position: absolute;
-      background-color: white;
-      border: 1px solid red;
-      padding: 3px;
-      width: 40px;
-      height: 20px;
-      font-size: 90%;
-    }
-  }
+#field {
+  display: table-cell;
+  background-color: green;
+  background: image-url('/assets/field.svg');
+  background-size: 100%;
+  border: 1px solid black;
+  width: 1150px;
+  height: 720px;
 
-  #bench {
-    display: table-cell;
+  .pbox {
+    position: absolute;
+    background-color: white;
+    border: 1px solid red;
+    padding: 3px;
+    width: 40px;
+    height: 20px;
+    font-size: 90%;
   }
 }
 
+#bench {
+  display: table-cell;
+}
