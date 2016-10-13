@@ -3,7 +3,7 @@ $(function(){
   w = $('#field').width();
 
   formation = $('#field').attr("class").split(' ')[0];
-  $.get('/assets/' + formation + '.json',
+  $.get('/' + formation + '.json',
   function(data) {
     //console.log("Hello");
     //console.log( data);
