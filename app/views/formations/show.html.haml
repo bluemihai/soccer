@@ -2,11 +2,7 @@
 
 / = image_tag(@formation.image_url)
 
-#field{ class: "#{@formation.id}"}
-  .pbox{:style => "left:100px; top:200px;"} Kirill
-  .pbox{:style => "left:500px; top:400px;"} Mihai
-  
-  
+#field{ class: "#{@formation.id}"}  
 
 - if @formation.positions && @formation.positions.keys.size > 0
   %hr

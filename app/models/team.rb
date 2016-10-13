@@ -7,7 +7,7 @@ class Team < ApplicationRecord
 
   belongs_to :division, required: false
   belongs_to :manager, class_name: 'User', required: false 
-  belongs_to :formation, required: false
+  belongs_to :formation
 
   validates :name, presence: true
   # validates :uniform_colors, presence: true

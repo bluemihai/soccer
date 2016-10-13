@@ -20,10 +20,18 @@ class Player < ApplicationRecord
   scope :active_or_pending, -> { where('status <> 3') }
 
   delegate :manager, to: :team
-  delegate :full_name, :first, :last, to: :user
+  delegate :full_name, :last, to: :user
+
+  def first_name
+    user.try(:first) || name.split('').first
+  end
 
   def first_initial_last
-    "#{user.first_name[0]}. #{user.last_name}"
+    if user.blank?
+      safe_name
+    else
+      "#{user.first_name[0]}. #{user.last_name}"
+    end
   end
 
   def has_photo

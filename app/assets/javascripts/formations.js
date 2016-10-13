@@ -7,14 +7,14 @@ $(function(){
   function(data) {
     //console.log("Hello");
     //console.log( data);
-    $('#field').empty();
+    // $('#field').empty();
     $.each(data, function(i, d) {
       var pos = { 
               left: d[0] / 24 * w,
               top: ((d[1] + 6) / 11.45) * h
             };
-            console.log(d);
-            console.log(pos);
+            // console.log(d);
+            // console.log(pos);
             
       $('#field').append(
           $('<div>')
@@ -22,7 +22,7 @@ $(function(){
             .offset( pos )
             .width( h / 24 * 4)
             .height( h / 13)
-            .text('' + i)
+            .text('#' + i + '/' + d[3])
           );
       
     });

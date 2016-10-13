@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :teams do
     resources :games
     resources :players
+    member { get :lineup }
   end
   resources :games do
     resources :goals

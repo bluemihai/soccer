@@ -2,20 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#field {
-  background-color: green;
-  background: image-url('/assets/field.svg');
-  background-size: 100%;
-  border: 1px solid black;
-  width: 1150px;
-  height: 720px;
+#dashboard {
+  display: table-row;
 
-  .pbox {
-    position: absolute;
-    background-color: white;
-    border: 1px solid red;
-    padding: 3px;
-    width: 40px;
-    height: 20px;
+  h3 {
+    background-color: yellow;
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid black;
+  }
+
+  #field {
+    display: table-cell;
+    background-color: green;
+    background: image-url('/assets/field.svg');
+    background-size: 100%;
+    border: 1px solid black;
+    width: 1150px;
+    height: 720px;
+
+    .pbox {
+      position: absolute;
+      background-color: white;
+      border: 1px solid red;
+      padding: 3px;
+      width: 40px;
+      height: 20px;
+      font-size: 90%;
+    }
+  }
+
+  #bench {
+    display: table-cell;
   }
 }
+
