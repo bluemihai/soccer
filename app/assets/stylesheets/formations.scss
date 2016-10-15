@@ -3,38 +3,43 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #dashboard {
-  display: table-row;
-
   h3 {
     background-color: yellow;
     float: left;
     padding: 5px;
     margin: 5px;
     border: 1px solid black;
+    min-width: 100px;
+    text-align: center;
   }
 
 }
 
+#field-container{
+  width: 80%;
+  height: 720px;
+}
+
 #field {
-  display: table-cell;
   background-color: green;
   background: image-url('field.svg');
   background-size: 100%;
-  border: 1px solid black;
-  width: 1150px;
-  height: 720px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
 
   .pbox {
     position: absolute;
     background-color: white;
     border: 1px solid red;
     padding: 3px;
-    width: 40px;
-    height: 20px;
+    width: 30px;
+    height: 15px;
     font-size: 90%;
   }
 }
 
-#bench {
-  display: table-cell;
+.group {
+  vertical-align: top;
+  display: inline-block;
 }

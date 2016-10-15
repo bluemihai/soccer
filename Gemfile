@@ -5,6 +5,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 group :development, :test do
@@ -18,7 +20,6 @@ group :development do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'foundation-rails', '~> 5.5'
-gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'haml-rails'
 gem 'high_voltage', :github=>"thoughtbot/high_voltage"
 gem 'omniauth'

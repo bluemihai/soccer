@@ -12,6 +12,12 @@ class Team < ApplicationRecord
   validates :name, presence: true
   # validates :uniform_colors, presence: true
 
+  def lineup
+    players.with_position.map do |player|
+      [player.position, player.first_name]
+    end.to_h
+  end
+
   def games_played
     home_games.played + away_games.played    
   end

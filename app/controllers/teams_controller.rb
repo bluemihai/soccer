@@ -10,6 +10,10 @@ class TeamsController < ApplicationController
   end
 
   def lineup
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @team.lineup }
+    end
   end
 
   def new

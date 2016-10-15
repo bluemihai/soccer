@@ -6,6 +6,29 @@ $(function(){
   })
 
   var players = $.get('/teams/23/players.json', function(data) {
-    console.log(data)
   });
+
+  fillPositions()
+
+  $(".bench-player").draggable({
+    helper: 'clone'
+  });
+  $(".pbox div").droppable({
+    drop: function( event, ui ) {
+      console.log($(this))
+      alert('Running!')
+      $( this )
+        .append(ui.draggable);
+    }
+  });
+
 })
+
+
+var fillPositions = function() {
+  $.get('/teams/23/lineup.json', function(data) {
+    for (pos in data) {
+      $('#pos' + pos).append('<br><b>' + data[pos] + '</b>')
+    }
+  })
+}

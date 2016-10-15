@@ -12,18 +12,20 @@ class Player < ApplicationRecord
 
   enum status: ['Ready to Register and Pay!', 'Very Likely to Join', 'On the Fence', 'Inactive This (EBSSL 30+) Season']
   enum age: ['30+', '28-29']
-  enum position: ['Out', '#1 (GK)', '#2 (RWB)', '#3 (LWB)', '#4 (CB)', '#5 (CB)', '#6 (DM)', '#7 (RAM)', '#8 (DM)', '#9 (S)', '#10 (CAM)', '#11 (LAM)']
 
   scope :inactive, -> { where(status: 3) }
   scope :active, -> { where('status <> 3').where(approved: true) }
   scope :pending, -> { where('status <> 3').where(approved: false) }
   scope :active_or_pending, -> { where('status <> 3') }
+  scope :with_position, -> { where('position > 0').order(:position) }
+  scope :active_subs, -> { where(position: 0).order(:name) }
+  scope :inactive_subs, -> { where(position: nil).where('status <> 3').order(:name) }
 
   delegate :manager, to: :team
-  delegate :full_name, :last, to: :user
+  delegate :full_name, to: :user
 
   def first_name
-    user.try(:first) || name.split('').first
+    first || user.try(:first) || name.split('').first
   end
 
   def first_initial_last

@@ -19,6 +19,8 @@
         = f.input :name, input_html: { value: @player.user.name }
     - else
       .large-3.medium-6.small-6.columns= f.input :name
+    .large-3.medium-6.small-6.columns= f.input :first
+    .large-3.medium-6.small-6.columns= f.input :last
     %hr
     .clear-both
     .large-3.medium-6.small-12.columns
@@ -42,7 +44,7 @@
       .large-2.medium-3.small-6.columns.admin-only= f.input :approved, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :invited, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :paid, as: :select
-      .large-2.medium-3.small-6.columns.admin-only= f.input :position, collection: Player.positions.keys
+      .large-2.medium-3.small-6.columns.admin-only= f.input :position, collection: POSITIONS_4231
       .large-4.medium-3.small-6.columns
     - else
       .large-10.medium-9.small-6.columns

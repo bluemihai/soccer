@@ -7,7 +7,7 @@ FactoryGirl.define do
     last "MyString"
     email { Faker::Internet.free_email }
     phone { Faker::PhoneNumber.phone_number }
-    position Player.positions.keys.first
+    position 1
     attendance_estimate 1
     ideal_minutes 1
     sequence(:jersey )
