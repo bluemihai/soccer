@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #dashboard {
-  h3 {
+  h4 {
     background-color: yellow;
     float: left;
     padding: 5px;
@@ -12,34 +12,32 @@
     min-width: 100px;
     text-align: center;
   }
-
-}
-
-#field-container{
-  width: 80%;
-  height: 720px;
+  vertical-align: top;
 }
 
 #field {
-  background-color: green;
-  background: image-url('field.svg');
-  background-size: 100%;
-  background-repeat: no-repeat;
+  float: left;
+  clear: both;
   width: 100%;
-  height: 100%;
+  background-color: cyan;
+  background: image-url('field.partial.png');
+  background-size: 720px 720px;
+  background-repeat: no-repeat;
+  width: 720px;
+  height: 720px;
 
   .pbox {
     position: absolute;
     background-color: white;
     border: 1px solid red;
     padding: 3px;
-    width: 30px;
-    height: 15px;
     font-size: 90%;
   }
 }
 
+#roster {
+  float: left;
+}
 .group {
-  vertical-align: top;
-  display: inline-block;
+  display: table-cell;
 }

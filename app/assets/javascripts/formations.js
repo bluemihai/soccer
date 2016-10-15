@@ -1,3 +1,8 @@
+width = 1150
+height = 720
+boxWidth = 80
+boxHeight = 40
+
 $(function(){
   $(window).resize(displayPositions)
 
@@ -5,35 +10,37 @@ $(function(){
 });
 
 var displayPositions = function(data) {
-  console.log('w', getWidth(), 'h', getHeight(), 'formation', getFormation())
+  console.log('w', fieldWidth(), 'h', fieldHeight(), 'formation', getFormation())
 
   $('#field').empty();
   $.get('/' + getFormation() + '.json', function(data) {
     $.each(data, function(i, d) {
       var pos = { 
-        left: Math.round(d[0] / 24 * getWidth()),
-        top: Math.round(((d[1] + 6) / 11.45) * getHeight())
+        left: Math.round(d[0] / 36 * width + boxWidth / 2),
+        top: Math.round(((d[1] + 6) / 11.45) * height + boxHeight / 2)
       };
       // console.log(i, pos);
 
       $('#field').append(
         $('<div>')
           .attr('id', 'pos' + i)
-          .addClass("pbox")
+          .addClass('pbox')
+          .width( boxWidth )
+          .height( boxHeight )
+          .text('#' + i + '/' + d[3])
           .offset( pos )
-          .width( getWidth() / 24 * 3)
-          .height( getHeight() / 13)
-          .text('#' + i + '/' + d[3] + 'left: ' + pos['left'] + 'top: ' + pos['top'])
       );
     });
   });
 }
 
-var getHeight = function() {
-  return $('#field').height();
+var fieldHeight = function() {
+  h = $('#field').height();
+  console.log('h', h)
+  return h;
 }
 
-var getWidth = function() {
+var fieldWidth = function() {
   return $('#field').width();
 }
 
