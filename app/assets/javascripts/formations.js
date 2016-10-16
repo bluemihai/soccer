@@ -1,11 +1,9 @@
 width = 1150
 height = 720
-boxWidth = 80
-boxHeight = 40
+boxWidth = 100
+boxHeight = 50
 
 $(function(){
-  $(window).resize(displayPositions)
-
   displayPositions();
 });
 
@@ -16,8 +14,8 @@ var displayPositions = function(data) {
   $.get('/' + getFormation() + '.json', function(data) {
     $.each(data, function(i, d) {
       var pos = { 
-        left: Math.round(d[0] / 36 * width + boxWidth / 2),
-        top: Math.round(((d[1] + 6) / 11.45) * height + boxHeight / 2)
+        left: Math.round(d[0] / 36 * width),
+        top: Math.round(((d[1] + 6) / 14) * height + boxHeight / 2)
       };
       // console.log(i, pos);
 
@@ -25,12 +23,14 @@ var displayPositions = function(data) {
         $('<div>')
           .attr('id', 'pos' + i)
           .addClass('pbox')
+          .css('background-color', d[4])
           .width( boxWidth )
           .height( boxHeight )
           .text('#' + i + '/' + d[3])
           .offset( pos )
       );
     });
+    $(".pbox").draggable();
   });
 }
 

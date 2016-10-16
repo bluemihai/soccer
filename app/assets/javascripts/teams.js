@@ -10,17 +10,16 @@ $(function(){
 
   fillPositions()
 
-  $(".bench-player").draggable({
-    helper: 'clone'
-  });
-  $(".pbox div").droppable({
-    drop: function( event, ui ) {
-      console.log($(this))
-      alert('Running!')
-      $( this )
-        .append(ui.draggable);
-    }
-  });
+  $(".bench-player").draggable();
+  $(".pbox").draggable();
+  // $(".pbox div").droppable({
+  //   drop: function( event, ui ) {
+  //     console.log($(this))
+  //     alert('Running!')
+  //     $( this )
+  //       .append(ui.draggable);
+  //   }
+  // });
 
 })
 
