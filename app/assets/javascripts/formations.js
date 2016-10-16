@@ -30,7 +30,18 @@ var displayPositions = function(data) {
           .offset( pos )
       );
     });
-    $(".pbox").draggable();
+
+    $(".pbox")
+      .draggable({
+        helper: 'clone'
+      })
+      .droppable({
+        drop: function( event, ui ) {
+          swapPlayers(ui.draggable, this)
+      }
+    });
+
+    
   });
 }
 
@@ -47,4 +58,8 @@ var fieldWidth = function() {
 var getFormation = function() {
   var formation_class = $('#field').attr("class") || '4231'
   return formation_class.split(' ')[0]
+}
+
+var getPosition = function(playerFirstName) {
+  return 'DM, CB'
 }

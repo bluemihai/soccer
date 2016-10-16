@@ -5,23 +5,19 @@ $(function(){
     order: [1, 'asc']
   })
 
-  var players = $.get('/teams/23/players.json', function(data) {
-  });
-
   fillPositions()
 
-  $('.bench-player').draggable();
-  $('.pbox').draggable();
-  $('#ball').draggable()
-  // $(".pbox div").droppable({
-  //   drop: function( event, ui ) {
-  //     console.log($(this))
-  //     alert('Running!')
-  //     $( this )
-  //       .append(ui.draggable);
-  //   }
-  // });
-
+  $('.bench-player')
+    .draggable({helper: 'clone'})
+    .droppable({
+      drop: function( event, ui ) {
+        swapPlayers(this, ui.draggable);
+      }
+    });
+    
+  $('#ball').draggable({
+    helper: 'clone'
+  })
 })
 
 
@@ -32,3 +28,35 @@ var fillPositions = function() {
     }
   })
 }
+
+var getPlayers = function() {
+  $.get('/teams/23/players.json', function(data) {
+    console.log('getting data...', data)
+    return data
+  });
+}
+
+var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
+  incomingName = $(incomingBenchElem).html().split('<br>')[1]
+  outgoingName = $(outgoingFieldElem).html().split('<br>')[1]
+  position = $(outgoingFieldElem).html().split('<br>')[0]
+
+  console.log('Swapping', incomingName)
+  console.log('...for', outgoingName)
+  console.log('...at', position)
+
+  updateField(outgoingFieldElem, position, incomingName);
+  updateBench(incomingBenchElem, outgoingName);
+}
+
+var updateField = function(outgoingFieldElem, position, incomingName) {
+  $(outgoingFieldElem)
+    .html(position + '<br>' + incomingName);
+}
+
+var updateBench = function(incomingBenchElem, outgoingName) {
+  $(incomingBenchElem)
+    .empty()
+    .html(getPosition(outgoingName) + '<br>' + outgoingName)
+}
+

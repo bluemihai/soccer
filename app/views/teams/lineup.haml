@@ -1,28 +1,32 @@
 #dashboard
   #field{ class: "#{@team.formation.id}"}
   #roster
-    %h4= "#{@team.name} #{@team.formation.name}"
+    %h4
+      = @team.name
+      %br
+      = @team.formation.name
     %br
     #bench.group
       %h4 Subs
       .clear-both
       - @team.players.active_subs.each do |player|
         .bench-player
-          = link_to player.first_name, edit_player_path(player)
+          = player.position_request
           %br
+          = link_to player.first_name, edit_player_path(player)
       #ball= image_tag('soccer.ball.svg', size: 30)
-    #on-roster.group
-      %h4 Roster
-      .clear-both
-      - @team.players.inactive_subs.each do |player|
-        .bench-player
-          = link_to player.first_name, edit_player_path(player)
-          %br
-    #inactive.group
-      %h4 Lineup
-      .clear-both
-      - @team.players.with_position.each do |player|
-        .bench-player
-          = "##{player.position}"
-          = link_to player.first_name, edit_player_path(player)
-          %br
+    / #on-roster.group
+    /   %h4 Roster
+    /   .clear-both
+    /   - @team.players.inactive_subs.each do |player|
+    /     .bench-player
+    /       = link_to player.first_name, edit_player_path(player)
+    /       %br
+    / #inactive.group
+    /   %h4 Lineup
+    /   .clear-both
+    /   - @team.players.with_position.each do |player|
+    /     .bench-player
+    /       = "##{player.position}"
+    /       = link_to player.first_name, edit_player_path(player)
+    /       %br
