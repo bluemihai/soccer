@@ -10,8 +10,9 @@ $(function(){
 
   fillPositions()
 
-  $(".bench-player").draggable();
-  $(".pbox").draggable();
+  $('.bench-player').draggable();
+  $('.pbox').draggable();
+  $('#ball').draggable()
   // $(".pbox div").droppable({
   //   drop: function( event, ui ) {
   //     console.log($(this))
