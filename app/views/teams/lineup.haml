@@ -1,11 +1,18 @@
 #dashboard
   #field{ class: "#{@team.formation.id}"}
   #roster
-    %h4
-      = @team.name
+    %p
+      %b= @team.name
       %br
-      = @team.formation.name
-    %br
+      %b= "#{@team.formation.name} Lineup"
+      %br
+      %br
+      Drag and drop players
+      %br
+      To strategize and make subs
+      %br
+      Don't forget the ball
+
     #bench.group
       %h4 Subs
       .clear-both
