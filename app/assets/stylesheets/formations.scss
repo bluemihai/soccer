@@ -4,13 +4,10 @@
 
 #dashboard {
   h4 {
-    background-color: yellow;
     float: left;
     padding: 5px;
     margin: 5px;
-    border: 1px solid black;
     min-width: 100px;
-    text-align: center;
   }
   vertical-align: top;
 }
@@ -27,11 +24,16 @@
   height: 720px;
 
   .pbox {
+    cursor: move;
     position: absolute;
     background-color: white;
     border: 1px solid red;
     padding: 3px;
     text-align: center;
+  }
+  
+  .pbox:hover {
+    transform: rotate(-3deg);
   }
 }
 

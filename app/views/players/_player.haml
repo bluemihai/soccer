@@ -1,7 +1,8 @@
 %tr
   %th.text-right= player.safe_jersey
   %td= link_to player.safe_name, player
-  %td.text-center= player.invited_or_active == 'Active' ? image_tag('checkmark.png') : player.invited_or_active
+  %td= link_to player.positions, edit_player_path(player)
+  / %td.text-center= player.invited_or_active == 'Active' ? image_tag('checkmark.png') : player.invited_or_active
   - if current_user && current_user.admin?
     %td.admin-only.text-center= link_to "User #{player.user.try(:id) || ''}", player.user
     %td.admin-only.text-center= player.email

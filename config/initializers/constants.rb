@@ -67,3 +67,16 @@ POSITIONS_4231 = [
   ["#10 (CAM)", 10],
   ["#11 (LAM)", 11]
 ]
+POSITION_COLORS = {
+  GK: '#aaaaaa',
+  CB: 'cyan',
+  WB: '#aaffaa',
+  LWB: '#aaffaa',
+  RWB: '#aaffaa',
+  DM: 'yellow',
+  AM: 'orange',
+  RAM: 'orange',
+  LAM: 'orange',
+  CAM: '#ffaa66',
+  S: '#ffaaaa'
+}

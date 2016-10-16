@@ -24,6 +24,15 @@ class Player < ApplicationRecord
   delegate :manager, to: :team
   delegate :full_name, to: :user
 
+  def primary_position
+    position_request.split(', ')[0]
+  end
+
+  def positions
+    return 'None' if position_request.blank?
+    position_request
+  end
+
   def first_name
     first || user.try(:first) || name.split('').first
   end

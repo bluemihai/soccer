@@ -8,7 +8,6 @@ $(function(){
 });
 
 var displayPositions = function(data) {
-  console.log('w', fieldWidth(), 'h', fieldHeight(), 'formation', getFormation())
 
   $('#field').empty();
   $.get('/' + getFormation() + '.json', function(data) {
@@ -17,7 +16,6 @@ var displayPositions = function(data) {
         left: Math.round(d[0] / 36 * width),
         top: Math.round(((d[1] + 6) / 14) * height + boxHeight / 2)
       };
-      // console.log(i, pos);
 
       $('#field').append(
         $('<div>')
@@ -32,9 +30,7 @@ var displayPositions = function(data) {
     });
 
     $(".pbox")
-      .draggable({
-        helper: 'clone'
-      })
+      .draggable()
       .droppable({
         drop: function( event, ui ) {
           swapPlayers(ui.draggable, this)
@@ -47,7 +43,6 @@ var displayPositions = function(data) {
 
 var fieldHeight = function() {
   h = $('#field').height();
-  console.log('h', h)
   return h;
 }
 
@@ -60,6 +55,17 @@ var getFormation = function() {
   return formation_class.split(' ')[0]
 }
 
-var getPosition = function(playerFirstName) {
-  return 'DM, CB'
+var getPositions = function(playerFirstName) {
+  var positions
+  $.get('/teams/23/players.json', function(players) {
+    for (idx in players) {
+      player = players[idx]
+      if (player.first_name === playerFirstName) {
+        positions = player.position_request
+      } else {
+      }
+    }
+    positions = 'N/A'
+  });
+  return positions;
 }

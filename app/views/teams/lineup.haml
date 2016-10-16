@@ -10,18 +10,20 @@
       %h4 Subs
       .clear-both
       - @team.players.active_subs.each do |player|
-        .bench-player
+        .bench-player{style: "background-color: #{POSITION_COLORS.with_indifferent_access[player.primary_position]}"}
           = player.position_request
           %br
           = link_to player.first_name, edit_player_path(player)
       #ball= image_tag('soccer.ball.svg', size: 30)
-    / #on-roster.group
-    /   %h4 Roster
-    /   .clear-both
-    /   - @team.players.inactive_subs.each do |player|
-    /     .bench-player
-    /       = link_to player.first_name, edit_player_path(player)
-    /       %br
+    #on-roster.group
+      %h4 Roster
+      .clear-both
+      - @team.players.inactive_subs.each do |player|
+        .bench-player{style: "background-color: #{POSITION_COLORS.with_indifferent_access[player.primary_position]}"}
+          = player.position_request
+          %br
+          = link_to player.first_name, edit_player_path(player)
+          %br
     / #inactive.group
     /   %h4 Lineup
     /   .clear-both

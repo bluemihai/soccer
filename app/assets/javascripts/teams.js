@@ -9,15 +9,13 @@ $(function(){
 
   $('.bench-player')
     .draggable({helper: 'clone'})
-    .droppable({
-      drop: function( event, ui ) {
-        swapPlayers(this, ui.draggable);
-      }
-    });
-    
-  $('#ball').draggable({
-    helper: 'clone'
-  })
+    // .droppable({
+    //   drop: function( event, ui ) {
+    //     swapPlayers(this, ui.draggable);
+    //   }
+    // })
+
+  $('#ball').draggable()
 })
 
 
@@ -29,24 +27,28 @@ var fillPositions = function() {
   })
 }
 
-var getPlayers = function() {
-  $.get('/teams/23/players.json', function(data) {
-    console.log('getting data...', data)
-    return data
-  });
-}
 
 var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
-  incomingName = $(incomingBenchElem).html().split('<br>')[1]
-  outgoingName = $(outgoingFieldElem).html().split('<br>')[1]
-  position = $(outgoingFieldElem).html().split('<br>')[0]
-
-  console.log('Swapping', incomingName)
-  console.log('...for', outgoingName)
-  console.log('...at', position)
+  var incomingName = $(incomingBenchElem).html().split('<br>')[1]
+  var outgoingName = $(outgoingFieldElem).html().split('<br>')[1]
+  var position = $(outgoingFieldElem).html().split('<br>')[0]
 
   updateField(outgoingFieldElem, position, incomingName);
-  updateBench(incomingBenchElem, outgoingName);
+
+  var cleanFirstName = $(outgoingName).text()
+
+  updateField(outgoingFieldElem, position, incomingName);
+
+  $.get('/teams/23/players.json', function(players) {
+    for (idx in players) {
+      player = players[idx]
+      if (player.first_name === cleanFirstName) {
+        updateBench(incomingBenchElem, outgoingName, player.position_request);
+      }
+    }
+    positions = 'N/A'
+  });
+
 }
 
 var updateField = function(outgoingFieldElem, position, incomingName) {
@@ -54,9 +56,23 @@ var updateField = function(outgoingFieldElem, position, incomingName) {
     .html(position + '<br>' + incomingName);
 }
 
-var updateBench = function(incomingBenchElem, outgoingName) {
+var updateBench = function(incomingBenchElem, outgoingName, positions) {
   $(incomingBenchElem)
     .empty()
-    .html(getPosition(outgoingName) + '<br>' + outgoingName)
+    .html(positions + '<br>' + outgoingName)
+    .css('background-color', positionColors[positions.split(', ')[0]]);
 }
 
+var positionColors = {
+  GK: '#aaaaaa',
+  CB: 'cyan',
+  WB: '#aaffaa',
+  LWB: '#aaffaa',
+  RWB: '#aaffaa',
+  DM: 'yellow',
+  AM: 'orange',
+  RAM: 'orange',
+  LAM: 'orange',
+  CAM: '#ffaa66',
+  S: '#ffaaaa'
+}
