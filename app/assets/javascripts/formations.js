@@ -30,15 +30,35 @@ var displayPositions = function(data) {
     });
 
     $(".pbox")
-      .draggable()
+      .draggable({
+        containment: $('#field'),
+        revert: function(dropped) {
+          return !!dropped
+        }
+      })
       .droppable({
         drop: function( event, ui ) {
-          swapPlayers(ui.draggable, this)
-      }
-    });
+          var isSubstitution = ui.draggable.hasClass("bench-player");
+          if (isSubstitution) {
+            swapPlayers(ui.draggable, this)
+          } else {
+            swapPositions(ui.draggable, this)
+          }
+        },
+        accept: '.pbox, .bench-player',
+        hoverClass: 'receive'
+      })
+      ;
 
     
   });
+}
+
+var swapPositions = function(a, b) {
+  aElements = $(a).html().split('<br>')
+  bElements = $(b).html().split('<br>')
+  $(a).html(aElements[0] + '<br>' + bElements[1])
+  $(b).html(bElements[0] + '<br>' + aElements[1])
 }
 
 var fieldHeight = function() {

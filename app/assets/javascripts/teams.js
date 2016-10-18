@@ -8,7 +8,9 @@ $(function(){
   fillPositions()
 
   $('.bench-player')
-    .draggable({helper: 'clone'})
+    .draggable({
+      helper: 'clone'
+    })
     // .droppable({
     //   drop: function( event, ui ) {
     //     swapPlayers(this, ui.draggable);
