@@ -1,0 +1,36 @@
+%p#notice= notice
+
+%p
+  %b Game:
+  = @played_game.game_id
+%p
+  %b Player:
+  = @played_game.player_id
+%p
+  %b Team:
+  = @played_game.team_id
+%p
+  %b Formation:
+  = @played_game.formation_id
+%p
+  %b Starting position:
+  = @played_game.starting_position
+%p
+  %b Rsvp:
+  = @played_game.rsvp
+%p
+  %b Red card minute:
+  = @played_game.red_card_minute
+%p
+  %b Yellow card minute:
+  = @played_game.yellow_card_minute
+%p
+  %b Card details:
+  = @played_game.card_details
+%p
+  %b Team comments:
+  = @played_game.team_comments
+
+= link_to 'Edit', edit_played_game_path(@played_game)
+\|
+= link_to 'Back', played_games_path

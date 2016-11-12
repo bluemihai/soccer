@@ -45,7 +45,7 @@ var displayPositions = function(data) {
             swapPositions(ui.draggable, this)
           }
         },
-        accept: '.pbox, .bench-player',
+        accept: '.pbox, .sub',
         hoverClass: 'receive'
       })
       ;

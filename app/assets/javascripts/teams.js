@@ -11,11 +11,12 @@ $(function(){
     .draggable({
       helper: 'clone'
     })
-    // .droppable({
-    //   drop: function( event, ui ) {
-    //     swapPlayers(this, ui.draggable);
-    //   }
-    // })
+    .droppable({
+      drop: function( event, ui ) {
+        swapPlayers(this, ui.draggable);
+      },
+      hoverClass: 'receive'
+    })
 
   $('#ball').draggable()
 })
@@ -28,7 +29,6 @@ var fillPositions = function() {
     }
   })
 }
-
 
 var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
   var incomingName = $(incomingBenchElem).html().split('<br>')[1]
@@ -50,7 +50,6 @@ var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
     }
     positions = 'N/A'
   });
-
 }
 
 var updateField = function(outgoingFieldElem, position, incomingName) {

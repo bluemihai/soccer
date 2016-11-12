@@ -1,0 +1,39 @@
+%h1 Listing played_games
+
+%table
+  %thead
+    %tr
+      %th Game
+      %th Player
+      %th Team
+      %th Formation
+      %th Starting position
+      %th Rsvp
+      %th Red card minute
+      %th Yellow card minute
+      %th Card details
+      %th Team comments
+      %th
+      %th
+      %th
+
+  %tbody
+    - @played_games.each do |played_game|
+      %tr
+        %td= played_game.game_id
+        %td= played_game.player_id
+        %td= played_game.team_id
+        %td= played_game.formation_id
+        %td= played_game.starting_position
+        %td= played_game.rsvp
+        %td= played_game.red_card_minute
+        %td= played_game.yellow_card_minute
+        %td= played_game.card_details
+        %td= played_game.team_comments
+        %td= link_to 'Show', played_game
+        %td= link_to 'Edit', edit_played_game_path(played_game)
+        %td= link_to 'Destroy', played_game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Played game', new_played_game_path

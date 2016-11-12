@@ -1,0 +1,17 @@
+= simple_form_for(@played_game) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :game_id
+    = f.input :player_id
+    = f.input :team_id
+    = f.input :formation_id
+    = f.input :starting_position
+    = f.input :rsvp
+    = f.input :red_card_minute
+    = f.input :yellow_card_minute
+    = f.input :card_details
+    = f.input :team_comments
+
+  .form-actions
+    = f.button :submit

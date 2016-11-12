@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :played_games
   resources :fields
   resources :formations
   resources :goals

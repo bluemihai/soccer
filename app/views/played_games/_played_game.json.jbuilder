@@ -1,0 +1,2 @@
+json.extract! played_game, :id, :game_id, :player_id, :team_id, :formation_id, :starting_position, :rsvp, :red_card_minute, :yellow_card_minute, :card_details, :team_comments, :created_at, :updated_at
+json.url played_game_url(played_game, format: :json)
