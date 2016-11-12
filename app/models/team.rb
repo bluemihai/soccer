@@ -12,14 +12,36 @@ class Team < ApplicationRecord
   validates :name, presence: true
   # validates :uniform_colors, presence: true
 
+  def update_roster(args)
+    # expecting hash like {1: 14, 2: 15, 0: [20, 21, 22], nil: [30, 31, 32]}
+    # update lineup
+    # update bench
+    # update roster_inactive
+  end
+
   def lineup
     players.with_position.map do |player|
-      [player.position, player.first_name]
+      [player.position, {
+        first_name: player.first_name,
+        id: player.id
+      }]
     end.to_h
   end
 
+  def roster
+    
+  end
+
+  def bench
+    players.active_subs
+  end
+
+  def roster_inactive
+    players.inactive_subs
+  end
+
   def games_played
-    home_games.played + away_games.played    
+    home_games.played + away_games.played
   end
 
   def games

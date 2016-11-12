@@ -2,16 +2,17 @@
   #field{ class: "#{@team.formation.id}"}
   #roster
     %p
-      %b= @team.name
-      %br
-      %b= "#{@team.formation.name} Lineup"
-      %br
-      %br
-      Drag and drop players
-      %br
-      To strategize and make subs
-      %br
-      Don't forget the ball
+      / %b= @team.name
+      / %br
+      / %b= "#{@team.formation.name} Lineup"
+      / %br
+      / %br
+      / Drag and drop players
+      / %br
+      / To strategize and make subs
+      / %br
+      / Don't forget the ball
+    %button#persist-lineup{'disabled': 'true', 'data': {'disable_with': 'btn-disabled'} } Persist
 
     #bench.group
       %h4 Subs
@@ -31,11 +32,12 @@
           %br
           = link_to player.first_name, edit_player_path(player)
           %br
-    / #inactive.group
-    /   %h4 Lineup
-    /   .clear-both
-    /   - @team.players.with_position.each do |player|
-    /     .bench-player
-    /       = "##{player.position}"
-    /       = link_to player.first_name, edit_player_path(player)
-    /       %br
+    #inactive.group
+      %h4 Non-Roster
+      .clear-both
+      - @team.players.not_on_roster.each do |player|
+        .bench-player
+          —
+          %br
+          = link_to player.first_name, edit_player_path(player)
+          %br

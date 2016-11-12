@@ -20,6 +20,7 @@ class Player < ApplicationRecord
   scope :with_position, -> { where('position > 0').order(:position) }
   scope :active_subs, -> { where(position: 0).order(:name) }
   scope :inactive_subs, -> { where(position: nil).where('status <> 3').order(:name) }
+  scope :not_on_roster, -> { where(status: 3) }
 
   delegate :manager, to: :team
   delegate :full_name, to: :user

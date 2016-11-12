@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :games
     resources :players
     member { get :lineup }
+    member { post :persist_lineup }
   end
   resources :games do
     resources :goals

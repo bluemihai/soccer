@@ -59,6 +59,7 @@ var swapPositions = function(a, b) {
   bElements = $(b).html().split('<br>')
   $(a).html(aElements[0] + '<br>' + bElements[1])
   $(b).html(bElements[0] + '<br>' + aElements[1])
+  $('#persist-lineup').prop('disabled', false);
 }
 
 var fieldHeight = function() {

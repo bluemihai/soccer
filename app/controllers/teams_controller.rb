@@ -16,6 +16,10 @@ class TeamsController < ApplicationController
     end
   end
 
+  def persist_lineup
+    puts "Okay, now persisting lineup..."
+  end
+
   def new
     @team = Team.new
   end

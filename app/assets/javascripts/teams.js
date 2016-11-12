@@ -25,7 +25,11 @@ $(function(){
 var fillPositions = function() {
   $.get('/teams/23/lineup.json', function(data) {
     for (pos in data) {
-      $('#pos' + pos).append('<br><b>' + data[pos] + '</b>')
+      $('#pos' + pos)
+      .append(
+        "<br><b><a href='/players/" + data[pos].id + "/edit'>"
+        + data[pos].first_name + '</a></b>')
+      .attr('player_id', data[pos].id)
     }
   })
 }
@@ -50,6 +54,7 @@ var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
     }
     positions = 'N/A'
   });
+  $('#persist-lineup').prop('disabled', false);
 }
 
 var updateField = function(outgoingFieldElem, position, incomingName) {
@@ -62,6 +67,10 @@ var updateBench = function(incomingBenchElem, outgoingName, positions) {
     .empty()
     .html(positions + '<br>' + outgoingName)
     .css('background-color', positionColors[positions.split(', ')[0]]);
+}
+
+var persistLineup = function() {
+  console.log('Okay, persisting lineup in js-land...');
 }
 
 var positionColors = {
