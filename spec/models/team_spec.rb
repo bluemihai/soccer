@@ -14,7 +14,7 @@ RSpec.describe Team, type: :model do
       0 => [21, 22],
       nil => [31, 32]
     }
-    team.update_lineup(args)
-    expect(team.lineup[1]).to eq 11    
+    team.update_roster(args)
+    expect(team.lineup[1]).to eq({first_name: 'MyString', id: 11})
   end
 end

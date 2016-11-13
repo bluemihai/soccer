@@ -28,8 +28,8 @@ class Team < ApplicationRecord
     end.to_h
   end
 
-  def roster
-    
+  def players_by_position
+    players.group_by{|p|p.position}
   end
 
   def bench

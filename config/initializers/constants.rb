@@ -54,6 +54,7 @@ STATE_ABBREVS = {
   "Wyoming" => "WY"
 }
 POSITIONS_4231 = [
+  ["Non-Roster", -1],
   ["Sub", 0],
   ["#1 (GK)", 1],
   ["#2 (RWB)", 2],
