@@ -31,7 +31,7 @@
 
 - else
   - @players.order(:jersey).each do |player|
-    = link_to player.team.name, player.team
+    = link_to player.team.try(:name), player.team
     = player.jersey
     = link_to player.safe_name, player
     %br

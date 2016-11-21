@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
   helper_method :correct_user?
   helper_method :admin_or_manager?
+  helper_method :admin_or_manager_only!
 
   private
     def current_user
@@ -41,5 +42,12 @@ class ApplicationController < ActionController::Base
     def admin_or_manager?
       current_user && (current_user.admin? || current_user.manager?)
     end
+
+    def admin_or_manager_only!
+      unless current_user && (current_user.admin? || current_user.manager?)
+        redirect_to safe_back, :alert => "Access denied."
+      end
+    end
+
 
 end

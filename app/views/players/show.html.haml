@@ -3,7 +3,7 @@
 Status:
 %b= link_to @player.status, edit_player_path(@player)
 for
-%b= @player.team.name
+%b= @player.team.try(:name)
 
 %hr
 #team.checklist
@@ -87,7 +87,7 @@ for
     = @player.email
   %p
     %b User:
-    = @player.user || 'None'
+    = link_to "ID #{@player.user.pass_id || @player.user.id}", @player.user if @player.user
   %p
     %b Status:
     = @player.status

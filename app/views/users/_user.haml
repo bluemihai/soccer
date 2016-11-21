@@ -3,7 +3,7 @@
   %td= user.id
   %td= user.pass_id
   %td
-    = link_to user.team_name, user.team if user.team
+    = link_to user.team_name, edit_player_path(user.player) if user.player && user.team
   %td= link_to "#{user.first_name} #{user.middle_name} #{user.last_name}", user
   - if user.manager_confirmation
     %td= image_tag('checkmark.png')

@@ -29,9 +29,14 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        msg = "Player successfully created. Please complete your registration here."
-        format.html { redirect_to registration_path, notice: "Your request to join #{@player.team.name} has been received.  The team manager will double-check your league registration, collect your team dues and approve your request." }
-        format.json { render :show, status: :created, location: @player }
+        if admin_or_manager?
+          msg = "You have successfully added #{@player.name} to your team, #{@player.team.name}."
+          format.html { redirect_to @player.team, notice: msg}
+          format.json { render :show, status: :created, location: @player }
+        else
+          format.html { redirect_to registration_path, notice: "Your request to join #{@player.team.name} has been received.  The team manager will double-check your league registration, collect your team dues and approve your request." }
+          format.json { render :show, status: :created, location: @player }          
+        end
       else
         format.html { render :new }
         format.json { render json: @player.errors, status: :unprocessable_entity }

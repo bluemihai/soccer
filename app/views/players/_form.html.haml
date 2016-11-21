@@ -3,24 +3,24 @@
 
 
   .form-inputs
-    .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: 23, include_blank: true
-    - if current_user && current_user.admin?
+    .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: @player.team_id || params[:team_id], include_blank: true
+    - if admin_or_manager?
       - users = User.order(:name)
     - else
       - users = [current_user]
-    .large-3.medium-6.small-6.columns= f.association :user, collection: users, include_blank: true
-    - if (!@player.email || @player.email == '') && @player.user
+    .large-3.medium-6.small-6.columns= f.association :user, collection: users, include_blank: true, selected: @player.user_id || params[:user_id]
+    - if params[:email] || ((!@player.email || @player.email == '') && @player.user)
       .large-3.medium-6.small-6.columns
-        = f.input :email, input_html: { value: @player.user.email }
+        = f.input :email, input_html: { value: params[:email] || @player.user.email }
     - else
       .large-3.medium-6.small-6.columns= f.input :email
-    - if (!@player.name || @player.name == '') && @player.user
+    - if params[:name] || ((!@player.name || @player.name == '') && @player.user)
       .large-3.medium-6.small-6.columns
-        = f.input :name, input_html: { value: @player.user.name }
+        = f.input :name, input_html: { value: @player.name || params[:name] || @player.user.name }
     - else
       .large-3.medium-6.small-6.columns= f.input :name
-    .large-3.medium-6.small-6.columns= f.input :first
-    .large-3.medium-6.small-6.columns= f.input :last
+    .large-3.medium-6.small-6.columns= f.input :first, input_html: { value: @player.first || params[:first_name]}
+    .large-3.medium-6.small-6.columns= f.input :last, input_html: { value: @player.last || params[:last_name]}
     %hr
     .clear-both
     .large-3.medium-6.small-12.columns
@@ -40,7 +40,7 @@
 
   .form-actions
     .large-2.medium-3.small-6.columns= f.button :submit, 'Save'
-    - if current_user && current_user.admin?
+    - if admin_or_manager?
       .large-2.medium-3.small-6.columns.admin-only= f.input :approved, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :invited, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :paid, as: :select

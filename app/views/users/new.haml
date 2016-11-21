@@ -1,0 +1,80 @@
+%h1 EBSSL Registration Form
+
+%p
+  %b= "Welcome, #{current_user.role} #{current_user.name}!"
+  %br
+  %br
+  Have your player PayPal the $10 Player Pass fee to
+  %b ghanbari@msn.com
+  %br
+  His card and league registration will be on hold until you do so.
+
+= simple_form_for(@user, multipart: true) do |f|
+  = f.error_notification
+
+  .form-inputs
+    %hr
+    .large-4.medium-4.small-12.columns
+      = f.input :first_name, autofocus: true
+      = f.input :middle_name
+      = f.input :last_name
+      = f.input :dob, label: 'Date of Birth', start_year: Date.today.year - 28, end_year: Date.today.year - 70, include_blank: true
+    .large-4.medium-3.small-12.columns
+      = f.input :email
+      = f.input :day_phone, label: 'Daytime Phone #'
+      = f.input :evening_phone, label: 'Evening Phone #'
+    .large-4.medium-4.small-12.columns
+      = f.input :league_played_before, as: :select, label: 'Have you played in EBSSL before?', selected: @user.league_played_before || false
+      = f.input :league_past_when, label: 'If yes, when was your last season?', collection: Season.past_for_select
+      = f.input :league_past_team_name, label: 'For what team?'
+      = f.input :league_past_your_name, label: 'Under what name?'
+    %hr
+    .large-4.medium-3.small-12.columns
+      Please upload a player pass photo.
+      %br
+      Face only, no sunglasses, passport-sized (1.5in/1.5in)
+      = f.input :photo, as: :file, label: false
+      = image_tag @user.photo.url(:thumb)
+    .large-2.medium-3.small-6.columns
+      = f.input :dl_license_no, label: 'Drivers License #'
+      = f.input :dl_issuing_state, label: 'DL Issuing State'
+      = f.input :passport_no, label: 'OR Passport #'
+      = f.input :passport_country, as: :string, label: '...and Country'
+    .large-6.medium-3.small-12.columns
+      Upload photo of your drivers license OR passport/resident alien registration card.  Photo must be clearly legible and show the document number, name, picture and the date of birth.
+      = f.input :license_photo, label: false, as: :file
+      - if @user.license_photo.try(:url)
+        = image_tag @user.license_photo.url(:full)
+      - else
+        = image_tag('tim.cook.dl.png')
+    %hr
+    .large-9.medium-12.small-12.columns
+      %h4 Liability Waiver, Certification, and Authorization to Verify Records
+      %p
+        %strong= "I, #{@user.name},"
+        as a player in the East Bay Senior Soccer League, understand that I play in this League at my own risk, and that the League does not provide insurance coverage in the event that I become injured as a result of my direct or indirect participation in the League.  I hold the League and its officials harmless in the event of such occurrence.
+      %p I certify that all of the above information is true and correct, that the attached photocopy of my driver license (and/or passport) is a true copy of the original document without alterations and that the enclosed photographs signed by me are true photographs of myself.
+      %p I authorize the State of California Department of Motor Vehicles or any other applicable agency to disclose my date of birth to any EBSSL League officer carrying this form, for the sole purpose of determining my eligibility to play in the EBSSL League.
+      .large-2.medium-4.small-12.columns= f.input :liability_waiver_agreed, as: :select, label: 'Do you agree?'
+      .large-6.medium-4.small-12.columns= f.input :name, label: 'E-Signature (from FB/Google, update if not your legal name)'
+      .large-4.medium-4.small-12.columns= f.input :created_at, disabled: true, as: :date, label: 'Date'
+
+  - if current_user.admin? || current_user.manager?
+    %hr
+    .large-2.medium-3.small-6.columns= f.button :submit, 'Save'
+    .yellow.large-2.medium-3.small-6.columns= f.input :role, collection: User.roles.keys
+    .yellow.large-2.medium-3.small-6.columns= f.input :pass_id, label: 'EBSSL, Pass Id', include_blank: true
+    .large-6.medium-3.small-6 &nbsp;
+    .clear-both
+    .yellow.large-2.medium-4.small-12.columns
+      = f.input :manager_confirmation, as: :select
+    .yellow.large-4.medium-8.small-12.columns
+      = f.input :manager_message, label: 'If not confirming, what else is needed?'
+    .yellow.large-3.medium-6.small-12.columns
+      = f.input :manager_signature
+    .yellow.large-3.medium-6.small-12.columns
+      = f.input :manager_signature_date
+  - else
+    %hr
+    .form-actions
+      = f.button :submit, 'Save'

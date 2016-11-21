@@ -1,8 +1,7 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:toggle_selected, :show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  before_action :admin_only, :except => [:show, :edit, :update]
+  before_action :admin_or_manager_only!, :except => [:show, :edit, :update]
 
   def index
     @users = User.all
@@ -10,6 +9,33 @@ class UsersController < ApplicationController
 
   def passes
     @users = User.selected
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    respond_to do |format|
+      if @user.save
+        msg = "User successfully registered."
+        @team = current_user.try(:team)
+        format.html { redirect_to new_player_path(
+          user_id: @user.id,
+          team_id: @team.try(:id),
+          email: @user.email,
+          name: @user.name,
+          first_name: @user.first_name,
+          last_name: @user.last_name
+        ), notice: msg }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
@@ -61,14 +87,8 @@ class UsersController < ApplicationController
 
   private
 
-  def admin_only
-    unless current_user.admin?
-      redirect_to safe_back, :alert => "Access denied."
-    end
-  end
-
   def user_params
-    if current_user && current_user.admin?
+    if admin_or_manager?
       params.require(:user).permit(:dob, :name, :role,
         :first_name, :middle_name, :last_name, :day_phone, :evening_phone,
         :email, :photo, :license_photo, :dl_license_no, :dl_issuing_state,

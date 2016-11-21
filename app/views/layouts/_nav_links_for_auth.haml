@@ -36,8 +36,14 @@
           = image_tag('facebook_auth.png', alt: 'Facebook auth menubar')
 
 - if user_signed_in?
-  - if current_user.try(:admin?)
+  - if current_user.admin?
     %li
       %a{"data-dropdown" => "admin", "data-options" => "is_hover: true; hover_timeout: 200", href: '#'} ADMIN ONLY
       %ul#admin.f-dropdown.tiny{"data-dropdown-content" => ""}
         %li= link_to 'List Registrations', users_path
+        %li= link_to 'Register User', new_user_path
+  - elsif current_user.manager?
+    %li
+      %a{"data-dropdown" => "admin", "data-options" => "is_hover: true; hover_timeout: 200", href: '#'} MANAGER ONLY
+      %ul#admin.f-dropdown.tiny{"data-dropdown-content" => ""}
+        %li= link_to 'Register User', new_user_path

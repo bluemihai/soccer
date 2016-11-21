@@ -160,5 +160,5 @@ var collectCurrentRoster = function() {
   output.nonroster = output.nonroster.filter(function(n){ return n != undefined });
     
   console.log('output', output);
-  
+  $.post('/teams/23/players', output)
 }
