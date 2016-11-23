@@ -36,8 +36,8 @@ var fillPositions = function() {
   };
   
   $.get('/teams/23/players.json?include_inactive', function(players) {
-    for (idx in players) {
-      persistedPlayers = players;
+    for (var idx in players) {
+      var persistedPlayers = players;
       var player = players[idx];
       var pos = player.position;
       if (pos === -1) {
@@ -90,13 +90,13 @@ var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
   updateField(outgoingFieldElem, position, incomingName);
 
   $.get('/teams/23/players.json', function(players) {
-    for (idx in players) {
-      player = players[idx]
+    for (var idx in players) {
+      var player = players[idx]
       if (player.first_name === cleanFirstName) {
         updateBench(incomingBenchElem, outgoingName, player.position_request);
       }
     }
-    positions = 'N/A'
+    var positions = 'N/A'
   });
   $('#persist-lineup').prop('disabled', false);
 }
@@ -132,33 +132,33 @@ var positionColors = {
 }
 
 var collectCurrentRoster = function() {
-  output = {starters: [], bench: [], roster: [], nonroster: []}
-  $starters = $('#field div')
+  var output = {starters: [], bench: [], roster: [], nonroster: []}
+  var $starters = $('#field div')
   $starters.each(idx => {
     var pos = $($starters[idx]).attr('id').slice(3)
     output['starters'][pos] = $($starters[idx]).attr('player_id')
   })
 
-  $bench = $('#bench div')
+  var $bench = $('#bench div')
   $bench.each(idx => {
     output.bench.push($($bench[idx]).attr('player_id'))
   })
 
-  $roster = $('#roster div')
+  var $roster = $('#roster div')
   $roster.each(idx => {
     output.roster.push($($roster[idx]).attr('player_id'))
   })
 
-  $nonroster = $('#nonroster div')
+  var $nonroster = $('#nonroster div')
   $nonroster.each(idx => {
     output.nonroster.push($($nonroster[idx]).attr('player_id'))
   })
 
-  output.starters = output.starters.filter(function(n){ return n != 'length' });
-  output.bench = output.bench.filter(function(n){ return n != undefined });
-  output.roster = output.roster.filter(function(n){ return n != undefined });
-  output.nonroster = output.nonroster.filter(function(n){ return n != undefined });
-    
+  output.starters = output.starters.filter(function(n){ return n !== 'length' });
+  output.bench = output.bench.filter(function(n){ return n !== undefined });
+  output.roster = output.roster.filter(function(n){ return n !== undefined });
+  output.nonroster = output.nonroster.filter(function(n){ return n !== undefined });
+
   console.log('output', output);
   $.post('/teams/23/players', output)
 }

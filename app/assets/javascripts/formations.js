@@ -1,7 +1,7 @@
-width = 1150
-height = 720
-boxWidth = 100
-boxHeight = 50
+var width = 1150
+var height = 720
+var boxWidth = 100
+var boxHeight = 50
 
 $(function(){
   displayPositions();
@@ -39,11 +39,12 @@ var displayPositions = function(data) {
       .droppable({
         drop: function( event, ui ) {
           var isSubstitution = ui.draggable.hasClass("bench-player");
-          if (isSubstitution) {
-            swapPlayers(ui.draggable, this)
-          } else {
-            swapPositions(ui.draggable, this)
-          }
+          // TODO - reintegrate, figure out why swapPlayers not recognized
+          // if (isSubstitution) {
+          //   swapPlayers(ui.draggable, this)
+          // } else {
+          //   swapPositions(ui.draggable, this)
+          // }
         },
         accept: '.pbox, .sub',
         hoverClass: 'receive'
@@ -55,15 +56,15 @@ var displayPositions = function(data) {
 }
 
 var swapPositions = function(a, b) {
-  aElements = $(a).html().split('<br>')
-  bElements = $(b).html().split('<br>')
+  var aElements = $(a).html().split('<br>')
+  var bElements = $(b).html().split('<br>')
   $(a).html(aElements[0] + '<br>' + bElements[1])
   $(b).html(bElements[0] + '<br>' + aElements[1])
   $('#persist-lineup').prop('disabled', false);
 }
 
 var fieldHeight = function() {
-  h = $('#field').height();
+  var h = $('#field').height();
   return h;
 }
 
@@ -79,8 +80,8 @@ var getFormation = function() {
 var getPositions = function(playerFirstName) {
   var positions
   $.get('/teams/23/players.json', function(players) {
-    for (idx in players) {
-      player = players[idx]
+    for (var idx in players) {
+      var player = players[idx]
       if (player.first_name === playerFirstName) {
         positions = player.position_request
       } else {
