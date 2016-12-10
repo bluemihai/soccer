@@ -5,12 +5,13 @@ $(function(){
     order: [1, 'asc']
   })
 
-  var persistedPlayers = {};
+  var persistedPlayers = {}
   fillPositions()
 
-  $('#ball').draggable();
+  $('#ball').draggable()
+  $('.opponent').draggable()
   $('#persist-lineup').on('click', function() {
-    collectCurrentRoster();
+    collectCurrentRoster()
   })
 })
 

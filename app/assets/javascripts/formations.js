@@ -1,10 +1,11 @@
 var width = 1150
 var height = 720
-var boxWidth = 100
-var boxHeight = 50
+var boxWidth = 60
+var boxHeight = 40
 
 $(function(){
-  displayPositions();
+  displayPositions()
+  placeOpponents()
 });
 
 var displayPositions = function(data) {
@@ -16,7 +17,6 @@ var displayPositions = function(data) {
         left: Math.round(d[0] / 36 * width),
         top: Math.round(((d[1] + 6) / 14) * height + boxHeight / 2)
       };
-
       $('#field').append(
         $('<div>')
           .attr('id', 'pos' + i)
@@ -50,9 +50,32 @@ var displayPositions = function(data) {
         hoverClass: 'receive'
       })
       ;
-
-    
   });
+}
+
+var placeOpponents = function() {
+  var formation = '442'
+  var oppBoxHeight = 40
+  var oppBoxWidth = 60
+  $.get('/' + formation + '.json', function(data) {
+    $.each(data, function(i, d) {
+      var pos = {
+        left: width - 400 - Math.round(d[0] / 36 * width),
+        top: height - 63 - Math.round(((d[1] + 6) / 14) * height + oppBoxHeight / 2)
+      }
+
+      $('#field').append(
+        $('<div>')
+          .attr('id', 'opponent-' + i)
+          .addClass('opponent')
+          .width( oppBoxWidth )
+          .height( oppBoxHeight )
+          .text('#' + i + '/' + d[3])
+          .offset( pos )
+      );      
+    })
+    $('.opponent').draggable({ containment: $('#field') })
+  })
 }
 
 var swapPositions = function(a, b) {
