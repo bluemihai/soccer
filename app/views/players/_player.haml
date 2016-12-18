@@ -1,5 +1,6 @@
 %tr
   %th.text-right= player.safe_jersey
+  %td.photo= image_tag player.photo_url
   %td= link_to player.safe_name, player
   %td= link_to player.positions, edit_player_path(player)
   / %td.text-center= player.invited_or_active == 'Active' ? image_tag('checkmark.png') : player.invited_or_active

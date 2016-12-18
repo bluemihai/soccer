@@ -12,8 +12,11 @@
       / To strategize and make subs
       / %br
       / Don't forget the ball
-    %button#persist-lineup{'disabled': 'true', 'data': {'disable_with': 'Saved...'} } Save
-    #ball= image_tag('soccer.ball.svg', size: 30)
+    %span
+      %button#persist-lineup{'disabled': 'true', 'data': {'disable_with': 'Saved...'} } Save
+    %span#ball= image_tag('soccer.ball.svg', size: 30)
+    %span
+      %button#toggle-opponents Hide Opponents
 
     #bench.group
       %h4 Subs

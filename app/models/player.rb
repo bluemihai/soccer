@@ -25,6 +25,10 @@ class Player < ApplicationRecord
   delegate :manager, to: :team
   delegate :full_name, to: :user
 
+  def photo_url
+    user.photo(:thumb) if user
+  end
+
   def primary_position
     position_request.split(', ')[0]
   end

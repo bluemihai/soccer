@@ -51,7 +51,15 @@ var fillPositions = function() {
         var $box = "<div class='bench-player roster'>" + player.position_request + "<br/>" + playerLink(player) + "</div>"
         $('#roster').append($($box).css('background-color', '#dddddd').attr('player_id', player.id))
       } else if (typeof pos === 'number') {
-        $('#pos' + pos).append('<br/>' + playerLink(player)).attr('player_id', player.id)
+        var color = $('#pos' + pos).css('background-color')
+        $('#pos' + pos)
+          .css('background', 'url("' + player.photo_url + '")')
+          .css('background-repeat', 'no-repeat')
+          .css('background-size', '40px 40px')
+          .css('background-color', color)
+          .append('<br/>' + playerLink(player))
+          .attr('player_id', player.id)
+        console.log('Doing something here...', player.photo_url);
       }
     }
     $('.bench-player')
@@ -64,7 +72,6 @@ var fillPositions = function() {
         },
         hoverClass: 'receive'
       })
-    console.log('players', players);
     return players;
   })
   //
@@ -80,6 +87,7 @@ var fillPositions = function() {
 }
 
 var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
+  console.log('Running swapPlayers...');
   var incomingName = $(incomingBenchElem).html().split('<br>')[1]
   var outgoingName = $(outgoingFieldElem).html().split('<br>')[1]
   var position = $(outgoingFieldElem).html().split('<br>')[0]

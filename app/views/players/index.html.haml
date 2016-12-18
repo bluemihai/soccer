@@ -8,6 +8,7 @@
   %table#players-table.compact
     %thead
       %th Jersey
+      %th Photo
       %th Name
       %th.text-center Positions
       - if current_user && (current_user.admin? || current_user.manager?)
