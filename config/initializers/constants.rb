@@ -81,3 +81,4 @@ POSITION_COLORS = {
   CAM: '#ffaa66',
   S: '#ffaaaa'
 }
+SHOW_NON_ROSTER = false

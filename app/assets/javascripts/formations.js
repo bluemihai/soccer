@@ -128,6 +128,7 @@ var getPhotoUrl = function(playerFirstName) {
   $.get('/teams/23/players.json', function(players) {
     for (var idx in players) {
       var player = players[idx]
+      alert('hi')
       if (player.first_name === playerFirstName) {
         photoUrl = player.phot_url
       } else {

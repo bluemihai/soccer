@@ -1,4 +1,34 @@
 GIT
+  remote: git://github.com/rails/sass-rails.git
+  revision: dfbcc6a53653d8908007e26324a0f299f026ec4f
+  branch: master
+  specs:
+    sass-rails (6.0.0.beta1)
+      railties (>= 4.0.0, < 5.1)
+      sass (~> 3.4)
+      sprockets (~> 4.x)
+      sprockets-rails (< 4.0)
+
+GIT
+  remote: git://github.com/rails/sprockets-rails.git
+  revision: 6fa795ae1d7e1ad1b175ba8e8bb2093f3d868412
+  branch: master
+  specs:
+    sprockets-rails (3.2.0)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      sprockets (>= 3.0.0)
+
+GIT
+  remote: git://github.com/rails/sprockets.git
+  revision: 5c2021f69c2820044ed4d29e1fab85c34306efd3
+  branch: master
+  specs:
+    sprockets (4.0.0.beta4)
+      concurrent-ruby (~> 1.0)
+      rack (> 1, < 3)
+
+GIT
   remote: git://github.com/thoughtbot/high_voltage.git
   revision: cbab60f8b9d82d26a50af630241b7dfb7676fae2
   specs:
@@ -53,6 +83,10 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.5.3)
       aws-sdk-core (= 2.5.3)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -314,12 +348,6 @@ GEM
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
     sass (3.4.22)
-    sass-rails (5.0.6)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
     selenium-webdriver (3.0.0.beta2.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -336,13 +364,6 @@ GEM
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
       spring (~> 1.2)
-    sprockets (3.7.1)
-      concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-    sprockets-rails (3.2.0)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
-      sprockets (>= 3.0.0)
     thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -376,6 +397,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 2.3)
+  babel-transpiler
   better_errors
   binding_of_caller
   byebug
@@ -418,12 +440,14 @@ DEPENDENCIES
   rb-readline
   rspec-rails
   rubocop
-  sass-rails (~> 5.0)
+  sass-rails!
   selenium-webdriver (~> 3.0.pre.beta2)
   simple_form
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
+  sprockets!
+  sprockets-rails!
   thin
   turbolinks (~> 5)
   tzinfo-data

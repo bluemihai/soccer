@@ -35,12 +35,12 @@
       /     %br
       /     = link_to player.first_name, edit_player_path(player)
       /     %br
-    #nonroster.group
-      %h4 Non-Roster
-      .clear-both
-      / - @team.players.not_on_roster.each do |player|
-      /   .bench-player
-      /     —
-      /     %br
-      /     = link_to player.first_name, edit_player_path(player)
-      /     %br
+    / #nonroster.group
+    /   %h4 Non-Roster
+    /   .clear-both
+    /   / - @team.players.not_on_roster.each do |player|
+    /   /   .bench-player
+    /   /     —
+    /   /     %br
+    /   /     = link_to player.first_name, edit_player_path(player)
+    /   /     %br

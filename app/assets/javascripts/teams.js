@@ -22,44 +22,12 @@ var playerLink = function(playerObject) {
 }
 
 var fillPositions = function() {
-  var colors = {
-    GK: '#aaaaaa',
-    CB: 'cyan',
-    WB: '#aaffaa',
-    LWB: '#aaffaa',
-    RWB: '#aaffaa',
-    DM: 'yellow',
-    AM: 'orange',
-    RAM: 'orange',
-    LAM: 'orange',
-    CAM: '#ffaa66',
-    S: '#ffaaaa'
-  };
   
   $.get('/teams/23/players.json?include_inactive', function(players) {
     for (var idx in players) {
       var persistedPlayers = players;
       var player = players[idx];
-      var pos = player.position;
-      if (pos === -1) {
-        var $box = "<div class='bench-player inactive'>" + player.position_request + "<br/>" + playerLink(player) + "</div>"
-        $('#nonroster').append($($box).css('background-color', '#eeeeee').attr('player_id', player.id))
-      } else if (pos === 0) {
-        var $box = "<div class='bench-player sub'>" + player.position_request + "<br/>" + playerLink(player) + "</div>"
-        $('#bench').append($($box).css('background-color', colors[player.primary_position]).attr('player_id', player.id))
-      } else if (pos === null) {
-        var $box = "<div class='bench-player roster'>" + player.position_request + "<br/>" + playerLink(player) + "</div>"
-        $('#roster').append($($box).css('background-color', '#dddddd').attr('player_id', player.id))
-      } else if (typeof pos === 'number') {
-        var color = $('#pos' + pos).css('background-color')
-        $('#pos' + pos)
-          .css('background', 'url("' + player.photo_url + '")')
-          .css('background-repeat', 'no-repeat')
-          .css('background-size', '40px 40px')
-          .css('background-color', color)
-          .append('<br/>' + playerLink(player))
-          .attr('player_id', player.id)
-      }
+      let p = new Player(players[idx])
     }
     $('.bench-player')
       .draggable({
