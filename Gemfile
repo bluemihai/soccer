@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
-gem 'rails', '~> 5.0.0'
+gem 'rails'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -51,9 +51,11 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'
+  gem 'rb-readline'
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'jasmine'
 end
 group :production do
   gem 'rails_12factor'

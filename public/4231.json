@@ -5,9 +5,9 @@
   "4": [6, 1, "Center Back", "CB", "cyan"],
   "5": [6, -1, "Center Back", "CB", "cyan"],
   "6": [10, 1, "Defensive Mid", "DM", "yellow"],
-  "7": [15, 2, "Right Attacking Mid", "RAM", "orange"],
+  "7": [14, 2, "Right Attacking Mid", "RAM", "orange"],
   "8": [10, -1, "Defensive Mid", "DM", "yellow"],
   "9": [18, 0, "Striker", "S", "#ffaaaa"],
   "10": [14, 0, "Center Attacking Mid", "CAM", "#ffaa66"],
-  "11": [15, -2, "Left Attacking Mid", "LAM", "orange"] 
+  "11": [14, -2, "Left Attacking Mid", "LAM", "orange"] 
 }

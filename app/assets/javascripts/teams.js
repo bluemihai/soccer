@@ -59,7 +59,6 @@ var fillPositions = function() {
           .css('background-color', color)
           .append('<br/>' + playerLink(player))
           .attr('player_id', player.id)
-        console.log('Doing something here...', player.photo_url);
       }
     }
     $('.bench-player')
@@ -91,12 +90,13 @@ var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
   var incomingName = $(incomingBenchElem).html().split('<br>')[1]
   var outgoingName = $(outgoingFieldElem).html().split('<br>')[1]
   var position = $(outgoingFieldElem).html().split('<br>')[0]
-
-  updateField(outgoingFieldElem, position, incomingName);
+  var incomingPhotoUrl = $(outgoingFieldElem).css('background-image')
+  var outgoingPhotoUrl = $(incomingBenchElem).css('background-image')
+  console.log("$(incomingFieldElem)", $(incomingBenchElem));
+  console.log('photoUrls', incomingPhotoUrl, outgoingPhotoUrl);
+  updateField(outgoingFieldElem, position, incomingName, incomingPhotoUrl);
 
   var cleanFirstName = $(outgoingName).text()
-
-  updateField(outgoingFieldElem, position, incomingName);
 
   $.get('/teams/23/players.json', function(players) {
     for (var idx in players) {
@@ -110,7 +110,7 @@ var swapPlayers = function(incomingBenchElem, outgoingFieldElem) {
   $('#persist-lineup').prop('disabled', false);
 }
 
-var updateField = function(outgoingFieldElem, position, incomingName) {
+var updateField = function(outgoingFieldElem, position, incomingName, incomingPhotoUrl) {
   $(outgoingFieldElem)
     .html(position + '<br>' + incomingName);
 }
@@ -143,23 +143,23 @@ var positionColors = {
 var collectCurrentRoster = function() {
   var output = {starters: [], bench: [], roster: [], nonroster: []}
   var $starters = $('#field div')
-  $starters.each(idx => {
+  $starters.each(function (idx) {
     var pos = $($starters[idx]).attr('id').slice(3)
     output['starters'][pos] = $($starters[idx]).attr('player_id')
   })
 
   var $bench = $('#bench div')
-  $bench.each(idx => {
+  $bench.each(function(idx) {
     output.bench.push($($bench[idx]).attr('player_id'))
   })
 
   var $roster = $('#roster div')
-  $roster.each(idx => {
+  $roster.each(function(idx) {
     output.roster.push($($roster[idx]).attr('player_id'))
   })
 
   var $nonroster = $('#nonroster div')
-  $nonroster.each(idx => {
+  $nonroster.each(function(idx) {
     output.nonroster.push($($nonroster[idx]).attr('player_id'))
   })
 

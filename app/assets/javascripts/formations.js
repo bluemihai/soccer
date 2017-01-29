@@ -1,6 +1,6 @@
 var width = 1150
 var height = 720
-var boxWidth = 100
+var boxWidth = 110
 var boxHeight = 40
 
 $(function(){
@@ -16,7 +16,6 @@ var displayPositions = function(data) {
   $('#field').empty();
   $.get('/' + getFormation() + '.json', function(data) {
     $.each(data, function(i, d) {
-      console.log('i', i, 'd', d);
       var pos = { 
         left: Math.round(d[0] / 36 * width),
         top: Math.round(((d[1] + 6) / 14) * height + boxHeight / 2)
@@ -86,8 +85,11 @@ var swapPositions = function(a, b) {
   console.log('Running swapPositions...');
   var aElements = $(a).html().split('<br>')
   var bElements = $(b).html().split('<br>')
+  var aBackgroundImage = $(a).css('background-image')
   $(a).html(aElements[0] + '<br>' + bElements[1])
   $(b).html(bElements[0] + '<br>' + aElements[1])
+  $(a).css('background-image', $(b).css('background-image'))
+  $(b).css('background-image', aBackgroundImage)
   $('#persist-lineup').prop('disabled', false);
 }
 
