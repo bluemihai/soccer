@@ -2,15 +2,34 @@ var width = 1150
 var height = 720
 var boxWidth = 110
 var boxHeight = 40
+var displayOpponents = true
 
 $(function(){
   displayPositions()
   placeOpponents()
+  console.log('WORKING');
+  $('#toggle-opponents').on('click', function() {
+    toggleOpponents();
+  });
 });
 
-$('#toggle-opponents').on('click', function() {
-  collectCurrentRoster()
-})
+var toggleOpponents = function() {
+  console.log('displayOpponents is', displayOpponents);
+  if (displayOpponents) {
+    var $opponents = $('.opponent')
+    $opponents.each(function(idx){
+      opp = $opponents(idx)
+      console.log('opp', opp);
+      opp.hide();
+    })
+    displayOpponents = false
+  } else {
+    // $('.opponent').each(function(item){
+    //   item.show();
+    // })
+    // displayOpponents = true
+  }
+}
 
 var displayPositions = function(data) {
   $('#field').empty();
@@ -33,6 +52,7 @@ var displayPositions = function(data) {
       $('#field').append(box)
     });
 
+    console.log('Running');
     $(".pbox")
       .draggable({
         containment: $('#field'),
@@ -50,7 +70,7 @@ var displayPositions = function(data) {
             swapPositions(ui.draggable, this)
           }
         },
-        accept: '.pbox, .sub',
+        accept: '.pbox, .sub, .rbox',
         hoverClass: 'receive'
       })
       ;

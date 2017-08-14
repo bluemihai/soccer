@@ -91,7 +91,7 @@ class RegistrationPdf < Prawn::Document
           { text: user.manager_signature_date.strftime('%b %d, %Y') }
         ]
       else
-        text "NOT YET Confirmed by team manager #{user.team.manager.name}"
+        text "NOT YET Confirmed by team manager #{user.team.manager.name rescue 'N/A'}"
       end
     end
   end
