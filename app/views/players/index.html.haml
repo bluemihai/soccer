@@ -1,6 +1,11 @@
 
 - if @team
   %h1= "#{@team.name} Roster"
+
+  - nonroster = Player.where(position: -1).count
+  = "#{@team.players.count - nonroster} Roster Players"
+  = "#{nonroster} Non-Roster Players"
+
 - else
   %h1 League Players
 
