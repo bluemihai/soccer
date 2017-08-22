@@ -2,5 +2,11 @@
   float: left;
   margin: 20px;
   min-width: 200px;
-  height: 240px;
+}
+
+.blue {
+  a, a:visited {
+    color: blue;
+    font-size: 70%;
+  }
 }

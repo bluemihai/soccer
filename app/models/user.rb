@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :liability_waiver_agreed, presence: true, acceptance: true, on: :update
   validates :name, presence: true
-  validate :age_at_least_28, on: :update
+  validate :age_at_least_28
   validate :listed_license_or_passport, on: :update
 
   scope :selected, -> { where(selected: true) }
