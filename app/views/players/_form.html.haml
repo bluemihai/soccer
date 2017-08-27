@@ -3,43 +3,41 @@
 
 
   .form-inputs
-    .large-3.medium-6.small-6.columns= f.association :team, collection: Team.order(:name), selected: @player.team_id || params[:team_id], include_blank: true
-    - if admin_or_manager?
-      - users = User.order(:name)
-    - else
-      - users = [current_user]
-    .large-3.medium-6.small-6.columns= f.association :user, collection: users, include_blank: true, selected: @player.user_id || params[:user_id]
-    - if params[:email] || ((!@player.email || @player.email == '') && @player.user)
-      .large-3.medium-6.small-6.columns
-        = f.input :email, input_html: { value: params[:email] || @player.user.email }
-    - else
-      .large-3.medium-6.small-6.columns= f.input :email
-    - if params[:name] || ((!@player.name || @player.name == '') && @player.user)
-      .large-3.medium-6.small-6.columns
-        = f.input :name, input_html: { value: @player.name || params[:name] || @player.user.name }
-    - else
-      .large-3.medium-6.small-6.columns= f.input :name
-    .large-3.medium-6.small-6.columns= f.input :first, input_html: { value: @player.first || params[:first_name]}
-    .large-3.medium-6.small-6.columns= f.input :last, input_html: { value: @player.last || params[:last_name]}
-    %hr
-    .clear-both
-    .large-3.medium-6.small-12.columns
-      = f.input :status, collection: Player.statuses.keys, label: 'How interested/committed are you?', include_blank: true
-    .large-3.medium-6.small-12.columns= f.input :position_request, label: 'What positions are you able/willing to play?  Which do you prefer?', placeholder: '"Def or Mid, preferrably on the right"'
-    .large-3.medium-6.small-12.columns= f.input :ideal_minutes, label: 'How many minutes would you want to play?  Give your ideal range.', placeholder: '"30-60", "75-90"'
-    .large-3.medium-6.small-12.columns= f.input :attendance_estimate, label: 'How many games do you think you\'ll miss over the next 5 months?', placeholder: '"About 5. First game, 2-3 in October for a trip and probably a couple of others"'
-    .clear-both
-    .large-2.medium-4.small-12.columns= f.input :has_jersey, as: :select, label: 'Do you have your dark blue (SPU) Jersey?'
-    .large-2.medium-4.small-12.columns= f.input :jersey, label: 'Jersey (*)', collection: [@player.jersey.to_i] + Team.find(23).available_jerseys, label: 'What jersey # do you have or wish to claim?'
-    .large-2.medium-4.small-12.columns= f.input :keeper, as: :select, label: 'Would you play goalkeeper in an emergency?', include_blank: true
-    .large-3.medium-6.small-12.columns= f.input :city, label: 'Where do you live?  Any interest in carpooling to games?'
-    .large-3.medium-6.small-12.columns= f.input :ebssl_card, as: :select, collection: [['No EBSSL card', false], ['Have an EBSSL card', true]], selected: false, include_blank: false, label: 'EBSSL history'
-    .clear-both
-    .large-6.medium-12.small-12.columns= f.input :why, label: 'Why do you choose to play soccer?  We are all different, might be nice to know if we are aligned.  Examples: to get/stay in shape, to have fun, to compete, to socialize, to win...', input_html: {rows: 6}
-  %hr
+    .large-4.medium-4.small-4.columns= f.association :team, collection: Team.order(:name), selected: @player.team_id || params[:team_id], include_blank: true
+    - users = admin_or_manager? ? User.order(:name) : [current_user]
+    .large-4.medium-4.small-4.columns= f.association :user, collection: users, include_blank: true, selected: @player.user_id || params[:user_id]
+    .large-4.medium-4.small-4.columns= f.button :submit, 'Save'
+    / - if params[:email] || ((!@player.email || @player.email == '') && @player.user)
+    /   .large-3.medium-6.small-6.columns
+    /     = f.input :email, input_html: { value: params[:email] || @player.user.email }
+    / - else
+    /   .large-3.medium-6.small-6.columns= f.input :email
+    / - if params[:name] || ((!@player.name || @player.name == '') && @player.user)
+    /   .large-3.medium-6.small-6.columns
+    /     = f.input :name, input_html: { value: @player.name || params[:name] || @player.user.name }
+    / - else
+    /   .large-3.medium-6.small-6.columns= f.input :name
+    / .large-3.medium-6.small-6.columns= f.input :first, input_html: { value: @player.first || params[:first_name]}
+    / .large-3.medium-6.small-6.columns= f.input :last, input_html: { value: @player.last || params[:last_name]}
+    / %hr
+    / .clear-both
+    / .large-3.medium-6.small-12.columns
+    /   = f.input :status, collection: Player.statuses.keys, label: 'How interested/committed are you?', include_blank: true
+    / .large-3.medium-6.small-12.columns= f.input :position_request, label: 'What positions are you able/willing to play?  Which do you prefer?', placeholder: '"Def or Mid, preferrably on the right"'
+    / .large-3.medium-6.small-12.columns= f.input :ideal_minutes, label: 'How many minutes would you want to play?  Give your ideal range.', placeholder: '"30-60", "75-90"'
+    / .large-3.medium-6.small-12.columns= f.input :attendance_estimate, label: 'How many games do you think you\'ll miss over the next 5 months?', placeholder: '"About 5. First game, 2-3 in October for a trip and probably a couple of others"'
+    / .clear-both
+    / .large-2.medium-4.small-12.columns= f.input :has_jersey, as: :select, label: 'Do you have your dark blue (SPU) Jersey?'
+    / .large-2.medium-4.small-12.columns= f.input :jersey, label: 'Jersey (*)', collection: [@player.jersey.to_i] + Team.find(23).available_jerseys, label: 'What jersey # do you have or wish to claim?'
+    / .large-2.medium-4.small-12.columns= f.input :keeper, as: :select, label: 'Would you play goalkeeper in an emergency?', include_blank: true
+    / .large-3.medium-6.small-12.columns= f.input :city, label: 'Where do you live?  Any interest in carpooling to games?'
+    / .large-3.medium-6.small-12.columns= f.input :ebssl_card, as: :select, collection: [['No EBSSL card', false], ['Have an EBSSL card', true]], selected: false, include_blank: false, label: 'EBSSL history'
+    / .clear-both
+    / .large-6.medium-12.small-12.columns= f.input :why, label: 'Why do you choose to play soccer?  We are all different, might be nice to know if we are aligned.  Examples: to get/stay in shape, to have fun, to compete, to socialize, to win...', input_html: {rows: 6}
+  / %hr
 
-  .form-actions
-    .large-2.medium-3.small-6.columns= f.button :submit, 'Save'
+  %hr
+  .row
     - if admin_or_manager?
       .large-2.medium-3.small-6.columns.admin-only= f.input :approved, as: :select
       .large-2.medium-3.small-6.columns.admin-only= f.input :invited, as: :select

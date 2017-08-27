@@ -1,10 +1,12 @@
 %li
-  %a{"data-dropdown" => "league", "data-options" => "is_hover:true; hover_timeout:200", href: "#"}
+  %a{"data-dropdown" => "league", "data-options" => "is_hover:true; hover_timeout:200", href: "http://ebssl.com"}
     League Info
   %ul#league.f-dropdown.tiny{"data-dropdown-content" => ""}
+    %li= link_to 'Div A Standings & Schedule', 'http://ebssl.com/schd_a.htm'
+    %li= link_to 'Div B Standings & Schedule', 'http://ebssl.com/schd_b.htm'
+    %li= link_to 'Div C Standings & Schedule', 'http://ebssl.com/schd_c.htm'
+    %li= link_to 'Div D Standings & Schedule', 'http://ebssl.com/schd_d.htm'
+    %li= link_to 'Div E Standings & Schedule', 'http://ebssl.com/schd_e.htm'
     %li= link_to 'Fields', fields_path
-    %li= link_to 'Schedule (2016-2017)', games_path
-    %li= link_to 'Standings (2016-2017)', divisions_path
     / %li= link_to 'Registration (2016-2017)', registration_path
-    %li= link_to 'ByLaws (PDF)', asset_path('bylaws.pdf')
-    %li= link_to 'ebssl.com', 'http://ebssl.com/'
+    %li= link_to 'ByLaws (PDF)', "http://ebssl.com/bylaws.pdf"
